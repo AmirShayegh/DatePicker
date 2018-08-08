@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MonthsCollectionViewCell" customModule="FreshDate" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="337" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="337" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" canCancelContentTouches="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mGH-UC-SD8">
+                        <rect key="frame" x="0.0" y="0.0" width="337" height="60"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QHL-fw-AJV">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uzW-6e-azc">
+                        <rect key="frame" x="153.5" y="55" width="30" height="2"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.49019607840000001" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="0aW-46-Cj2"/>
+                            <constraint firstAttribute="width" constant="30" id="ciF-bp-zrG"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjP-hE-4Kq">
+                        <rect key="frame" x="0.0" y="59" width="337" height="1"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.49019607840000001" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="k0e-rG-frx"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="gjP-hE-4Kq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2X8-d3-ZbP"/>
+                <constraint firstAttribute="bottom" secondItem="gjP-hE-4Kq" secondAttribute="bottom" id="Unm-TS-LOc"/>
+                <constraint firstItem="gjP-hE-4Kq" firstAttribute="top" secondItem="uzW-6e-azc" secondAttribute="bottom" constant="2" id="VXj-za-HOA"/>
+                <constraint firstItem="uzW-6e-azc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ape-D6-PgU"/>
+                <constraint firstItem="mGH-UC-SD8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ciu-bN-aba"/>
+                <constraint firstAttribute="trailing" secondItem="gjP-hE-4Kq" secondAttribute="trailing" id="eUz-bk-UfJ"/>
+                <constraint firstAttribute="trailing" secondItem="mGH-UC-SD8" secondAttribute="trailing" id="k4h-DE-KV8"/>
+                <constraint firstAttribute="bottom" secondItem="mGH-UC-SD8" secondAttribute="bottom" id="lYb-om-cDo"/>
+                <constraint firstItem="mGH-UC-SD8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oqm-65-XXB"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="337" height="60"/>
+            <connections>
+                <outlet property="bottomDivider" destination="gjP-hE-4Kq" id="uW1-Xa-D6a"/>
+                <outlet property="collectionView" destination="mGH-UC-SD8" id="pIA-VV-Ocj"/>
+                <outlet property="middleIndicator" destination="uzW-6e-azc" id="6zu-UJ-xWZ"/>
+            </connections>
+            <point key="canvasLocation" x="-109.5" y="59"/>
+        </collectionViewCell>
+    </objects>
+</document>
