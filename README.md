@@ -20,7 +20,7 @@ it, simply add the following line to your Podfile:
 pod 'DatePicker'
 ```
 
-## Usage
+## Quick Usage
 
 1) Import the library
 
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 
 - Picker between today and 100 years from now:
 ```Swift
-let datePicker = FreshDate()
+let datePicker = DatePicker()
 datePicker.setup() {date in
 	// process result
 	print("\(date)")
@@ -45,8 +45,9 @@ datePicker.setup() {date in
 
 - Picker with minimum and maximum dates:
 ```Swift
+let datePicker = DatePicker()
 datePicker.setup(min: minDate, max: maxDate) { (date) in
-	// process result
+	// process result when date is returned
 	print("\(date)")
 }
 ```
