@@ -29,22 +29,21 @@ class ButtonCollectionViewCell: UICollectionViewCell {
      */
     func setup(date: Date, clicked: @escaping() -> Void) {
         self.callBack = clicked
-        self.button.setTitle(date.string(), for: .normal)
+//        self.button.setTitle(date.string(), for: .normal)
         style()
     }
 
     func setFrom(date: Date) {
-        self.button.setTitle(" Select \(date.string())", for: .normal)
+//        self.button.setTitle(" Select \(date.string())", for: .normal)
     }
 
     func style() {
-        styleButton(button: button, bg: Colors.background, borderColor: Colors.background.cgColor, titleColor: Colors.main)
+        styleButton(button: button, bg: Colors.main, borderColor: Colors.main.cgColor, titleColor: Colors.selectedText)
         button.titleLabel?.font = Fonts.heavy
-
     }
 
     func styleButton(button: UIButton, bg: UIColor, borderColor: CGColor, titleColor: UIColor) {
-        button.layer.cornerRadius = 0
+        button.layer.cornerRadius = 8
         button.backgroundColor = bg
         button.layer.borderWidth = 1
         button.layer.borderColor = borderColor

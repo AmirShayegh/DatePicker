@@ -128,7 +128,7 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func cellWidth() -> CGFloat {
-        return (self.collectionView.frame.width / 5)
+        return 90
     }
 
     func cellSize() -> CGSize {

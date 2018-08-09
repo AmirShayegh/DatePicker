@@ -61,20 +61,17 @@ public class PickerViewController: UIViewController {
 
     func validate() {
         if self.mode == .MinMax, let current = FDHelper.shared.dateFrom(day: day, month: month, year: year), let max = maxDate, let min = minDate {
-            print("\(day) \(month) \(year)")
             if current > max {
                 // select max date
                 self.day = max.day()
                 self.month = max.month()
                 self.year = max.year()
-                print("From Max: \(max)")
                 reload()
             } else if current < min {
                 // select min date
                 self.day = min.day()
                 self.month = min.month()
                 self.year = min.year()
-                print("From Min: \(min)")
                 reload()
             } else {
             }
@@ -83,7 +80,6 @@ public class PickerViewController: UIViewController {
 
 
     func reload() {
-        print("Reloading with \(day) \(month) \(year)")
         reloadDays()
         reloadMonths()
         reloadYears()
