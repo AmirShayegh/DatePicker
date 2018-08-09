@@ -9,15 +9,22 @@ import UIKit
 
 class MonthCollectionViewCell: UICollectionViewCell {
 
+    // MARK: Optionals
+    var parent: MonthsCollectionViewCell?
+
+    // MARK: Outlets
     @IBOutlet weak var label: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var button: UIButton!
+
+    @IBAction func butonClicked(_ sender: UIButton) {
+        guard let p = parent, let gp = p.parent, let month = label.text else {return}
+        gp.changeMonth(to: month)
     }
 
+    // MARK: Setup
     func setup(month: String, parent: MonthsCollectionViewCell) {
         self.label.text = month
+        self.parent = parent
         if let gp = parent.parent {
             if FDHelper.shared.month(name: month) == gp.month {
                 select()

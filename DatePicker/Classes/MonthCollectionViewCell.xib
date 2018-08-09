@@ -25,17 +25,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqa-2m-mQx">
+                        <rect key="frame" x="0.0" y="0.0" width="179" height="38"/>
+                        <connections>
+                            <action selector="butonClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Adv-Qh-esq"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="Dqa-2m-mQx" secondAttribute="trailing" id="9iB-tL-6dB"/>
                 <constraint firstAttribute="bottom" secondItem="ufF-cD-5Wc" secondAttribute="bottom" id="Jp7-Xq-J8t"/>
+                <constraint firstItem="Dqa-2m-mQx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Qp1-3U-ASP"/>
+                <constraint firstItem="Dqa-2m-mQx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SGN-rp-K3X"/>
                 <constraint firstItem="ufF-cD-5Wc" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="de7-Hn-pFm"/>
                 <constraint firstItem="ufF-cD-5Wc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ey1-0V-YQp"/>
                 <constraint firstAttribute="trailing" secondItem="ufF-cD-5Wc" secondAttribute="trailing" id="kDd-D4-FH0"/>
+                <constraint firstAttribute="bottom" secondItem="Dqa-2m-mQx" secondAttribute="bottom" id="uKB-Nl-KMh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="179" height="38"/>
             <connections>
+                <outlet property="button" destination="Dqa-2m-mQx" id="e3j-i8-Os9"/>
                 <outlet property="label" destination="ufF-cD-5Wc" id="Xz0-Id-p6E"/>
             </connections>
             <point key="canvasLocation" x="-146.5" y="48"/>

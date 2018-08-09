@@ -128,8 +128,10 @@ public class PickerViewController: UIViewController {
     }
 
     func changeYear(to: Int) {
-
-
+        guard let indexPath = yearsIndexPath else {return}
+        let cell = self.collectionView.cellForItem(at: indexPath) as! YearsCollectionViewCell
+        cell.select(year: to)
+        self.year = to
     }
 
     func currentDate() -> Date {

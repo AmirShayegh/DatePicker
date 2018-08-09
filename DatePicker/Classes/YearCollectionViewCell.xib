@@ -25,16 +25,27 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F26-Fr-4ID">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <connections>
+                            <action selector="butonClicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="0bQ-Y0-toY"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="F26-Fr-4ID" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0lg-o1-0tI"/>
+                <constraint firstAttribute="trailing" secondItem="F26-Fr-4ID" secondAttribute="trailing" id="6g7-fc-UIi"/>
                 <constraint firstAttribute="trailing" secondItem="Dze-IC-yEY" secondAttribute="trailing" id="YP2-uy-quQ"/>
                 <constraint firstAttribute="bottom" secondItem="Dze-IC-yEY" secondAttribute="bottom" id="avJ-qa-99B"/>
                 <constraint firstItem="Dze-IC-yEY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dKP-7v-eJk"/>
                 <constraint firstItem="Dze-IC-yEY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fbu-id-qlH"/>
+                <constraint firstItem="F26-Fr-4ID" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="q7P-AY-Sdu"/>
+                <constraint firstAttribute="bottom" secondItem="F26-Fr-4ID" secondAttribute="bottom" id="ylb-BO-XHr"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
+                <outlet property="button" destination="F26-Fr-4ID" id="hjt-6Q-WMk"/>
                 <outlet property="label" destination="Dze-IC-yEY" id="hZw-Xm-CeY"/>
             </connections>
         </collectionViewCell>

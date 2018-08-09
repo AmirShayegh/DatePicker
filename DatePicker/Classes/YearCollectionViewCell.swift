@@ -8,14 +8,22 @@
 import UIKit
 
 class YearCollectionViewCell: UICollectionViewCell {
+    // MARK: Optionals
+    var parent: YearsCollectionViewCell?
 
+    // MARK: Outlets
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var button: UIButton!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    // MARK: Outlet Actions
+    @IBAction func butonClicked(_ sender: UIButton) {
+        guard let p = parent, let gp = p.parent, let y = label.text, let year = Int(y) else {return}
+        gp.changeYear(to: year)
     }
 
+    // MARK: Setup
     func setup(year: Int, parent: YearsCollectionViewCell) {
+        self.parent = parent
         if year != 0 {
             self.label.text = "\(year)"
         } else {
