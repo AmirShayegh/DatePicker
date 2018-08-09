@@ -40,8 +40,11 @@ class ViewController: UIViewController {
 
 ```Swift
 let datePicker = DatePicker()
-datePicker.setup() {date in
-	// process result
+datePicker.setup() { (date) in
+	//Process Date returned when date changed
+	print("\(date)")
+}) { (date) in
+	// Process Date returned when select button is pressed
 	print("\(date)")
 }
 ```
@@ -53,7 +56,10 @@ datePicker.setup() {date in
 ```Swift
 let datePicker = DatePicker()
 datePicker.setup(min: minDate, max: maxDate) { (date) in
-	// process result when date is returned
+	//Process Date returned when date changed
+	print("\(date)")
+}) { (date) in
+	// Process Date returned when select button is pressed
 	print("\(date)")
 }
 ```

@@ -27,30 +27,30 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func popover(_ sender: UIButton) {
-        self.label.alpha =  0
-        sender.alpha = 0
+        self.label.alpha = 1
         let fd = DatePicker()
-        let start = FDHelper.shared.dateFrom(day: 18, month: 07, year: 2011)
-        let end = FDHelper.shared.dateFrom(day: 10, month: 09, year: 2020)
-        fd.setup(min: start!, max: end!) { (date) in
+        let start = FDHelper.shared.dateFrom(day: 18, month: 07, year: 2018)
+        let end = FDHelper.shared.dateFrom(day: 10, month: 12, year: 2018)
+        fd.setup(min: start!, max: end!, dateChanged: { (date) in
+            print("\(date)")
             self.label.text = "\(date)"
-            self.label.alpha =  1
-            sender.alpha = 1
+        }) { (date) in
+            self.label.text = "\(date)"
         }
 
         fd.displayPopOver(on: sender, in: self)
     }
 
     @IBAction func present(_ sender: UIButton) {
-        self.label.alpha =  0
-        sender.alpha = 0
+        self.label.alpha = 1
         let fd = DatePicker()
-        fd.setup { (date) in
+        fd.setup(dateChanged: { (date) in
+            print("\(date)")
             self.label.text = "\(date)"
-            self.label.alpha =  1
-            sender.alpha = 1
+        }) { (date) in
+            self.label.text = "\(date)"
         }
 
         fd.display(in: self)

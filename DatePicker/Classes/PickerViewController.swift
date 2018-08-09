@@ -16,6 +16,7 @@ public class PickerViewController: UIViewController {
 
     // MARK: Optionals
     var callBack: ((_ date: Date)-> Void)?
+    var liveCallBack: ((_ date: Date)-> Void)?
     var yearlessCallBack: ((_ month: Int,_ day: Int)-> Void)?
 
     var monthsIndexPath: IndexPath?
@@ -26,9 +27,22 @@ public class PickerViewController: UIViewController {
     // MARK: Variables
     var displayMode: DisplayMode = .Popup
     var mode: FreshDateMode = .Basic
-    var day: Int = 18
-    var month: Int = 9
-    var year: Int = 2018
+
+    var day: Int = 18 {
+        didSet {
+            liveReturn()
+        }
+    }
+    var month: Int = 7 {
+        didSet {
+            liveReturn()
+        }
+    }
+    var year: Int = 2018 {
+        didSet {
+            liveReturn()
+        }
+    }
 
     var minDate: Date?
     var maxDate: Date?
@@ -57,6 +71,17 @@ public class PickerViewController: UIViewController {
     }
 
     // MARK: Functions
+
+    func liveReturn() {
+        // if date is valid, send back
+        guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
+        if let min = self.minDate, let max = self.maxDate {
+            if date < max && date > min {
+                completion(date)
+            }
+        }
+    }
+
     func set(date: Date) {
         self.year = date.year()
         self.month = date.month()

@@ -52,30 +52,32 @@ public class DatePicker {
     // MARK: Setup
 
     // Basic setup, returns a date in the next 100 years from today
-    public func setup(beginWith: Date? = nil, then: @escaping(_ date: Date) -> Void) {
+    public func setup(beginWith: Date? = nil, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ date: Date) -> Void) {
         vc.mode = .Basic
         if let begin = beginWith {
              vc.set(date: begin)
         } else {
             vc.set(date: Date())
         }
-        vc.callBack = then
+        vc.callBack = selected
+        vc.liveCallBack = dateChanged
     }
 
     // Setup with a min and max date
-    public func setup(min:Date, max: Date, then: @escaping(_ date: Date) -> Void) {
+    public func setup(min:Date, max: Date, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ date: Date) -> Void) {
         vc.mode = .MinMax
         vc.maxDate = max
         vc.minDate = min
         vc.set(date: min)
-        vc.callBack = then
+        vc.callBack = selected
+        vc.liveCallBack = dateChanged
     }
 
     // Setup without years
-    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ month: Int,_ day: Int) -> Void) {
-        vc.mode = .YearlessMinMax
-        vc.yearlessCallBack = then
-    }
+//    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ month: Int,_ day: Int) -> Void) {
+//        vc.mode = .YearlessMinMax
+//        vc.yearlessCallBack = then
+//    }
 
     // MARK: Presenataion
 
