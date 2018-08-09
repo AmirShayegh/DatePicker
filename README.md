@@ -20,9 +20,49 @@ it, simply add the following line to your Podfile:
 pod 'DatePicker'
 ```
 
-## Author
+## Usage
 
-amirshayegh, shayegh@me.com
+1) Import the library
+
+```Swift
+import UIKit
+import FreshDate
+
+class ViewController: UIViewController {
+}
+```
+
+2) Setup
+
+- Picker between today and 100 years from now:
+```Swift
+let datePicker = FreshDate()
+datePicker.setup() {date in
+	// process result
+	print("\(date)")
+}
+```
+
+- Picker with minimum and maximum dates:
+```Swift
+datePicker.setup(min: minDate, max: maxDate) { (date) in
+	// process result
+	print("\(date)")
+}
+```
+
+
+3) Display
+
+- Screen Center:
+```Swift
+datePicker.display(in: self)
+```
+
+- Or as Popover:
+```Swift
+datePicker.displayPopOver(on: button, in: self)
+```
 
 ## License
 
