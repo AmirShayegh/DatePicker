@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/DatePicker.svg?style=flat)](https://cocoapods.org/pods/DatePicker)
 [![Platform](https://img.shields.io/cocoapods/p/DatePicker.svg?style=flat)](https://cocoapods.org/pods/DatePicker)
 
+![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Full.png)
+![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Popover.jpg)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
