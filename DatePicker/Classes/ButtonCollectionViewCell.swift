@@ -39,7 +39,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
 
     func style() {
         styleButton(button: button, bg: Colors.main, borderColor: Colors.main.cgColor, titleColor: Colors.selectedText)
-        button.titleLabel?.font = Fonts.heavy
+        button.titleLabel?.font = Fonts.regular
     }
 
     func styleButton(button: UIButton, bg: UIColor, borderColor: CGColor, titleColor: UIColor) {

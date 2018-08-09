@@ -9,13 +9,13 @@ import Foundation
 
 class Fonts {
 
-    static let regular: UIFont = UIFont(name: "HelveticaNeue", size: 14)!
+    static let regular: UIFont = UIFont(name: "HelveticaNeue", size: 17)!
 
-    static let heavy: UIFont = UIFont(name: "HelveticaNeue-Bold", size: 14)!
+    static let heavy: UIFont = UIFont(name: "HelveticaNeue-Bold", size: 17)!
 
-    static let light: UIFont = UIFont(name: "HelveticaNeue-Light", size: 14)!
+    static let light: UIFont = UIFont(name: "HelveticaNeue-Light", size: 17)!
 
-    static let medium: UIFont = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+    static let medium: UIFont = UIFont(name: "HelveticaNeue-Medium", size: 17)!
 
 
 }

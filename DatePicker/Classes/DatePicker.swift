@@ -64,11 +64,16 @@ public class DatePicker {
     }
 
     // Setup with a min and max date
-    public func setup(min:Date, max: Date, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ date: Date) -> Void) {
+    public func setup(beginWith: Date? = nil, min:Date, max: Date, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ date: Date) -> Void) {
+        vc.mode = .Basic
+        if let begin = beginWith {
+            vc.set(date: begin)
+        } else {
+            vc.set(date: min)
+        }
         vc.mode = .MinMax
         vc.maxDate = max
         vc.minDate = min
-        vc.set(date: min)
         vc.callBack = selected
         vc.liveCallBack = dateChanged
     }
