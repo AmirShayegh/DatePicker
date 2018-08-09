@@ -62,10 +62,10 @@ datePicker.setup(min: minDate, max: maxDate) { (date) in
 	// Process Date returned when select button is pressed
 	print("\(date)")
 }
-```
+``` 
 
-![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/DatePicker1.gif)
-In the example above we have set minDate and maxDate to be between July 18, 2011 and September 10, 2020
+In the example below we have set minDate and maxDate to be between July 18, 2011 and September 10, 2020
+![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/DatePicker2.gif)
 
 3) Display
 
@@ -82,7 +82,8 @@ datePicker.displayPopOver(on: button, in: self)
 ![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Popover.jpg)
 
 ## Credit
-Designed by https://www.linkedin.com/in/roopjawl/, Developed by https://www.linkedin.com/in/shayegh/
+- [Designed by Roop Jawl](https://www.linkedin.com/in/roopjawl/)
+- [Developed by Amir Shayegh](https://www.linkedin.com/in/shayegh/)
 
 ## License
 
