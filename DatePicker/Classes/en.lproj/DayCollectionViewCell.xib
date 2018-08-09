@@ -58,6 +58,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="232" height="178"/>
             <connections>
+                <outlet property="button" destination="DcX-P8-Nst" id="4W7-9a-rJP"/>
                 <outlet property="label" destination="ttM-f9-Fw5" id="5Z6-Qa-S04"/>
                 <outlet property="view" destination="DcX-P8-Nst" id="eLx-Ny-8nA"/>
             </connections>

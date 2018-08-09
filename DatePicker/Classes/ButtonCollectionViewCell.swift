@@ -9,32 +9,35 @@ import UIKit
 
 class ButtonCollectionViewCell: UICollectionViewCell {
 
+    // MARK: Optionals
     var callBack: (() -> Void)?
 
+    // MARK: Outlets
     @IBOutlet weak var button: UIButton!
 
+    // MARK: Outlet Actions
     @IBAction func clicked(_ sender: UIButton) {
         if self.callBack != nil {
             return self.callBack!()
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
-    func setFrom(date: Date) {
-        self.button.setTitle(" Select \(date.string())", for: .normal)
-    }
-
+    // MARK: Setup
+    /*
+     - Parameter date: date displayed on button
+     - Parameter clicked: call back when button is clicked
+     */
     func setup(date: Date, clicked: @escaping() -> Void) {
         self.callBack = clicked
         self.button.setTitle(date.string(), for: .normal)
         style()
     }
 
+    func setFrom(date: Date) {
+        self.button.setTitle(" Select \(date.string())", for: .normal)
+    }
+
     func style() {
-//        styleButton(button: button, bg: Colors.main, borderColor: Colors.main.cgColor, titleColor: Colors.selectedText)
         styleButton(button: button, bg: Colors.background, borderColor: Colors.background.cgColor, titleColor: Colors.main)
         button.titleLabel?.font = Fonts.heavy
 

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum FreshDateMode {
     case Basic
     case MinMax
@@ -14,6 +15,7 @@ enum FreshDateMode {
 
 public class DatePicker {
 
+    // Bundle
     static var bundle: Bundle {
         let podBundle = Bundle(for: PickerViewController.self)
 
@@ -26,14 +28,22 @@ public class DatePicker {
 
     }
 
+    // Picker view controller
     public lazy var vc: PickerViewController = {
         return UIStoryboard(name: "Picker", bundle: DatePicker.bundle).instantiateViewController(withIdentifier: "Picker") as! PickerViewController
     }()
 
     var parentVC: UIViewController?
+
+    // MARK: Variables
+
+    // default width
+    // height is 1.4 times width
     var viewWidth: CGFloat = 200
     var viewHeight: CGFloat = (200 * 1.4)
 
+    // default widht for popover
+    // height is 1.4 times width
     var popoverWidth: CGFloat = (42 * 7)
     var popoverHeight: CGFloat = ((42 * 7) * 1.4)
 
@@ -62,6 +72,8 @@ public class DatePicker {
     }
 
     // MARK: Presenataion
+
+    // Display at the center of parent
     public func display(in parent: UIViewController) {
         self.parentVC = parent
         parent.addChildViewController(vc)
@@ -71,6 +83,7 @@ public class DatePicker {
         vc.didMove(toParentViewController: parent)
     }
 
+    // Display as popover on button
     public func displayPopOver(on: UIButton, in parent: UIViewController, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
         if let w = width {
             self.popoverWidth = w
@@ -89,9 +102,12 @@ public class DatePicker {
         parent.present(vc, animated: true, completion: nil)
     }
 
-    func set(width: CGFloat, height: CGFloat) {
+    // Manually change width and height
+    public func set(width: CGFloat, height: CGFloat) {
         self.viewWidth = width
         self.viewHeight = height
+        self.popoverWidth = width
+        self.popoverHeight = height
     }
 
     func getContainer() -> UIView {

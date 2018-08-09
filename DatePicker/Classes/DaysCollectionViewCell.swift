@@ -9,15 +9,13 @@ import UIKit
 
 class DaysCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-
+    // MARK: variables
     var parent: PickerViewController?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    // MARK: Outlets
+    @IBOutlet weak var collectionView: UICollectionView!
 
-    }
-
+    // MARK: Setup
     func setup(parent: PickerViewController) {
         self.parent = parent
         initCollectionView()
@@ -81,10 +79,16 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             return cell
         } else if indexPath.row >= p.firstDayOfMonthIndex() && indexPath.row < p.lastDayOfMonthIndex() {
             let cell = getDayCell(indexPath: indexPath)
+            let current = (indexPath.row - p.firstDayOfMonthIndex() + 1)
+            // if day is currently selected, set selected to true
             if (indexPath.row - p.firstDayOfMonthIndex() + 1) == p.day {
-                cell.setup(day: (indexPath.row - p.firstDayOfMonthIndex() + 1), selected: true, parent: self)
+                cell.setup(day: current, selected: true, parent: self)
             } else {
-                cell.setup(day: (indexPath.row - p.firstDayOfMonthIndex() + 1), selected: false, parent: self)
+                if let maxDate = p.maxDate, let minDate = p.minDate, let dateOfDay = FDHelper.shared.dateFrom(day: current, month: p.month, year: p.year), dateOfDay > maxDate || dateOfDay < minDate {
+                    cell.setup(day: current, disabled: true, parent: self)
+                } else {
+                    cell.setup(day: current, parent: self)
+                }
             }
             return cell
         } else {

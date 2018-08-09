@@ -24,7 +24,6 @@ class MonthCollectionViewCell: UICollectionViewCell {
                 return
             }
         }
-
         deselect()
     }
 
