@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum DisplayMode {
+    case PopOver
+    case Popup
+}
+
 public class PickerViewController: UIViewController {
 
     // MARK: Optionals
@@ -19,6 +24,7 @@ public class PickerViewController: UIViewController {
     var buttonIndexPath: IndexPath?
 
     // MARK: Variables
+    var displayMode: DisplayMode = .Popup
     var mode: FreshDateMode = .Basic
     var day: Int = 18
     var month: Int = 9
@@ -199,6 +205,8 @@ public class PickerViewController: UIViewController {
     // MARK: Screen Rotation
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        if self.displayMode == .PopOver {return}
+
         self.view.alpha = 0
 
         coordinator.animate(alongsideTransition: nil) { _ in
@@ -213,9 +221,6 @@ public class PickerViewController: UIViewController {
     }
 
     func sendResult() {
-        if let parent = self.parent, let viewWithTag = parent.view.viewWithTag(1) {
-            viewWithTag.removeFromSuperview()
-        }
         self.view.removeFromSuperview()
         self.dismiss(animated: true, completion: nil)
 

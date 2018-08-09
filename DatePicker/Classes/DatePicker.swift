@@ -82,6 +82,7 @@ public class DatePicker {
     // Display at the center of parent
     public func display(in parent: UIViewController) {
         self.parentVC = parent
+        vc.displayMode = .Popup
         parent.addChildViewController(vc)
         FrameHelper.shared.sizeAndCenter(view: vc.view, in: parent)
         FrameHelper.shared.addShadow(to: vc.view.layer)
@@ -91,6 +92,7 @@ public class DatePicker {
 
     // Display as popover on button
     public func displayPopOver(on: UIButton, in parent: UIViewController, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
+        vc.displayMode = .PopOver
         if let w = width {
             self.popoverWidth = w
             self.popoverHeight = w * 1.4
@@ -114,19 +116,5 @@ public class DatePicker {
         self.viewHeight = height
         self.popoverWidth = width
         self.popoverHeight = height
-    }
-
-    func getContainer() -> UIView {
-        // Create and style layer
-        let layer = UIView(frame: FrameHelper.shared.getSuggesedFrame(parentVC: parentVC))
-        layer.layer.cornerRadius = 5
-        layer.backgroundColor = Colors.background
-        // Add Shadow
-        FrameHelper.shared.addShadow(to: layer.layer)
-        // Position
-        FrameHelper.shared.centerViewInParent(view: layer)
-        // Tag
-        layer.tag = 1
-        return layer
     }
 }
