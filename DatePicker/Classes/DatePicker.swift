@@ -25,7 +25,6 @@ public class DatePicker {
             print("Fatal Error: Could not find bundle for FreshDate Frameworks")
             fatalError()
         }
-
     }
 
     // Picker view controller
@@ -40,12 +39,12 @@ public class DatePicker {
     // default width
     // height is 1.4 times width
     var viewWidth: CGFloat = 200
-    var viewHeight: CGFloat = (200 * 1.4)
+    var viewHeight: CGFloat = (200 * 1.5)
 
     // default widht for popover
     // height is 1.4 times width
     var popoverWidth: CGFloat = (42 * 7)
-    var popoverHeight: CGFloat = ((42 * 7) * 1.4)
+    var popoverHeight: CGFloat = ((42 * 7) * 1.5)
 
     public init() {}
 
@@ -102,7 +101,7 @@ public class DatePicker {
         vc.displayMode = .PopOver
         if let w = width {
             self.popoverWidth = w
-            self.popoverHeight = w * 1.4
+            self.popoverHeight = w * 1.5
         }
 
         parent.view.endEditing(true)
@@ -115,6 +114,14 @@ public class DatePicker {
         popover?.sourceView = on
         popover?.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
         parent.present(vc, animated: true, completion: nil)
+    }
+
+    // change colors
+    public func colors(main: UIColor, background: UIColor, inactive: UIColor, selectedDay: UIColor) {
+        Colors.main = main
+        Colors.background = background
+        Colors.inactiveText = inactive
+        Colors.selectedText = selectedDay
     }
 
     // Manually change width and height
