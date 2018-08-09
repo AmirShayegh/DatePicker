@@ -81,6 +81,8 @@ datePicker.displayPopOver(on: button, in: self)
 
 ![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Popover.jpg)
 
+## Credit
+Designed by https://www.linkedin.com/in/roopjawl/, Developed by https://www.linkedin.com/in/shayegh/
 
 ## License
 
