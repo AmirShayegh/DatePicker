@@ -6,7 +6,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/DatePicker.svg?style=flat)](https://cocoapods.org/pods/DatePicker)
 
 ![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Full.PNG)
-![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Popover.jpg)
 
 ## Example
 
@@ -73,6 +72,9 @@ datePicker.display(in: self)
 ```Swift
 datePicker.displayPopOver(on: button, in: self)
 ```
+
+![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Popover.jpg)
+
 
 ## License
 

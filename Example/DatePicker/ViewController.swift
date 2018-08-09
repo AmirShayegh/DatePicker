@@ -27,6 +27,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func popover(_ sender: UIButton) {
         self.label.alpha =  0
         sender.alpha = 0

@@ -41,8 +41,20 @@ public class PickerViewController: UIViewController {
         style()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reload()
+    }
+
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+
+    // MARK: Functions
+    func set(date: Date) {
+        self.year = date.year()
+        self.month = date.month()
+        self.day = date.day()
     }
 
     func changeDay(to: Int) {
@@ -77,7 +89,6 @@ public class PickerViewController: UIViewController {
             }
         }
     }
-
 
     func reload() {
         reloadDays()
@@ -211,7 +222,6 @@ public class PickerViewController: UIViewController {
         if self.callBack != nil {
             return self.callBack!(FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!)
         }
-
     }
 }
 
