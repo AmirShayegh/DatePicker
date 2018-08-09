@@ -44,7 +44,7 @@ datePicker.setup() {date in
 }
 ```
 
-![Alt Text](https://github.com/bcgov/range-ios/blob/master/ReadMeFiles/DatePicker1.gif)
+![Alt Text](https://github.com/bcgov/range-ios/blob/master/ReadmeFiles/DatePicker1.gif)
 
 - Picker with minimum and maximum dates:
 
@@ -56,7 +56,7 @@ datePicker.setup(min: minDate, max: maxDate) { (date) in
 }
 ```
 
-![Alt Text](https://github.com/bcgov/range-ios/blob/master/ReadMeFiles/DatePicker2.gif)
+![Alt Text](https://github.com/bcgov/range-ios/blob/master/ReadmeFiles/DatePicker2.gif)
 In the example above we have set minDate and maxDate to be between July 18, 2011 and September 10, 2020
 
 3) Display
