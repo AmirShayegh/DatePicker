@@ -26,7 +26,7 @@ pod 'DatePicker'
 
 ```Swift
 import UIKit
-import FreshDate
+import DatePicker
 
 class ViewController: UIViewController {
 }

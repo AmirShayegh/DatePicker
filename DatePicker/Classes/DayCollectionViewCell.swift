@@ -26,9 +26,19 @@ class DayCollectionViewCell: UICollectionViewCell {
             gp.reloadButton()
             p.collectionView.reloadData()
         }
-//        select()
     }
 
+    /*
+     - Parameter day:
+     - Parameter selected:
+     - Parameter parent:
+
+     - Throws: `MyError.invalidRecipient`
+     if `recipient` is "Derek"
+     (he knows what he did).
+
+     - Returns: A new string saying hello to `recipient`.
+    */
     func setup(day: Int, selected: Bool, parent: DaysCollectionViewCell) {
         self.parent = parent
         self.label.text = "\(day)"

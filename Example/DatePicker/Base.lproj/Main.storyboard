@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,8 +21,43 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ied-IX-SCD">
+                                <rect key="frame" x="159" y="318.5" width="57" height="30"/>
+                                <state key="normal" title="popover"/>
+                                <connections>
+                                    <action selector="popover:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WxR-p9-VhD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vq-Ko-y0M">
+                                <rect key="frame" x="115" y="593" width="145" height="30"/>
+                                <state key="normal" title="present in the middle"/>
+                                <connections>
+                                    <action selector="present:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2cI-Dq-ZEl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfa-Uh-qbL">
+                                <rect key="frame" x="16" y="45" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3Vq-Ko-y0M" secondAttribute="bottom" constant="44" id="DSA-Gr-tWv"/>
+                            <constraint firstItem="ied-IX-SCD" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Egv-Hp-Viq"/>
+                            <constraint firstItem="Bfa-Uh-qbL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ela-fY-enI"/>
+                            <constraint firstItem="Bfa-Uh-qbL" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="fcj-He-JJ2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bfa-Uh-qbL" secondAttribute="trailing" id="h79-FP-He6"/>
+                            <constraint firstItem="ied-IX-SCD" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="pJl-N7-0rf"/>
+                            <constraint firstItem="3Vq-Ko-y0M" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qvT-Mt-OcS"/>
+                            <constraint firstItem="Bfa-Uh-qbL" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="wpr-5J-E7H"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="Bfa-Uh-qbL" id="Jdg-is-qfu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
