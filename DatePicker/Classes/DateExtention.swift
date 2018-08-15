@@ -7,45 +7,55 @@
 
 import Foundation
 
-import Foundation
-
 extension Date {
 
-    func day() -> String {
+    public func day(shortHand: Bool? = false) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE"
+        if let short = shortHand {
+            if short {
+                let day = formatter.string(from: self)
+                return String(day.prefix(3))
+            }
+        }
         return formatter.string(from: self)
     }
 
-    func day() -> Int {
+    public func day() -> Int {
         let cal = Calendar.current
         return cal.component(.day, from: self)
     }
 
-    func month() -> String {
+    public func month(shortHand: Bool? = false) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL"
+        if let short = shortHand {
+            if short {
+                let month = dateFormatter.string(from: self)
+                return String(month.prefix(3))
+            }
+        }
         return dateFormatter.string(from: self)
     }
 
-    func month() -> Int {
+    public func month() -> Int {
         let cal = Calendar.current
         return cal.component(.month, from: self)
     }
 
-    func year() -> Int {
+    public func year() -> Int {
         let cal = Calendar.current
         return cal.component(.year, from: self)
     }
 
-    func fromUTC(string: String) -> Date {
+    public func fromUTC(string: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         dateFormatter.locale = Locale.init(identifier: "en_CA")
         return dateFormatter.date(from: string)!
     }
 
-    func toUTC() -> String {
+    public func toUTC() -> String {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_CA")
@@ -54,7 +64,7 @@ extension Date {
         return formatter.string(from: self)
     }
 
-    func string() -> String {
+    public func string() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         return dateFormatter.string(from: self)

@@ -11,6 +11,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
 
     // MARK: variables
     var parent: PickerViewController?
+    var updating = false
 
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -24,6 +25,12 @@ class DaysCollectionViewCell: UICollectionViewCell {
 
     func style() {
         self.collectionView.layer.backgroundColor = Colors.background.cgColor
+    }
+
+    func update() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 
 }
@@ -81,7 +88,7 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             let cell = getDayCell(indexPath: indexPath)
             let current = (indexPath.row - p.firstDayOfMonthIndex() + 1)
             // if day is currently selected, set selected to true
-            if (indexPath.row - p.firstDayOfMonthIndex() + 1) == p.day {
+            if current == p.day {
                 cell.setup(day: current, selected: true, parent: self)
             } else {
                 if let maxDate = p.maxDate, let minDate = p.minDate, let dateOfDay = FDHelper.shared.dateFrom(day: current, month: p.month, year: p.year), dateOfDay > maxDate || dateOfDay < minDate {

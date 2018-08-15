@@ -20,12 +20,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
     @IBAction func popover(_ sender: UIButton) {
@@ -40,7 +35,9 @@ class ViewController: UIViewController {
             self.label.text = "\(date)"
         }
 
-        fd.displayPopOver(on: sender, in: self)
+        fd.displayPopOver(on: sender, in: self, completion: {
+            
+        })
     }
 
     @IBAction func present(_ sender: UIButton) {

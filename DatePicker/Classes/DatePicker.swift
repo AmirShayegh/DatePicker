@@ -97,7 +97,7 @@ public class DatePicker {
     }
 
     // Display as popover on button
-    public func displayPopOver(on: UIButton, in parent: UIViewController, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
+    public func displayPopOver(on: UIButton, in parent: UIViewController, completion: @escaping ()-> Void, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
         vc.displayMode = .PopOver
         if let w = width {
             self.popoverWidth = w
@@ -113,7 +113,7 @@ public class DatePicker {
         popover?.permittedArrowDirections = .any
         popover?.sourceView = on
         popover?.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
-        parent.present(vc, animated: true, completion: nil)
+        parent.present(vc, animated: true, completion: completion)
     }
 
     // change colors

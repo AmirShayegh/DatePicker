@@ -9,8 +9,8 @@ import Foundation
 
 // String extention to get short hand of day name
 extension String {
-    func shortHandDay() -> String {
-        return String(self.prefix(3))
+    func charactersUpTo(index: Int) -> String {
+        return String(self.prefix(index))
     }
 }
 
@@ -144,7 +144,7 @@ public class FDHelper {
         print("**** Testing First days of months ***")
         for i in 2010...2025 {
             for j in 1...12 {
-                print("Year: \(i), Month: \(FDHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).shortHandDay())")
+                print("Year: \(i), Month: \(FDHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).charactersUpTo(index: 3))")
             }
         }
 

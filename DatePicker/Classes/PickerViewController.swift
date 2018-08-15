@@ -14,6 +14,9 @@ enum DisplayMode {
 
 public class PickerViewController: UIViewController {
 
+    // MARK: Constants
+    let notification = UINotificationFeedbackGenerator()
+
     // MARK: Optionals
     var callBack: ((_ date: Date)-> Void)?
     var liveCallBack: ((_ date: Date)-> Void)?
@@ -95,11 +98,11 @@ public class PickerViewController: UIViewController {
 
     func reloadButton() {
         validate()
-        guard let indexpath = buttonIndexPath else {return}
-        if collectionView.indexPathsForVisibleItems.contains(indexpath) {
-            let cell = collectionView.cellForItem(at: indexpath) as! ButtonCollectionViewCell
-            cell.setFrom(date: FDHelper.shared.dateFrom(day: day, month: month, year: year)!)
-        }
+//        guard let indexpath = buttonIndexPath else {return}
+//        if collectionView.indexPathsForVisibleItems.contains(indexpath) {
+//            let cell = collectionView.cellForItem(at: indexpath) as! ButtonCollectionViewCell
+//            cell.setFrom(date: FDHelper.shared.dateFrom(day: day, month: month, year: year)!)
+//        }
     }
 
     func validate() {
@@ -127,11 +130,17 @@ public class PickerViewController: UIViewController {
         reloadYears()
     }
 
+//    func reloadDay(indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
+//    }
+
     func reloadDays() {
         guard let indexPath = daysIndexPath else {return}
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
             let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
-            cell.collectionView.reloadData()
+            DispatchQueue.main.async {
+                cell.collectionView.reloadData()
+            }
         }
     }
 
@@ -180,7 +189,7 @@ public class PickerViewController: UIViewController {
         }
     }
 
-    func daysInMonth() -> Int{
+    func daysInMonth() -> Int {
         return FDHelper.shared.daysIn(month: self.month, year: self.year)
     }
 
@@ -188,14 +197,14 @@ public class PickerViewController: UIViewController {
         return FDHelper.shared.firstDayOf(month: self.month, year: self.year)
     }
 
-    func lastDayOfMonth() -> String{
+    func lastDayOfMonth() -> String {
         return FDHelper.shared.lastDayOf(month: self.month, year: self.year)
     }
 
     func firstDayOfMonthIndex() -> Int {
         let day = firstDayOfMonth()
         let days = FDHelper.shared.days()
-        if let i = days.index(of: day.shortHandDay()) {
+        if let i = days.index(of: day.charactersUpTo(index: 3)) {
             return i + days.count
         } else {
             return 0
@@ -246,6 +255,7 @@ public class PickerViewController: UIViewController {
     }
 
     func sendResult() {
+        notification.notificationOccurred(.success)
         self.view.removeFromSuperview()
         self.dismiss(animated: true, completion: nil)
 
