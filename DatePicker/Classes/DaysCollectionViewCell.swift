@@ -21,6 +21,26 @@ class DaysCollectionViewCell: UICollectionViewCell {
         self.parent = parent
         initCollectionView()
         style()
+
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
+        swipeLeft.direction = .left
+        self.collectionView.addGestureRecognizer(swipeLeft)
+
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
+        swipeRight.direction = .right
+        self.collectionView.addGestureRecognizer(swipeRight)
+    }
+
+    @objc func swiped(_ sender: UISwipeGestureRecognizer) {
+        guard let p = self.parent else {return}
+        switch sender.direction {
+        case .left:
+            p.goToNextMonth()
+        case .right:
+            p.goToPrevMonth()
+        default:
+            return
+        }
     }
 
     func style() {

@@ -136,10 +136,18 @@ public class PickerViewController: UIViewController {
 
     func reloadDays() {
         guard let indexPath = daysIndexPath else {return}
+        let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
             let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
             DispatchQueue.main.async {
-                cell.collectionView.reloadData()
+                UIView.animate(withDuration: fadeDuration, animations: {
+                    cell.alpha = 0
+                }, completion: { (done) in
+                    cell.collectionView.reloadData()
+                    UIView.animate(withDuration: fadeDuration, animations: {
+                        cell.alpha = 1
+                    })
+                })
             }
         }
     }
@@ -162,6 +170,34 @@ public class PickerViewController: UIViewController {
             let cell = self.collectionView.cellForItem(at: indexPath) as! YearsCollectionViewCell
             cell.select(year: year)
         }
+    }
+
+    func goToNextMonth() {
+        var nextMonth = self.month + 1
+        if nextMonth > 12 {
+            nextMonth = 12
+        }
+        // get indexpath of months
+        guard let indexPath = monthsIndexPath else {return}
+        // scroll to month
+        let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
+        cell.select(month: FDHelper.shared.month(number: nextMonth))
+        // store month
+        self.month = nextMonth
+    }
+
+    func goToPrevMonth() {
+        var prevMonth = self.month - 1
+        if prevMonth < 1 {
+            prevMonth = 1
+        }
+        // get indexpath of months
+        guard let indexPath = monthsIndexPath else {return}
+        // scroll to month
+        let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
+        cell.select(month: FDHelper.shared.month(number: prevMonth))
+        // store month
+        self.month = prevMonth
     }
 
     func changeMonth(to: String) {
