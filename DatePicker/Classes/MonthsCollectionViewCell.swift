@@ -11,8 +11,11 @@ class MonthsCollectionViewCell: UICollectionViewCell {
 
     let paddingCells = 4
     let itemsPerPage = 5
+    let selection = UISelectionFeedbackGenerator()
+
     var parent: PickerViewController?
     var items: [String] = [String]()
+    var currentCenterCellIndexPath: IndexPath?
 
     var seleced: [IndexPath] = [IndexPath]()
 
@@ -96,6 +99,10 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let centerCellIndexPath: IndexPath  = collectionView.centerCellIndexPath {
+            if let current = self.currentCenterCellIndexPath, current != centerCellIndexPath {
+                selection.selectionChanged()
+            }
+            self.currentCenterCellIndexPath = centerCellIndexPath
             highlightCell(at: centerCellIndexPath)
         }
     }

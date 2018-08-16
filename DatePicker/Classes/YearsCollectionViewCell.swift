@@ -12,9 +12,11 @@ class YearsCollectionViewCell: UICollectionViewCell {
     // MARK: Constants
     let paddingCells = 4
     let itemsPerPage = 5
+    let selection = UISelectionFeedbackGenerator()
 
     // MARK: Optionals
     var parent: PickerViewController?
+    var currentCenterCellIndexPath: IndexPath?
 
     // MARK: Variables
     var items: [Int] = [Int]()
@@ -47,6 +49,8 @@ class YearsCollectionViewCell: UICollectionViewCell {
 
 // MARK: CollectionView
 extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+    // MARK: CollectionView Setup
     func initCollectionView() {
         registerCell(name: "YearCollectionViewCell")
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -60,6 +64,7 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
         collectionView.dataSource = self
     }
 
+    // MARK: CollectionView Events
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if let centerCellIndexPath: IndexPath  = collectionView.centerCellIndexPath {
             scrollToYear(at: centerCellIndexPath)
@@ -72,22 +77,21 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
         }
     }
 
-    func scrollToYear(at: IndexPath) {
-        if at.row < paddingCells - 1 {
-            let indexPath: IndexPath = [0, (paddingCells/2)]
-            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        } else if at.row > (items.count - 1) + (paddingCells/2) {
-            let indexPath: IndexPath = [0, paddingCells/2 + (items.count - 1)]
-            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        } else {
-            self.collectionView.scrollToItem(at: at, at: .centeredHorizontally, animated: true)
-        }
-    }
-
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        selection.selectionChanged()
         if let p = parent {
             p.reloadDays()
             p.reloadButton()
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let centerCellIndexPath: IndexPath  = collectionView.centerCellIndexPath {
+            if let current = self.currentCenterCellIndexPath, current != centerCellIndexPath {
+                selection.selectionChanged()
+            }
+            self.currentCenterCellIndexPath = centerCellIndexPath
+            highlightCell(at: centerCellIndexPath)
         }
     }
 
@@ -97,9 +101,15 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
         scrollToYear(at: indexPath)
     }
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let centerCellIndexPath: IndexPath  = collectionView.centerCellIndexPath {
-            highlightCell(at: centerCellIndexPath)
+    func scrollToYear(at: IndexPath) {
+        if at.row < paddingCells - 1 {
+            let indexPath: IndexPath = [0, (paddingCells/2)]
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        } else if at.row > (items.count - 1) + (paddingCells/2) {
+            let indexPath: IndexPath = [0, paddingCells/2 + (items.count - 1)]
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        } else {
+            self.collectionView.scrollToItem(at: at, at: .centeredHorizontally, animated: true)
         }
     }
 
@@ -127,6 +137,7 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
         return safeIndex
     }
 
+    // MARK: CollectionView Cell Setup
     func cellWidth() -> CGFloat {
         return 90
     }

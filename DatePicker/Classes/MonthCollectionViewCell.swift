@@ -36,14 +36,14 @@ class MonthCollectionViewCell: UICollectionViewCell {
     }
 
     func select() {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.label.font = Fonts.heavy
             self.label.textColor = Colors.main
         })
     }
 
     func deselect() {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.label.font = Fonts.regular
             self.label.textColor = Colors.inactiveText
         })
