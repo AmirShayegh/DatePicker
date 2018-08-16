@@ -117,11 +117,10 @@ public class DatePicker {
     }
 
     // change colors
-    public func colors(main: UIColor, background: UIColor, inactive: UIColor, selectedDay: UIColor) {
+    public func colors(main: UIColor, background: UIColor, inactive: UIColor) {
         Colors.main = main
         Colors.background = background
         Colors.inactiveText = inactive
-        Colors.selectedText = selectedDay
     }
 
     // Manually change width and height

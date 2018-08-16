@@ -14,6 +14,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
 
     // MARK: Outlets
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var divider: UIView!
 
     // MARK: Outlet Actions
     @IBAction func clicked(_ sender: UIButton) {
@@ -38,7 +39,8 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     }
 
     func style() {
-        styleButton(button: button, bg: Colors.main, borderColor: Colors.main.cgColor, titleColor: Colors.selectedText)
+        divider.backgroundColor = Colors.main
+        self.button.setTitleColor(Colors.main, for: .normal)
         button.titleLabel?.font = Fonts.regular
     }
 
