@@ -10,12 +10,30 @@ import Foundation
 class FrameHelper {
     static let shared = FrameHelper()
 
+    static let ratio: CGFloat = 1.5
     var parent: UIViewController?
 
     var viewWidth: CGFloat = 200
-    var viewHeight: CGFloat = (200 * 1.4)
+    var viewHeight: CGFloat = (200 * ratio)
+
 
     private init() {}
+
+    func getCloneView(of uiView: UIView) -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height))
+        let imageView = UIImageView(image: uiView.image())
+        imageView.frame =  CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
+
+
+        view.center.y = uiView.center.y
+        view.center.x = uiView.center.x
+        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.9)
+        view.alpha = 1
+        view.tag = 99
+        imageView.frame = view.frame
+        view.addSubview(imageView)
+        return view
+    }
 
     // MARK: Positioning
     func centerViewInParent(view: UIView, in parentVC: UIViewController? = nil) {
@@ -26,63 +44,83 @@ class FrameHelper {
         view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor)
     }
 
-    func sizeAndCenter(view:UIView, in parentVC: UIViewController) {
-        view.frame = getSuggesedFrame(parentVC: parentVC)
+    func positionCenter(view:UIView, in parentVC: UIViewController) {
+        view.frame = getSuggesedFrame(padding: 20, for: parentVC.view.frame.size)
         view.center.x = parentVC.view.center.x
         view.center.y = parentVC.view.center.y
         view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
         view.centerYAnchor.constraint(equalTo: parentVC.view.centerYAnchor)
     }
 
-    // MARK: Suggesged Frame
-    func getSuggesedFrame(parentVC: UIViewController? = nil) -> CGRect {
-        guard let p = parentVC else {
-            return CGRect(x: 0, y: 0, width: getSuggestedWidth(), height: getSuggestedHeight())
-        }
-        return CGRect(x: p.view.center.x, y: p.view.center.y, width: getSuggestedWidth(parentVC: parentVC), height: getSuggestedHeight(parentVC: parentVC))
+    func positionBottom(view: UIView, in parentVC: UIViewController, size: CGSize? = nil) {
+        let parentHeight = parentVC.view.frame.size.height
+        let h = getSuggestedHeight(for: parentVC.view.frame.size)
+        let w = getSuggestedWidth(for: parentVC.view.frame.size)
+        view.frame = CGRect(x: 0, y: parentHeight - h, width: w, height: h)
+        view.center.x = parentVC.view.center.x
+        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
     }
 
-    func getSuggestedWidth(parentVC: UIViewController? = nil) -> CGFloat {
+    func positionBottomPreAnimation(view:UIView, in parentVC: UIViewController) {
+        let parentHeight = parentVC.view.frame.size.height
+        let h = getSuggestedHeight(for: parentVC.view.frame.size)
+        let w = getSuggestedWidth(for: parentVC.view.frame.size)
+        view.frame = CGRect(x: 0, y: parentHeight, width: w, height: h)
+        view.center.x = parentVC.view.center.x
+        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
+    }
+
+    // MARK: Suggesged Frame
+    func getSuggesedFrame(padding: CGFloat? = 0, for size: CGSize? = nil) -> CGRect {
+        return CGRect(x: 0, y: 0, width: getSuggestedWidth(padding: padding, for: size), height: getSuggestedHeight(padding: padding, for: size))
+    }
+
+    func getSuggestedWidth(padding: CGFloat? = 0, for size: CGSize? = nil) -> CGFloat {
         var layerWidth: CGFloat = viewWidth
         var layerHeight: CGFloat = viewHeight
 
-        guard let p = parentVC else {
+        guard let s = size else {
             if UIDevice.current.orientation.isLandscape {
                 return viewHeight
             }
             return layerWidth
         }
 
-        if UIDevice.current.orientation.isLandscape {
-            layerHeight = p.view.frame.height - 20
-            layerWidth = layerHeight / 1.4
-        } else if UIDevice.current.orientation.isPortrait {
-            layerWidth = p.view.frame.width - 20
-            layerHeight = layerWidth * 1.4
+        if s.width > s.height {
+            // landscape
+            layerHeight = s.height - padding!
+            layerWidth = layerHeight / FrameHelper.ratio
+
+        } else {
+            // portrait
+            layerWidth = s.width - padding!
+            layerHeight = layerWidth * FrameHelper.ratio
         }
 
         return layerWidth
     }
 
-    func getSuggestedHeight(parentVC: UIViewController? = nil) -> CGFloat {
+    func getSuggestedHeight(padding: CGFloat? = 0, for size: CGSize? = nil) -> CGFloat {
         var layerWidth: CGFloat = viewWidth
         var layerHeight: CGFloat = viewHeight
 
-        guard let p = parentVC else {
+        guard let s = size else {
             if UIDevice.current.orientation.isLandscape {
                 return viewWidth
             }
             return layerHeight
         }
 
-        if UIDevice.current.orientation.isLandscape {
-            layerHeight = p.view.frame.height - 20
-            layerWidth = layerHeight / 1.4
-        } else if UIDevice.current.orientation.isPortrait {
-            layerWidth = p.view.frame.width - 20
-            layerHeight = layerWidth * 1.4
-        }
+        if s.width > s.height {
+            // landscape
+            layerHeight = s.height - padding!
+            layerWidth = layerHeight / FrameHelper.ratio
 
+        } else {
+            // portrait
+            layerWidth = s.width - padding!
+            layerHeight = layerWidth * FrameHelper.ratio
+        }
         return layerHeight
     }
 

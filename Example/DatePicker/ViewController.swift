@@ -31,8 +31,12 @@ class ViewController: UIViewController {
         fd.setup(min: start!, max: end!, dateChanged: { (date) in
             print("\(date)")
             self.label.text = "\(date)"
-        }) { (date) in
-            self.label.text = "\(date)"
+        }) { (selected, date)  in
+            if selected, let d = date {
+                self.label.text = "Selected \(d)"
+            } else {
+                self.label.text = "cancelled"
+            }
         }
 
         fd.displayPopOver(on: sender, in: self, completion: {
@@ -46,8 +50,12 @@ class ViewController: UIViewController {
         fd.setup(dateChanged: { (date) in
             print("\(date)")
             self.label.text = "\(date)"
-        }) { (date) in
-            self.label.text = "\(date)"
+        }) { (selected, date) in
+            if selected, let d = date {
+                self.label.text = "Selected \(d)"
+            } else {
+                self.label.text = "cancelled"
+            }
         }
 
         fd.display(in: self)

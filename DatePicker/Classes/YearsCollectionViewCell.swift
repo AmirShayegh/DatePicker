@@ -80,8 +80,7 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         selection.selectionChanged()
         if let p = parent {
-            p.reloadDays()
-            p.reloadButton()
+            p.YearOrMonthChanged()
         }
     }
 

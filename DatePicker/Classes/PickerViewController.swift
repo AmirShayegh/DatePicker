@@ -7,18 +7,21 @@
 
 import UIKit
 
-enum DisplayMode {
+public enum DisplayMode {
     case PopOver
-    case Popup
+    case Center
+    case Bottom
 }
 
 public class PickerViewController: UIViewController {
 
     // MARK: Constants
     let notification = UINotificationFeedbackGenerator()
+    let whiteScreenTag = 101
+    let animationDuration: Double = 0.3
 
     // MARK: Optionals
-    var callBack: ((_ date: Date)-> Void)?
+    var callBack: ((_ selected: Bool, _ date: Date?)-> Void)?
     var liveCallBack: ((_ date: Date)-> Void)?
     var yearlessCallBack: ((_ month: Int,_ day: Int)-> Void)?
 
@@ -28,9 +31,11 @@ public class PickerViewController: UIViewController {
     var buttonIndexPath: IndexPath?
 
     // MARK: Variables
-    var displayMode: DisplayMode = .Popup
+    var displayMode: DisplayMode = .Center
     var mode: FreshDateMode = .Basic
 
+    var calledFromSwipe: Bool = false
+        
     var day: Int = 18 {
         didSet {
             liveReturn()
@@ -73,8 +78,116 @@ public class PickerViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK: Functions
+    // MARK: Presentation
+    func display(on parent: UIViewController) {
+        parent.addChildViewController(self)
+        FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: parent)
+        FrameHelper.shared.addShadow(to: self.view.layer)
+        parent.view.addSubview(self.view)
+        self.didMove(toParentViewController: parent)
+        self.collectionView.alpha = 0
+        setWhiteScreen()
+        UIView.animate(withDuration: animationDuration, animations: {
+            if self.displayMode == .Bottom {
+                FrameHelper.shared.positionBottom(view: self.view, in: parent, size: parent.view.frame.size)
+            } else {
+                FrameHelper.shared.positionCenter(view: self.view, in: parent)
+            }
+            self.collectionView.alpha = 1
+        }) { (done) in
+        }
+    }
 
+    func setWhiteScreen() {
+        guard let p = parent, let screen = whiteScreen() else {return}
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.cancelled(_:)))
+        screen.alpha = 0
+        p.view.insertSubview(screen, belowSubview: self.view)
+        screen.addGestureRecognizer(tap)
+        UIView.animate(withDuration: animationDuration, animations: {
+            screen.alpha = 1
+        })
+
+    }
+
+    func whiteScreen() -> UIView? {
+        guard let p = parent else {return nil}
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: p.view.frame.width, height: p.view.frame.height))
+        view.center.y = p.view.center.y
+        view.center.x = p.view.center.x
+        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.9)
+        view.alpha = 1
+        view.tag = whiteScreenTag
+        return view
+    }
+
+    func removeWhiteScreen() {
+        guard let p = parent else {return}
+        if let viewWithTag = p.view.viewWithTag(whiteScreenTag) {
+            viewWithTag.removeFromSuperview()
+        }
+    }
+
+    @objc func cancelled(_ sender: UISwipeGestureRecognizer) {
+        close()
+    }
+
+    func dimissAnimations(then: @escaping () -> Void) {
+        if let p = parent, displayMode != .PopOver {
+            UIView.animate(withDuration: animationDuration, animations: {
+                if self.displayMode == .Bottom {
+                    FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: p)
+                } else {
+                    self.view.alpha = 0
+                }
+                if let whiteScreen = p.view.viewWithTag(self.whiteScreenTag) {
+                    whiteScreen.alpha = 0
+                }
+            }) { (done) in
+                self.remove()
+                return then()
+            }
+
+        } else {
+            self.remove()
+            return then()
+        }
+    }
+
+
+    // MARK: Callbacks
+    func remove() {
+        notification.notificationOccurred(.error)
+        self.view.removeFromSuperview()
+        self.dismiss(animated: true, completion: nil)
+        self.removeWhiteScreen()
+        if self.callBack != nil {
+            return self.callBack!(false, nil)
+        }
+    }
+
+    // cancel
+    func close() {
+
+        dimissAnimations() {
+            if self.callBack != nil {
+                return self.callBack!(false, nil)
+            }
+        }
+
+    }
+
+    // select clicked
+    func sendResult() {
+        notification.notificationOccurred(.success)
+        dimissAnimations() {
+            if self.callBack != nil {
+                return self.callBack!(true, FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
+            }
+        }
+    }
+
+    // date changed
     func liveReturn() {
         // if date is valid, send back
         guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
@@ -85,6 +198,7 @@ public class PickerViewController: UIViewController {
         }
     }
 
+    // MARK: Utility Functions
     func set(date: Date) {
         self.year = date.year()
         self.month = date.month()
@@ -98,11 +212,11 @@ public class PickerViewController: UIViewController {
 
     func reloadButton() {
         validate()
-//        guard let indexpath = buttonIndexPath else {return}
-//        if collectionView.indexPathsForVisibleItems.contains(indexpath) {
-//            let cell = collectionView.cellForItem(at: indexpath) as! ButtonCollectionViewCell
-//            cell.setFrom(date: FDHelper.shared.dateFrom(day: day, month: month, year: year)!)
-//        }
+        //        guard let indexpath = buttonIndexPath else {return}
+        //        if collectionView.indexPathsForVisibleItems.contains(indexpath) {
+        //            let cell = collectionView.cellForItem(at: indexpath) as! ButtonCollectionViewCell
+        //            cell.setFrom(date: FDHelper.shared.dateFrom(day: day, month: month, year: year)!)
+        //        }
     }
 
     func validate() {
@@ -130,26 +244,86 @@ public class PickerViewController: UIViewController {
         reloadYears()
     }
 
-//    func reloadDay(indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
-//    }
+    func YearOrMonthChanged(back: Bool? = nil) {
+//        if let monthWentBack = back {
+//            flipDays(back: monthWentBack)
+//        } else {
+            self.reloadDays()
+            self.reloadButton()
+//        }
+    }
 
     func reloadDays() {
         guard let indexPath = daysIndexPath else {return}
         let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
             let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: fadeDuration, animations: {
-                    cell.alpha = 0
-                }, completion: { (done) in
-                    cell.collectionView.reloadData()
-                    UIView.animate(withDuration: fadeDuration, animations: {
-                        cell.alpha = 1
+            if !calledFromSwipe {
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        cell.alpha = 0
+                    }, completion: { (done) in
+                        cell.collectionView.reloadData()
+                        UIView.animate(withDuration: fadeDuration, animations: {
+                            cell.alpha = 1
+                        })
                     })
-                })
+                }
+            } else {
+                cell.collectionView.reloadData()
             }
         }
+    }
+
+    func flipDays(back: Bool) {
+        guard let indexPath = daysIndexPath else {return}
+        if collectionView.indexPathsForVisibleItems.contains(indexPath) {
+            let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
+            if back {
+                let copy = FrameHelper.shared.getCloneView(of: cell)
+                cell.collectionView.reloadData()
+                flipLeft(view: cell, copy: copy)
+            } else {
+                flipRight(view: cell)
+                cell.collectionView.reloadData()
+            }
+
+        }
+    }
+
+    @objc func flipLeft(view: UIView, copy: UIView) {
+//        let copy = FrameHelper.shared.getCloneView( of: view)
+        self.view.addSubview(copy)
+
+        view.isHidden = true
+        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
+
+        UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
+            copy.isHidden = true
+            copy.removeFromSuperview()
+        })
+
+        UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
+           view.isHidden = false
+        })
+    }
+
+    @objc func flipRight(view: UIView) {
+        guard let p = parent else {return}
+        let copy = FrameHelper.shared.getCloneView( of: view)
+        p.view.addSubview(copy)
+
+        view.isHidden = true
+        let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
+
+        UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
+            copy.isHidden = true
+            copy.removeFromSuperview()
+        })
+
+        UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
+            view.isHidden = false
+        })
     }
 
     func reloadMonths() {
@@ -272,33 +446,58 @@ public class PickerViewController: UIViewController {
         self.collectionView.backgroundColor = Colors.background
     }
 
-    // MARK: Screen Rotation
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if self.displayMode == .PopOver {return}
-
         self.view.alpha = 0
-
-        coordinator.animate(alongsideTransition: nil) { _ in
-            guard let p = self.parent else {return}
-            FrameHelper.shared.sizeAndCenter(view: self.view, in: p)
-            self.view.layoutIfNeeded()
-            self.setCollectionViewLayout()
-            self.collectionView.layoutIfNeeded()
-            self.reload()
-            self.view.alpha = 1
+        if self.displayMode == .PopOver {
+            return
+        } else {
+            self.remove()
         }
+         super.viewWillTransition(to: size, with: coordinator)
     }
 
-    func sendResult() {
-        notification.notificationOccurred(.success)
-        self.view.removeFromSuperview()
-        self.dismiss(animated: true, completion: nil)
+//    // MARK: Screen Rotation
+//    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.viewWillTransition(to: size, with: coordinator)
+//        if self.displayMode == .PopOver {return}
+//        guard let p = self.parent else {return}
+//
+////        if size.width > size.height {
+////            // landscape
+////
+////        } else {
+////            // portrait
+////        }
+//
+//        self.removeWhiteScreen()
+//        self.view.alpha = 0
+//        if self.displayMode == .Bottom {
+//            FrameHelper.shared.positionBottom(view: self.view, in: p, size: size)
+//        } else {
+//            FrameHelper.shared.positionCenter(view: self.view, in: p)
+//        }
+//        self.view.layoutIfNeeded()
+//        self.setCollectionViewLayout()
+//        self.collectionView.layoutIfNeeded()
+//        self.reload()
+//        self.view.alpha = 1
+//        self.setWhiteScreen()
+//
+////        coordinator.animate(alongsideTransition: nil) { _ in
+////            guard let p = self.parent else {return}
+////            FrameHelper.shared.positionCenter(view: self.view, in: p)
+////            self.view.layoutIfNeeded()
+////            self.setCollectionViewLayout()
+////            self.collectionView.layoutIfNeeded()
+////            self.reload()
+////            self.view.alpha = 1
+////        }
+//    }
 
-        if self.callBack != nil {
-            return self.callBack!(FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!)
-        }
-    }
 }
 
 // MARK: CollectionView
