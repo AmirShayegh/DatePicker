@@ -34,6 +34,8 @@ public class PickerViewController: UIViewController {
     var displayMode: DisplayMode = .Center
     var mode: FreshDateMode = .Basic
 
+    var calledFromSwipe: Bool = false
+        
     var day: Int = 18 {
         didSet {
             liveReturn()
@@ -107,6 +109,7 @@ public class PickerViewController: UIViewController {
         })
 
     }
+
     func whiteScreen() -> UIView? {
         guard let p = parent else {return nil}
         let view = UIView(frame: CGRect(x: 0, y: 0, width: p.view.frame.width, height: p.view.frame.height))
@@ -241,26 +244,86 @@ public class PickerViewController: UIViewController {
         reloadYears()
     }
 
-    //    func reloadDay(indexPath: IndexPath) {
-    //        let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
-    //    }
+    func YearOrMonthChanged(back: Bool? = nil) {
+//        if let monthWentBack = back {
+//            flipDays(back: monthWentBack)
+//        } else {
+            self.reloadDays()
+            self.reloadButton()
+//        }
+    }
 
     func reloadDays() {
         guard let indexPath = daysIndexPath else {return}
         let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
             let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: fadeDuration, animations: {
-                    cell.alpha = 0
-                }, completion: { (done) in
-                    cell.collectionView.reloadData()
-                    UIView.animate(withDuration: fadeDuration, animations: {
-                        cell.alpha = 1
+            if !calledFromSwipe {
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: 0.1, animations: {
+                        cell.alpha = 0
+                    }, completion: { (done) in
+                        cell.collectionView.reloadData()
+                        UIView.animate(withDuration: fadeDuration, animations: {
+                            cell.alpha = 1
+                        })
                     })
-                })
+                }
+            } else {
+                cell.collectionView.reloadData()
             }
         }
+    }
+
+    func flipDays(back: Bool) {
+        guard let indexPath = daysIndexPath else {return}
+        if collectionView.indexPathsForVisibleItems.contains(indexPath) {
+            let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
+            if back {
+                let copy = FrameHelper.shared.getCloneView(of: cell)
+                cell.collectionView.reloadData()
+                flipLeft(view: cell, copy: copy)
+            } else {
+                flipRight(view: cell)
+                cell.collectionView.reloadData()
+            }
+
+        }
+    }
+
+    @objc func flipLeft(view: UIView, copy: UIView) {
+//        let copy = FrameHelper.shared.getCloneView( of: view)
+        self.view.addSubview(copy)
+
+        view.isHidden = true
+        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
+
+        UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
+            copy.isHidden = true
+            copy.removeFromSuperview()
+        })
+
+        UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
+           view.isHidden = false
+        })
+    }
+
+    @objc func flipRight(view: UIView) {
+        guard let p = parent else {return}
+        let copy = FrameHelper.shared.getCloneView( of: view)
+        p.view.addSubview(copy)
+
+        view.isHidden = true
+        let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
+
+        UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
+            copy.isHidden = true
+            copy.removeFromSuperview()
+        })
+
+        UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
+            view.isHidden = false
+        })
     }
 
     func reloadMonths() {

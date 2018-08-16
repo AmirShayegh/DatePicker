@@ -19,6 +19,8 @@ class MonthsCollectionViewCell: UICollectionViewCell {
 
     var seleced: [IndexPath] = [IndexPath]()
 
+    var monthIsLower: Bool?
+
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var bottomDivider: UIView!
     @IBOutlet weak var middleIndicator: UIView!
@@ -86,8 +88,7 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
 
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         if let p = parent {
-            p.reloadDays()
-            p.reloadButton()
+            p.YearOrMonthChanged(back: monthIsLower)
         }
     }
 
@@ -118,6 +119,9 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.cellForItem(at: at) as! MonthCollectionViewCell
             cell.select()
             if let p = parent, let text = cell.label.text {
+                let new = FDHelper.shared.month(name: text)
+                monthIsLower = p.month > new
+                if p.month == new {monthIsLower = nil}
                 p.month = FDHelper.shared.month(name: text)
             }
         }

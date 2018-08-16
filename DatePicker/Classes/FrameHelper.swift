@@ -19,6 +19,22 @@ class FrameHelper {
 
     private init() {}
 
+    func getCloneView(of uiView: UIView) -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height))
+        let imageView = UIImageView(image: uiView.image())
+        imageView.frame =  CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
+
+
+        view.center.y = uiView.center.y
+        view.center.x = uiView.center.x
+        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.9)
+        view.alpha = 1
+        view.tag = 99
+        imageView.frame = view.frame
+        view.addSubview(imageView)
+        return view
+    }
+
     // MARK: Positioning
     func centerViewInParent(view: UIView, in parentVC: UIViewController? = nil) {
         guard let p = parentVC else {return}
