@@ -32,16 +32,12 @@ public class DatePicker {
         return UIStoryboard(name: "Picker", bundle: DatePicker.bundle).instantiateViewController(withIdentifier: "Picker") as! PickerViewController
     }()
 
+    // MARK: Optionals
     var parentVC: UIViewController?
 
     // MARK: Variables
 
-    // default width
-    // height is 1.4 times width
-    var viewWidth: CGFloat = 200
-    var viewHeight: CGFloat = (200 * 1.5)
-
-    // default widht for popover
+    // default width for popover
     // height is 1.4 times width
     var popoverWidth: CGFloat = (42 * 7)
     var popoverHeight: CGFloat = ((42 * 7) * 1.5)
@@ -51,7 +47,7 @@ public class DatePicker {
     // MARK: Setup
 
     // Basic setup, returns a date in the next 100 years from today
-    public func setup(beginWith: Date? = nil, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ date: Date) -> Void) {
+    public func setup(beginWith: Date? = nil, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
         vc.mode = .Basic
         if let begin = beginWith {
              vc.set(date: begin)
@@ -63,7 +59,7 @@ public class DatePicker {
     }
 
     // Setup with a min and max date
-    public func setup(beginWith: Date? = nil, min:Date, max: Date, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ date: Date) -> Void) {
+    public func setup(beginWith: Date? = nil, min:Date, max: Date, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
         vc.mode = .Basic
         if let begin = beginWith {
             vc.set(date: begin)
@@ -85,20 +81,25 @@ public class DatePicker {
 
     // MARK: Presenataion
 
-    // Display at the center of parent
+    // Display at the bottom of parent
     public func display(in parent: UIViewController) {
         self.parentVC = parent
-        vc.displayMode = .Popup
-        parent.addChildViewController(vc)
-        FrameHelper.shared.sizeAndCenter(view: vc.view, in: parent)
-        FrameHelper.shared.addShadow(to: vc.view.layer)
-        parent.view.addSubview(vc.view)
-        vc.didMove(toParentViewController: parent)
+        vc.displayMode = .Bottom
+        vc.display(on: parent)
+//        parent.addChildViewController(vc)
+//        FrameHelper.shared.positionBottomPreAnimation(view: vc.view, in: parent)
+//        FrameHelper.shared.addShadow(to: vc.view.layer)
+//        parent.view.addSubview(vc.view)
+//        vc.didMove(toParentViewController: parent)
+//        vc.collectionView.alpha = 0
+//        vc.setWhiteScreen()
+
     }
 
     // Display as popover on button
     public func displayPopOver(on: UIButton, in parent: UIViewController, completion: @escaping ()-> Void, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
         vc.displayMode = .PopOver
+
         if let w = width {
             self.popoverWidth = w
             self.popoverHeight = w * 1.5
@@ -122,13 +123,5 @@ public class DatePicker {
         Colors.background = background
         Colors.inactiveText = inactive
         Colors.selectedText = selectedDay
-    }
-
-    // Manually change width and height
-    public func set(width: CGFloat, height: CGFloat) {
-        self.viewWidth = width
-        self.viewHeight = height
-        self.popoverWidth = width
-        self.popoverHeight = height
     }
 }
