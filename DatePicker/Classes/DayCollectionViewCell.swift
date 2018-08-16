@@ -17,12 +17,15 @@ class DayCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var button: UIButton!
 
+    let selection = UISelectionFeedbackGenerator()
+
     // MARK: Outlet Actions
     @IBAction func selectAction(_ sender: UIButton) {
         if let p = parent, let gp = p.parent, let day = self.label.text, let dayInt = Int(day) {
             gp.day = dayInt
+            selection.selectionChanged()
             gp.reloadButton()
-            p.collectionView.reloadData()
+            p.update()
         }
     }
 
@@ -34,7 +37,6 @@ class DayCollectionViewCell: UICollectionViewCell {
      - Parameter parent: parent cell - DaysCollectionViewCell
      */
     func setup(day: Int, selected: Bool? = false, disabled: Bool? = false, parent: DaysCollectionViewCell) {
-
         self.parent = parent
         self.label.text = "\(day)"
         self.view.layer.cornerRadius = 8

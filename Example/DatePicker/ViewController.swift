@@ -20,12 +20,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
     @IBAction func popover(_ sender: UIButton) {
@@ -36,11 +31,17 @@ class ViewController: UIViewController {
         fd.setup(min: start!, max: end!, dateChanged: { (date) in
             print("\(date)")
             self.label.text = "\(date)"
-        }) { (date) in
-            self.label.text = "\(date)"
+        }) { (selected, date)  in
+            if selected, let d = date {
+                self.label.text = "Selected \(d)"
+            } else {
+                self.label.text = "cancelled"
+            }
         }
 
-        fd.displayPopOver(on: sender, in: self)
+        fd.displayPopOver(on: sender, in: self, completion: {
+            
+        })
     }
 
     @IBAction func present(_ sender: UIButton) {
@@ -49,8 +50,12 @@ class ViewController: UIViewController {
         fd.setup(dateChanged: { (date) in
             print("\(date)")
             self.label.text = "\(date)"
-        }) { (date) in
-            self.label.text = "\(date)"
+        }) { (selected, date) in
+            if selected, let d = date {
+                self.label.text = "Selected \(d)"
+            } else {
+                self.label.text = "cancelled"
+            }
         }
 
         fd.display(in: self)
