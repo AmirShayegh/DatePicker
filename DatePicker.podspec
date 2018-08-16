@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 "A simple, elegant Date Picker library for iOS"
                        DESC
 
-  s.homepage         = 'https://github.com/FreshworksStudio/DatePicker'
+  s.homepage         = 'https://github.com/FreshworksStudio/DatePicker.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'amirshayegh' => 'shayegh@me.com' }
-  s.source           = { :git => 'https://github.com/FreshworksStudio/DatePicker', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/FreshworksStudio/DatePicker.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
