@@ -18,7 +18,7 @@ public class PickerViewController: UIViewController {
     // MARK: Constants
     let notification = UINotificationFeedbackGenerator()
     let whiteScreenTag = 101
-    let animationDuration: Double = 0.3
+    let animationDuration: Double = 0.2
 
     // MARK: Optionals
     var callBack: ((_ selected: Bool, _ date: Date?)-> Void)?
@@ -115,7 +115,7 @@ public class PickerViewController: UIViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: p.view.frame.width, height: p.view.frame.height))
         view.center.y = p.view.center.y
         view.center.x = p.view.center.x
-        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.9)
+        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.5)
         view.alpha = 1
         view.tag = whiteScreenTag
         return view
