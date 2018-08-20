@@ -14,11 +14,14 @@ class DaysCollectionViewCell: UICollectionViewCell {
     var parent: PickerViewController?
     var updating = false
 
+    var mode: DatePickerMode = .Basic
+
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
 
     // MARK: Setup
-    func setup(parent: PickerViewController) {
+    func setup(mode: DatePickerMode, parent: PickerViewController) {
+        self.mode = mode
         self.parent = parent
         initCollectionView()
         style()
@@ -149,12 +152,33 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let rows = 7
-        let colums = 7
-        return (rows * colums)
+        guard let p = self.parent else { return 0}
+        switch self.mode {
+        case .Basic:
+            let rows = 7
+            let colums = 7
+            return (rows * colums)
+        case .MinMax:
+            let rows = 7
+            let colums = 7
+            return (rows * colums)
+        case .Yearless:
+            return p.daysInMonth()
+        }
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch self.mode {
+        case .Basic:
+            return getBasicModeCell(for: indexPath)
+        case .MinMax:
+            return getMinMaxModeCell(for: indexPath)
+        case .Yearless:
+            return getYearlessModeCell(for: indexPath)
+        }
+    }
+
+    func getBasicModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
         guard let p = self.parent else {
             let cell = getHeaderCell(indexPath: indexPath)
             cell.setup(day: "")
@@ -184,6 +208,20 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             cell.setup(day: "")
             return cell
         }
+    }
+
+    func getMinMaxModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
+        return getBasicModeCell(for: indexPath)
+    }
+
+    func getYearlessModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
+        var selected = false
+        if let p = self.parent {
+            selected = p.day == (indexPath.row + 1)
+        }
+        let cell = getDayCell(indexPath: indexPath)
+        cell.setup(day: indexPath.row + 1, selected: selected, parent: self)
+        return cell
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

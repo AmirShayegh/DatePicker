@@ -10,14 +10,26 @@ import Foundation
 class FrameHelper {
     static let shared = FrameHelper()
 
-    static let ratio: CGFloat = 1.5
+    static var ratio: CGFloat = 1.5
     var parent: UIViewController?
 
     var viewWidth: CGFloat = 200
     var viewHeight: CGFloat = (200 * ratio)
 
+    var yearlessDayRows = 7
+
 
     private init() {}
+
+    func getYearlessDaysCellSize(for width: CGFloat) -> CGSize {
+        let dayHeight = getDayCellHeight(width: width, rows: yearlessDayRows)
+        // 2 rows less required
+        return CGSize(width: width, height: width - (dayHeight * 2))
+    }
+
+    func getDayCellHeight(width: CGFloat, rows: Int) -> CGFloat {
+        return width / CGFloat(rows)
+    }
 
     func getCloneView(of uiView: UIView) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height))
@@ -44,35 +56,48 @@ class FrameHelper {
         view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor)
     }
 
-    func positionCenter(view:UIView, in parentVC: UIViewController) {
-        view.frame = getSuggesedFrame(padding: 20, for: parentVC.view.frame.size)
+    func positionCenter(view:UIView, in parentVC: UIViewController, yearless: Bool) {
+        view.frame = getSuggesedFrame(padding: 20, for: parentVC.view.frame.size, yearless: yearless)
         view.center.x = parentVC.view.center.x
         view.center.y = parentVC.view.center.y
         view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
         view.centerYAnchor.constraint(equalTo: parentVC.view.centerYAnchor)
     }
 
-    func positionBottom(view: UIView, in parentVC: UIViewController, size: CGSize? = nil) {
+    func positionBottom(view: UIView, in parentVC: UIViewController, size: CGSize? = nil, yearless: Bool) {
         let parentHeight = parentVC.view.frame.size.height
-        let h = getSuggestedHeight(for: parentVC.view.frame.size)
+        var h = getSuggestedHeight(for: parentVC.view.frame.size)
         let w = getSuggestedWidth(for: parentVC.view.frame.size)
+        if yearless {
+            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, rows: yearlessDayRows) * 2.5)
+        }
         view.frame = CGRect(x: 0, y: parentHeight - h, width: w, height: h)
         view.center.x = parentVC.view.center.x
         view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
     }
 
-    func positionBottomPreAnimation(view:UIView, in parentVC: UIViewController) {
+    func positionBottomPreAnimation(view:UIView, in parentVC: UIViewController, yearless: Bool) {
         let parentHeight = parentVC.view.frame.size.height
-        let h = getSuggestedHeight(for: parentVC.view.frame.size)
+        var h = getSuggestedHeight(for: parentVC.view.frame.size)
         let w = getSuggestedWidth(for: parentVC.view.frame.size)
+        if yearless {
+            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, rows: yearlessDayRows) * 2.5)
+        }
+
         view.frame = CGRect(x: 0, y: parentHeight, width: w, height: h)
         view.center.x = parentVC.view.center.x
         view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
     }
 
+
     // MARK: Suggesged Frame
-    func getSuggesedFrame(padding: CGFloat? = 0, for size: CGSize? = nil) -> CGRect {
-        return CGRect(x: 0, y: 0, width: getSuggestedWidth(padding: padding, for: size), height: getSuggestedHeight(padding: padding, for: size))
+    func getSuggesedFrame(padding: CGFloat? = 0, for size: CGSize? = nil, yearless: Bool) -> CGRect {
+        let w = getSuggestedWidth(padding: padding, for: size)
+        var h = getSuggestedHeight(padding: padding, for: size)
+        if yearless {
+            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, rows: yearlessDayRows) * 2.5)
+        }
+        return CGRect(x: 0, y: 0, width: w, height: h)
     }
 
     func getSuggestedWidth(padding: CGFloat? = 0, for size: CGSize? = nil) -> CGFloat {

@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum FreshDateMode {
+enum DatePickerMode {
     case Basic
     case MinMax
-    case YearlessMinMax
+    case Yearless
 }
 
 public class DatePicker {
@@ -74,10 +74,16 @@ public class DatePicker {
     }
 
     // Setup without years
-//    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ month: Int,_ day: Int) -> Void) {
-//        vc.mode = .YearlessMinMax
-//        vc.yearlessCallBack = then
-//    }
+    public func setupYearless(dateChanged: @escaping(_ month: Int,_ day: Int) -> Void, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+        vc.mode = .Yearless
+        vc.yearlessCallBack = selected
+        vc.yearlessLiveCallBack = dateChanged
+
+    }
+    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+        vc.mode = .Yearless
+        vc.yearlessCallBack = then
+    }
 
     // MARK: Presenataion
 
@@ -97,23 +103,29 @@ public class DatePicker {
     }
 
     // Display as popover on button
-    public func displayPopOver(on: UIButton, in parent: UIViewController, completion: @escaping ()-> Void, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
+    public func displayPopOver(on: UIButton, in parent: UIViewController, width: CGFloat? = nil, arrowColor: UIColor? = nil, completion: @escaping ()-> Void) {
         vc.displayMode = .PopOver
 
         if let w = width {
             self.popoverWidth = w
-            self.popoverHeight = w * 1.5
+            self.popoverHeight = w * FrameHelper.ratio
+        }
+
+        var frameSize = CGSize(width: popoverWidth, height: popoverHeight)
+
+        if vc.mode == .Yearless {
+            frameSize = FrameHelper.shared.getYearlessDaysCellSize(for: popoverWidth)
         }
 
         parent.view.endEditing(true)
         vc.modalPresentationStyle = .popover
-        vc.preferredContentSize = CGSize(width: popoverWidth, height: popoverHeight)
+        vc.preferredContentSize = frameSize
         FrameHelper.shared.addShadow(to: vc.view.layer)
-        let popover = vc.popoverPresentationController
-        popover?.backgroundColor = arrowColor ?? Colors.background
-        popover?.permittedArrowDirections = .any
-        popover?.sourceView = on
-        popover?.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
+        guard let popover = vc.popoverPresentationController else {return}
+        popover.backgroundColor = arrowColor ?? Colors.background
+        popover.permittedArrowDirections = .any
+        popover.sourceView = on
+        popover.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
         parent.present(vc, animated: true, completion: completion)
     }
 
