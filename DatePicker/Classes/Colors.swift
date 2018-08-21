@@ -12,5 +12,4 @@ class Colors {
     static var background = UIColor(hex: "#FAFAFA")
     static var main = UIColor(hex: "#234075")
     static var inactiveText = UIColor(hex: "#CDCED2")
-    static var selectedText = UIColor(hex: "#fefefe")
 }

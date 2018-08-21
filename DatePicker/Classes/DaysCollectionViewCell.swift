@@ -9,18 +9,30 @@ import UIKit
 
 class DaysCollectionViewCell: UICollectionViewCell {
 
+    let flipDuration: Double = 0.5
     // MARK: variables
     var parent: PickerViewController?
     var updating = false
+
+    var mode: DatePickerMode = .Basic
 
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
 
     // MARK: Setup
-    func setup(parent: PickerViewController) {
+    func setup(mode: DatePickerMode, parent: PickerViewController) {
+        self.mode = mode
         self.parent = parent
         initCollectionView()
         style()
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
+        swipeUp.direction = .up
+        self.collectionView.addGestureRecognizer(swipeUp)
+
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
+        swipeDown.direction = .down
+        self.collectionView.addGestureRecognizer(swipeDown)
 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
         swipeLeft.direction = .left
@@ -33,13 +45,26 @@ class DaysCollectionViewCell: UICollectionViewCell {
 
     @objc func swiped(_ sender: UISwipeGestureRecognizer) {
         guard let p = self.parent else {return}
+
+        p.calledFromSwipe = true
         switch sender.direction {
         case .left:
+            flipRight()
             p.goToNextMonth()
         case .right:
+            flipLeft()
+            p.goToPrevMonth()
+        case .up:
+            flipRight()
+            p.goToNextMonth()
+        case .down:
+            flipLeft()
             p.goToPrevMonth()
         default:
             return
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + flipDuration) {
+            p.calledFromSwipe = false
         }
     }
 
@@ -51,6 +76,45 @@ class DaysCollectionViewCell: UICollectionViewCell {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+
+    @objc func flipLeft() {
+        guard let p = parent else {return}
+        let copy = FrameHelper.shared.getCloneView( of: self)
+        p.view.addSubview(copy)
+
+        self.isHidden = true
+        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, DatePicker.leftTransitionAnimation]
+
+        UIView.transition(with: copy, duration: flipDuration, options: transitionOptions, animations: {
+            copy.removeFromSuperview()
+        }, completion: { (done) in
+            copy.removeFromSuperview()
+        })
+
+        UIView.transition(with: self, duration: flipDuration, options: transitionOptions, animations: {
+            self.isHidden = false
+        })
+    }
+
+    @objc func flipRight() {
+        guard let p = parent else {return}
+        let copy = FrameHelper.shared.getCloneView( of: self)
+        p.view.addSubview(copy)
+
+        self.isHidden = true
+        let transitionOptions: UIViewAnimationOptions = [ .showHideTransitionViews, DatePicker.rightTransitionAnimation]
+
+        UIView.transition(with: copy, duration: flipDuration, options: transitionOptions, animations: {
+            copy.isHidden = true
+            copy.removeFromSuperview()
+        }, completion: { (done) in
+            copy.removeFromSuperview()
+        })
+
+        UIView.transition(with: self, duration: flipDuration, options: transitionOptions, animations: {
+            self.isHidden = false
+        })
     }
 
 }
@@ -88,12 +152,33 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let rows = 7
-        let colums = 7
-        return (rows * colums)
+        guard let p = self.parent else { return 0}
+        switch self.mode {
+        case .Basic:
+            let rows = 7
+            let colums = 7
+            return (rows * colums)
+        case .MinMax:
+            let rows = 7
+            let colums = 7
+            return (rows * colums)
+        case .Yearless:
+            return p.daysInMonth()
+        }
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch self.mode {
+        case .Basic:
+            return getBasicModeCell(for: indexPath)
+        case .MinMax:
+            return getMinMaxModeCell(for: indexPath)
+        case .Yearless:
+            return getYearlessModeCell(for: indexPath)
+        }
+    }
+
+    func getBasicModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
         guard let p = self.parent else {
             let cell = getHeaderCell(indexPath: indexPath)
             cell.setup(day: "")
@@ -123,6 +208,20 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             cell.setup(day: "")
             return cell
         }
+    }
+
+    func getMinMaxModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
+        return getBasicModeCell(for: indexPath)
+    }
+
+    func getYearlessModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
+        var selected = false
+        if let p = self.parent {
+            selected = p.day == (indexPath.row + 1)
+        }
+        let cell = getDayCell(indexPath: indexPath)
+        cell.setup(day: indexPath.row + 1, selected: selected, parent: self)
+        return cell
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

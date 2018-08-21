@@ -30,8 +30,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vq-Ko-y0M">
-                                <rect key="frame" x="115" y="593" width="145" height="30"/>
-                                <state key="normal" title="present in the middle"/>
+                                <rect key="frame" x="161" y="593" width="53" height="30"/>
+                                <state key="normal" title="Present">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="present:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2cI-Dq-ZEl"/>
                                 </connections>
@@ -39,11 +41,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfa-Uh-qbL">
                                 <rect key="frame" x="16" y="45" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.26274509800000001" green="0.49019607840000001" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3Vq-Ko-y0M" secondAttribute="bottom" constant="44" id="DSA-Gr-tWv"/>
                             <constraint firstItem="ied-IX-SCD" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Egv-Hp-Viq"/>
