@@ -89,11 +89,6 @@ public class DatePicker {
         vc.yearlessLiveCallBack = dateChanged
     }
 
-//    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
-//        vc.mode = .Yearless
-//        vc.yearlessCallBack = then
-//    }
-
     // MARK: Presenataion
 
     // Display at the bottom of parent
