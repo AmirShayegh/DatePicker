@@ -43,7 +43,7 @@ public class DatePicker {
     // default width for popover
     // height is 1.4 times width
     var popoverWidth: CGFloat = (42 * 7)
-    var popoverHeight: CGFloat = ((42 * 7) * 1.5)
+    var popoverHeight: CGFloat = ((42 * 7) * 1.3)
 
     public init() {}
 
@@ -77,16 +77,22 @@ public class DatePicker {
     }
 
     // Setup without years
-    public func setupYearless(dateChanged: @escaping(_ month: Int,_ day: Int) -> Void, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+    public func setupYearless(minMonth: Int, minDay: Int, maxMonth: Int? = nil, maxDay: Int? = nil, dateChanged: @escaping(_ month: Int,_ day: Int) -> Void, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+        vc.minDay = minDay
+        vc.minMonth = minMonth
+        vc.maxMonth = maxMonth ?? 12
+        vc.maxDay = maxDay ?? FDHelper.shared.daysIn(month: vc.maxMonth, year: vc.year)
+        vc.day = minDay
+        vc.month = minMonth
         vc.mode = .Yearless
         vc.yearlessCallBack = selected
         vc.yearlessLiveCallBack = dateChanged
+    }
 
-    }
-    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
-        vc.mode = .Yearless
-        vc.yearlessCallBack = then
-    }
+//    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+//        vc.mode = .Yearless
+//        vc.yearlessCallBack = then
+//    }
 
     // MARK: Presenataion
 
@@ -99,6 +105,7 @@ public class DatePicker {
 
     // Display as popover on button
     public func displayPopOver(on: UIButton, in parent: UIViewController, width: CGFloat? = nil, arrowColor: UIColor? = nil, completion: @escaping ()-> Void) {
+        parent.view.endEditing(true)
         vc.displayMode = .PopOver
 
         if let w = width {
@@ -109,10 +116,9 @@ public class DatePicker {
         var frameSize = CGSize(width: popoverWidth, height: popoverHeight)
 
         if vc.mode == .Yearless {
-            frameSize = FrameHelper.shared.getYearlessDaysCellSize(for: popoverWidth)
+            frameSize = FrameHelper.shared.getYearlessPopOverSize(for: popoverWidth)
         }
 
-        parent.view.endEditing(true)
         vc.modalPresentationStyle = .popover
         vc.preferredContentSize = frameSize
         FrameHelper.shared.addShadow(to: vc.view.layer)

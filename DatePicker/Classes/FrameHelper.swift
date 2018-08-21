@@ -16,19 +16,25 @@ class FrameHelper {
     var viewWidth: CGFloat = 200
     var viewHeight: CGFloat = (200 * ratio)
 
-    var yearlessDayRows = 7
+    var yearlessDayColumns = 7
 
 
     private init() {}
 
+    func getYearlessPopOverSize(for width: CGFloat) -> CGSize {
+        let daysSize = getYearlessDaysCellSize(for: width)
+        let dayHeight = getDayCellHeight(width: width, columns: yearlessDayColumns)
+        return CGSize(width: width, height: (daysSize.height + dayHeight))
+    }
+
     func getYearlessDaysCellSize(for width: CGFloat) -> CGSize {
-        let dayHeight = getDayCellHeight(width: width, rows: yearlessDayRows)
+        let dayHeight = getDayCellHeight(width: width, columns: yearlessDayColumns)
         // 2 rows less required
         return CGSize(width: width, height: width - (dayHeight * 2))
     }
 
-    func getDayCellHeight(width: CGFloat, rows: Int) -> CGFloat {
-        return width / CGFloat(rows)
+    func getDayCellHeight(width: CGFloat, columns: Int) -> CGFloat {
+        return width / CGFloat(columns)
     }
 
     func getCloneView(of uiView: UIView) -> UIView {
@@ -69,7 +75,7 @@ class FrameHelper {
         var h = getSuggestedHeight(for: parentVC.view.frame.size)
         let w = getSuggestedWidth(for: parentVC.view.frame.size)
         if yearless {
-            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, rows: yearlessDayRows) * 2.5)
+            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, columns: yearlessDayColumns) * 2.5)
         }
         view.frame = CGRect(x: 0, y: parentHeight - h, width: w, height: h)
         view.center.x = parentVC.view.center.x
@@ -81,7 +87,7 @@ class FrameHelper {
         var h = getSuggestedHeight(for: parentVC.view.frame.size)
         let w = getSuggestedWidth(for: parentVC.view.frame.size)
         if yearless {
-            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, rows: yearlessDayRows) * 2.5)
+            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, columns: yearlessDayColumns) * 2.5)
         }
 
         view.frame = CGRect(x: 0, y: parentHeight, width: w, height: h)
@@ -95,7 +101,7 @@ class FrameHelper {
         let w = getSuggestedWidth(padding: padding, for: size)
         var h = getSuggestedHeight(padding: padding, for: size)
         if yearless {
-            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, rows: yearlessDayRows) * 2.5)
+            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, columns: yearlessDayColumns) * 2.5)
         }
         return CGRect(x: 0, y: 0, width: w, height: h)
     }
