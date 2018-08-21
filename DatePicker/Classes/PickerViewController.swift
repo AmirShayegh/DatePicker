@@ -56,10 +56,10 @@ public class PickerViewController: UIViewController {
     var minDate: Date?
     var maxDate: Date?
 
-    var minMonth: Int = 0
-    var minDay: Int = 0
-    var maxMonth: Int = 0
-    var maxDay: Int = 0
+    var minMonth: Int = 1
+    var minDay: Int = 1
+    var maxMonth: Int = 1
+    var maxDay: Int = 1
 
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -233,6 +233,8 @@ public class PickerViewController: UIViewController {
     }
 
     func validate() {
+
+        // Min Max mode validations
         if self.mode == .MinMax, let current = FDHelper.shared.dateFrom(day: day, month: month, year: year), let max = maxDate, let min = minDate {
             if current > max {
                 // select max date
@@ -246,7 +248,25 @@ public class PickerViewController: UIViewController {
                 self.month = min.month()
                 self.year = min.year()
                 reload()
-            } else {
+            } 
+        }
+
+        // Yearless mode validations
+        if self.mode == .Yearless {
+            if month > maxMonth {
+                self.month = maxMonth
+                self.day = maxDay
+                reload()
+            } else if month == maxMonth && day > maxDay {
+                day = maxDay
+                reload()
+            } else if month < minMonth {
+                self.month = minMonth
+                self.day = minDay
+                reload()
+            } else if month == minMonth && day < minDay {
+                day = minDay
+                reload()
             }
         }
     }
@@ -460,7 +480,6 @@ public class PickerViewController: UIViewController {
 
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        self.view.alpha = 0
         if self.displayMode == .PopOver {
             return
         } else {
@@ -504,10 +523,17 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func WheelCellSize() -> CGSize {
-        let w = (self.collectionView.frame.width)
-        var h = ((self.collectionView.frame.height - self.collectionView.frame.width) / 3 )
+        var numberOfWheels = 3
         if self.mode == .Yearless {
-            h = (self.collectionView.frame.height - FrameHelper.shared.getYearlessDaysCellSize(for: w).height ) / 2
+            numberOfWheels = 2
+        }
+        if self.displayMode == .PopOver {
+            numberOfWheels = numberOfWheels - 1
+        }
+        let w = (self.collectionView.frame.width)
+        var h = ((self.collectionView.frame.height - self.collectionView.frame.width) / CGFloat(numberOfWheels))
+        if self.mode == .Yearless {
+            h = (self.collectionView.frame.height - FrameHelper.shared.getYearlessDaysCellSize(for: w).height ) / CGFloat(numberOfWheels)
         }
         return CGSize(width: w, height: h)
     }
@@ -533,17 +559,51 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var number = 0
         switch self.mode {
         case .Basic:
-            return 4
+            number = 4
         case .MinMax:
-            return 4
+            number = 4
         case .Yearless:
-            return 3
+            number = 3
+        }
+
+        if self.displayMode == .PopOver {
+            number = number - 1
+        }
+
+        return number
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch self.mode {
+        case .Basic:
+            if indexPath.row == 2 {
+                return daysCellSize()
+            } else {
+                return WheelCellSize()
+            }
+        case .MinMax:
+            if indexPath.row == 2 {
+                return daysCellSize()
+            } else {
+                return WheelCellSize()
+            }
+        case .Yearless:
+            if indexPath.row == 1 {
+                return daysCellSize()
+            } else {
+                return WheelCellSize()
+            }
         }
     }
 
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         switch self.mode {
         case .Basic:
             return getBasicModeCell(for: indexPath)
@@ -606,31 +666,5 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
             }
             return cell
         }
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch self.mode {
-        case .Basic:
-            if indexPath.row == 2 {
-                return daysCellSize()
-            } else {
-                return WheelCellSize()
-            }
-        case .MinMax:
-            if indexPath.row == 2 {
-                return daysCellSize()
-            } else {
-                return WheelCellSize()
-            }
-        case .Yearless:
-            if indexPath.row == 1 {
-                return daysCellSize()
-            } else {
-                return WheelCellSize()
-            }
-        }
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
 }
