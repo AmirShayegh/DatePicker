@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DatePicker'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'Date Picker for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 "A simple, elegant Date Picker library for iOS"
                        DESC
 
-  s.homepage         = 'https://github.com/amirshayegh/DatePicker'
+  s.homepage         = 'https://github.com/FreshworksStudio/DatePicker.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'amirshayegh' => 'shayegh@me.com' }
-  s.source           = { :git => 'https://github.com/amirshayegh/DatePicker.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/FreshworksStudio/DatePicker.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
