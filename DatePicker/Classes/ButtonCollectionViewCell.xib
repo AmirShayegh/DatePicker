@@ -19,8 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFY-m3-K39">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="QYp-zg-3em"/>
+                        </constraints>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2m-hq-mvO">
-                        <rect key="frame" x="10" y="3" width="200" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
                         <state key="normal" title="Select"/>
                         <connections>
                             <action selector="clicked:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Qmi-xX-a5n"/>
@@ -29,17 +36,21 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="l2m-hq-mvO" secondAttribute="bottom" constant="3" id="0RS-p8-Br1"/>
-                <constraint firstItem="l2m-hq-mvO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="PfZ-9b-pLY"/>
-                <constraint firstAttribute="trailing" secondItem="l2m-hq-mvO" secondAttribute="trailing" constant="10" id="RfL-Mz-XxR"/>
-                <constraint firstItem="l2m-hq-mvO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="bWr-dt-x3H"/>
+                <constraint firstAttribute="bottom" secondItem="l2m-hq-mvO" secondAttribute="bottom" id="0RS-p8-Br1"/>
+                <constraint firstAttribute="trailing" secondItem="kFY-m3-K39" secondAttribute="trailing" id="GhR-cy-5Bt"/>
+                <constraint firstItem="l2m-hq-mvO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PfZ-9b-pLY"/>
+                <constraint firstAttribute="trailing" secondItem="l2m-hq-mvO" secondAttribute="trailing" id="RfL-Mz-XxR"/>
+                <constraint firstItem="l2m-hq-mvO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bWr-dt-x3H"/>
+                <constraint firstItem="kFY-m3-K39" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gCk-9J-KMU"/>
+                <constraint firstItem="kFY-m3-K39" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="mdL-YS-Gd9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="220" height="50"/>
             <connections>
                 <outlet property="button" destination="l2m-hq-mvO" id="gIE-oW-d8W"/>
+                <outlet property="divider" destination="kFY-m3-K39" id="v5Z-2t-oYn"/>
             </connections>
-            <point key="canvasLocation" x="-236" y="54"/>
+            <point key="canvasLocation" x="-247" y="54"/>
         </collectionViewCell>
     </objects>
 </document>
