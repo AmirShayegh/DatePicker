@@ -30,12 +30,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
      */
     func setup(date: Date, clicked: @escaping() -> Void) {
         self.callBack = clicked
-//        self.button.setTitle(date.string(), for: .normal)
         style()
-    }
-
-    func setFrom(date: Date) {
-//        self.button.setTitle(" Select \(date.string())", for: .normal)
     }
 
     func style() {

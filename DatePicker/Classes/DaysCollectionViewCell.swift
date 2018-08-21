@@ -84,7 +84,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
         p.view.addSubview(copy)
 
         self.isHidden = true
-        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, .transitionFlipFromLeft]
+        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, DatePicker.leftTransitionAnimation]
 
         UIView.transition(with: copy, duration: flipDuration, options: transitionOptions, animations: {
             copy.removeFromSuperview()
@@ -103,7 +103,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
         p.view.addSubview(copy)
 
         self.isHidden = true
-        let transitionOptions: UIViewAnimationOptions = [ .showHideTransitionViews, .transitionFlipFromRight]
+        let transitionOptions: UIViewAnimationOptions = [ .showHideTransitionViews, DatePicker.rightTransitionAnimation]
 
         UIView.transition(with: copy, duration: flipDuration, options: transitionOptions, animations: {
             copy.isHidden = true

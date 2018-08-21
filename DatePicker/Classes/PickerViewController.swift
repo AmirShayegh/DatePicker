@@ -230,11 +230,6 @@ public class PickerViewController: UIViewController {
 
     func reloadButton() {
         validate()
-        //        guard let indexpath = buttonIndexPath else {return}
-        //        if collectionView.indexPathsForVisibleItems.contains(indexpath) {
-        //            let cell = collectionView.cellForItem(at: indexpath) as! ButtonCollectionViewCell
-        //            cell.setFrom(date: FDHelper.shared.dateFrom(day: day, month: month, year: year)!)
-        //        }
     }
 
     func validate() {
@@ -472,45 +467,6 @@ public class PickerViewController: UIViewController {
             self.remove()
         }
     }
-
-//    // MARK: Screen Rotation
-//    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: size, with: coordinator)
-//        if self.displayMode == .PopOver {return}
-//        guard let p = self.parent else {return}
-//
-////        if size.width > size.height {
-////            // landscape
-////
-////        } else {
-////            // portrait
-////        }
-//
-//        self.removeWhiteScreen()
-//        self.view.alpha = 0
-//        if self.displayMode == .Bottom {
-//            FrameHelper.shared.positionBottom(view: self.view, in: p, size: size)
-//        } else {
-//            FrameHelper.shared.positionCenter(view: self.view, in: p)
-//        }
-//        self.view.layoutIfNeeded()
-//        self.setCollectionViewLayout()
-//        self.collectionView.layoutIfNeeded()
-//        self.reload()
-//        self.view.alpha = 1
-//        self.setWhiteScreen()
-//
-////        coordinator.animate(alongsideTransition: nil) { _ in
-////            guard let p = self.parent else {return}
-////            FrameHelper.shared.positionCenter(view: self.view, in: p)
-////            self.view.layoutIfNeeded()
-////            self.setCollectionViewLayout()
-////            self.collectionView.layoutIfNeeded()
-////            self.reload()
-////            self.view.alpha = 1
-////        }
-//    }
-
 }
 
 // MARK: CollectionView

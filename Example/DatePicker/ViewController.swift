@@ -45,8 +45,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func present(_ sender: UIButton) {
-//        self.label.alpha = 1
-//        let fd = DatePicker()
+        self.label.alpha = 1
+        let fd = DatePicker()
+//        let date1 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
+//        let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
+//        fd.setup(min: date1!, max: date2!, dateChanged: { (date) in
+//
+//        }) { (selected, date) in
+//            if selected {
+//
+//            }
+//        }
+
+
 //        fd.setup(dateChanged: { (date) in
 //            print("\(date)")
 //            self.label.text = "\(date)"
@@ -57,7 +68,7 @@ class ViewController: UIViewController {
 //                self.label.text = "cancelled"
 //            }
 //        }
-//
+
 //        fd.display(in: self)
 
         self.label.alpha = 1

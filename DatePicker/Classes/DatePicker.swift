@@ -15,6 +15,9 @@ enum DatePickerMode {
 
 public class DatePicker {
 
+    public static var leftTransitionAnimation: UIViewAnimationOptions = .transitionFlipFromLeft
+    public static var rightTransitionAnimation: UIViewAnimationOptions = .transitionFlipFromRight
+
     // Bundle
     static var bundle: Bundle {
         let podBundle = Bundle(for: PickerViewController.self)
@@ -92,14 +95,6 @@ public class DatePicker {
         self.parentVC = parent
         vc.displayMode = .Bottom
         vc.display(on: parent)
-//        parent.addChildViewController(vc)
-//        FrameHelper.shared.positionBottomPreAnimation(view: vc.view, in: parent)
-//        FrameHelper.shared.addShadow(to: vc.view.layer)
-//        parent.view.addSubview(vc.view)
-//        vc.didMove(toParentViewController: parent)
-//        vc.collectionView.alpha = 0
-//        vc.setWhiteScreen()
-
     }
 
     // Display as popover on button
