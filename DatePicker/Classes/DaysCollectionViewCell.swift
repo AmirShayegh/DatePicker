@@ -216,11 +216,20 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
 
     func getYearlessModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
         var selected = false
+        var disabled = false
+        let currentDay = indexPath.row + 1
         if let p = self.parent {
             selected = p.day == (indexPath.row + 1)
+            if p.month == p.minMonth && currentDay < p.minDay {
+                disabled = true
+            }
+            if p.month == p.maxMonth && currentDay > p.maxDay {
+                disabled = true
+            }
         }
         let cell = getDayCell(indexPath: indexPath)
-        cell.setup(day: indexPath.row + 1, selected: selected, parent: self)
+        cell.setup(day: currentDay, selected: selected, disabled: disabled, parent: self)
+//        cell.setup(day: indexPath.row + 1, selected: selected, parent: self)
         return cell
     }
 
