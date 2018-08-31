@@ -159,7 +159,7 @@ public class PickerViewController: UIViewController {
     func remove() {
         notification.notificationOccurred(.error)
         self.view.removeFromSuperview()
-        self.dismiss(animated: true, completion: nil)
+        self.removeFromParentViewController()
         self.removeWhiteScreen()
         if self.callBack != nil {
             return self.callBack!(false, nil)
