@@ -18,12 +18,13 @@ public class PickerViewController: UIViewController {
     // MARK: Constants
     let notification = UINotificationFeedbackGenerator()
     let whiteScreenTag = 101
-    let animationDuration: Double = 0.3
+    let animationDuration: Double = 0.2
 
     // MARK: Optionals
     var callBack: ((_ selected: Bool, _ date: Date?)-> Void)?
     var liveCallBack: ((_ date: Date)-> Void)?
-    var yearlessCallBack: ((_ month: Int,_ day: Int)-> Void)?
+    var yearlessCallBack: ((_ selected: Bool, _ month: Int?,_ day: Int?)-> Void)?
+    var yearlessLiveCallBack: ((_ month: Int,_ day: Int)-> Void)?
 
     var monthsIndexPath: IndexPath?
     var yearsIndexPath: IndexPath?
@@ -31,11 +32,12 @@ public class PickerViewController: UIViewController {
     var buttonIndexPath: IndexPath?
 
     // MARK: Variables
-    var displayMode: DisplayMode = .Center
-    var mode: FreshDateMode = .Basic
+    var loading: Bool = true
 
+    var displayMode: DisplayMode = .Center
+    var mode: DatePickerMode = .Basic
     var calledFromSwipe: Bool = false
-        
+
     var day: Int = 18 {
         didSet {
             liveReturn()
@@ -55,10 +57,10 @@ public class PickerViewController: UIViewController {
     var minDate: Date?
     var maxDate: Date?
 
-    var minMonth: Int = 0
-    var minDay: Int = 0
-    var maxMonth: Int = 0
-    var maxDay: Int = 0
+    var minMonth: Int = 1
+    var minDay: Int = 1
+    var maxMonth: Int = 1
+    var maxDay: Int = 1
 
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -72,16 +74,24 @@ public class PickerViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reload()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.loading = false
+        }
     }
 
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        sendResult()
+    }
+
     // MARK: Presentation
     func display(on parent: UIViewController) {
         parent.addChildViewController(self)
-        FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: parent)
+        FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: parent, yearless: self.mode == .Yearless)
         FrameHelper.shared.addShadow(to: self.view.layer)
         parent.view.addSubview(self.view)
         self.didMove(toParentViewController: parent)
@@ -89,9 +99,9 @@ public class PickerViewController: UIViewController {
         setWhiteScreen()
         UIView.animate(withDuration: animationDuration, animations: {
             if self.displayMode == .Bottom {
-                FrameHelper.shared.positionBottom(view: self.view, in: parent, size: parent.view.frame.size)
+                FrameHelper.shared.positionBottom(view: self.view, in: parent, size: parent.view.frame.size, yearless: self.mode == .Yearless)
             } else {
-                FrameHelper.shared.positionCenter(view: self.view, in: parent)
+                FrameHelper.shared.positionCenter(view: self.view, in: parent, yearless: self.mode == .Yearless)
             }
             self.collectionView.alpha = 1
         }) { (done) in
@@ -115,7 +125,7 @@ public class PickerViewController: UIViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: p.view.frame.width, height: p.view.frame.height))
         view.center.y = p.view.center.y
         view.center.x = p.view.center.x
-        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.9)
+        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.5)
         view.alpha = 1
         view.tag = whiteScreenTag
         return view
@@ -136,7 +146,7 @@ public class PickerViewController: UIViewController {
         if let p = parent, displayMode != .PopOver {
             UIView.animate(withDuration: animationDuration, animations: {
                 if self.displayMode == .Bottom {
-                    FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: p)
+                    FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: p, yearless: self.mode == .Yearless)
                 } else {
                     self.view.alpha = 0
                 }
@@ -158,9 +168,11 @@ public class PickerViewController: UIViewController {
     // MARK: Callbacks
     func remove() {
         notification.notificationOccurred(.error)
+        self.removeWhiteScreen()
         self.view.removeFromSuperview()
         self.removeFromParentViewController()
-        self.removeWhiteScreen()
+        self.didMove(toParentViewController: nil)
+        self.dismiss(animated: true, completion: nil)
         if self.callBack != nil {
             return self.callBack!(false, nil)
         }
@@ -168,32 +180,58 @@ public class PickerViewController: UIViewController {
 
     // cancel
     func close() {
-
         dimissAnimations() {
-            if self.callBack != nil {
-                return self.callBack!(false, nil)
+            if self.mode == .Yearless {
+                if self.yearlessCallBack != nil {
+                    return self.yearlessCallBack!(false, nil, nil)
+                }
+            } else {
+                if self.callBack != nil {
+                    return self.callBack!(false, nil)
+                }
             }
         }
-
     }
 
     // select clicked
     func sendResult() {
+        if loading {return}
         notification.notificationOccurred(.success)
         dimissAnimations() {
-            if self.callBack != nil {
-                return self.callBack!(true, FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
+            if self.mode == .Yearless {
+                if self.yearlessCallBack != nil {
+                    return self.yearlessCallBack!(true, self.month, self.day)
+                }
+            } else {
+                if self.callBack != nil {
+                    return self.callBack!(true, FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
+                }
             }
         }
     }
 
     // date changed
     func liveReturn() {
+
+        /*
+         Live return returns too many dates which can result in issues on the receiving end.
+         No longer being used.
+         */
+        return
+        if loading {return}
         // if date is valid, send back
-        guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
-        if let min = self.minDate, let max = self.maxDate {
-            if date < max && date > min {
-                completion(date)
+        if self.mode == .Yearless {
+            if self.month >= 1 && self.month <= 12, let yearlessLive = yearlessLiveCallBack {
+                yearlessLive(self.month, self.day)
+            }
+            //            guard let yearlessLive = yearlessLiveCallBack else {return}
+            //            yearlessLive(self.month, self.day)
+        } else {
+            guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
+            if let min = self.minDate, let max = self.maxDate {
+                if date <= max && date >= min {
+                    completion(date)
+                }
             }
         }
     }
@@ -212,14 +250,11 @@ public class PickerViewController: UIViewController {
 
     func reloadButton() {
         validate()
-        //        guard let indexpath = buttonIndexPath else {return}
-        //        if collectionView.indexPathsForVisibleItems.contains(indexpath) {
-        //            let cell = collectionView.cellForItem(at: indexpath) as! ButtonCollectionViewCell
-        //            cell.setFrom(date: FDHelper.shared.dateFrom(day: day, month: month, year: year)!)
-        //        }
     }
 
     func validate() {
+
+        // Min Max mode validations
         if self.mode == .MinMax, let current = FDHelper.shared.dateFrom(day: day, month: month, year: year), let max = maxDate, let min = minDate {
             if current > max {
                 // select max date
@@ -233,7 +268,25 @@ public class PickerViewController: UIViewController {
                 self.month = min.month()
                 self.year = min.year()
                 reload()
-            } else {
+            }
+        }
+
+        // Yearless mode validations
+        if self.mode == .Yearless {
+            if month > maxMonth {
+                self.month = maxMonth
+                self.day = maxDay
+                reload()
+            } else if month == maxMonth && day > maxDay {
+                day = maxDay
+                reload()
+            } else if month < minMonth {
+                self.month = minMonth
+                self.day = minDay
+                reload()
+            } else if month == minMonth && day < minDay {
+                day = minDay
+                reload()
             }
         }
     }
@@ -244,13 +297,9 @@ public class PickerViewController: UIViewController {
         reloadYears()
     }
 
-    func YearOrMonthChanged(back: Bool? = nil) {
-//        if let monthWentBack = back {
-//            flipDays(back: monthWentBack)
-//        } else {
-            self.reloadDays()
-            self.reloadButton()
-//        }
+    func YearOrMonthChanged() {
+        self.reloadDays()
+        self.reloadButton()
     }
 
     func reloadDays() {
@@ -292,7 +341,6 @@ public class PickerViewController: UIViewController {
     }
 
     @objc func flipLeft(view: UIView, copy: UIView) {
-//        let copy = FrameHelper.shared.getCloneView( of: view)
         self.view.addSubview(copy)
 
         view.isHidden = true
@@ -304,7 +352,7 @@ public class PickerViewController: UIViewController {
         })
 
         UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
-           view.isHidden = false
+            view.isHidden = false
         })
     }
 
@@ -451,53 +499,13 @@ public class PickerViewController: UIViewController {
     }
 
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        self.view.alpha = 0
+        super.viewWillTransition(to: size, with: coordinator)
         if self.displayMode == .PopOver {
             return
         } else {
             self.remove()
         }
-         super.viewWillTransition(to: size, with: coordinator)
     }
-
-//    // MARK: Screen Rotation
-//    override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: size, with: coordinator)
-//        if self.displayMode == .PopOver {return}
-//        guard let p = self.parent else {return}
-//
-////        if size.width > size.height {
-////            // landscape
-////
-////        } else {
-////            // portrait
-////        }
-//
-//        self.removeWhiteScreen()
-//        self.view.alpha = 0
-//        if self.displayMode == .Bottom {
-//            FrameHelper.shared.positionBottom(view: self.view, in: p, size: size)
-//        } else {
-//            FrameHelper.shared.positionCenter(view: self.view, in: p)
-//        }
-//        self.view.layoutIfNeeded()
-//        self.setCollectionViewLayout()
-//        self.collectionView.layoutIfNeeded()
-//        self.reload()
-//        self.view.alpha = 1
-//        self.setWhiteScreen()
-//
-////        coordinator.animate(alongsideTransition: nil) { _ in
-////            guard let p = self.parent else {return}
-////            FrameHelper.shared.positionCenter(view: self.view, in: p)
-////            self.view.layoutIfNeeded()
-////            self.setCollectionViewLayout()
-////            self.collectionView.layoutIfNeeded()
-////            self.reload()
-////            self.view.alpha = 1
-////        }
-//    }
-
 }
 
 // MARK: CollectionView
@@ -521,13 +529,32 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func daysCellSize() -> CGSize {
-        let w = (self.collectionView.frame.width)
-        return CGSize(width: w, height: w)
+        switch self.mode {
+        case .Basic:
+            let w = (self.collectionView.frame.width)
+            return CGSize(width: w, height: w)
+        case .MinMax:
+            let w = (self.collectionView.frame.width)
+            return CGSize(width: w, height: w)
+        case .Yearless:
+            let w = (self.collectionView.frame.width)
+            return FrameHelper.shared.getYearlessDaysCellSize(for: w)
+        }
     }
 
     func WheelCellSize() -> CGSize {
+        var numberOfWheels = 3
+        if self.mode == .Yearless {
+            numberOfWheels = 2
+        }
+        if self.displayMode == .PopOver {
+            numberOfWheels = numberOfWheels - 1
+        }
         let w = (self.collectionView.frame.width)
-        let h = ((self.collectionView.frame.height - self.collectionView.frame.width) / 3 )
+        var h = ((self.collectionView.frame.height - self.collectionView.frame.width) / CGFloat(numberOfWheels))
+        if self.mode == .Yearless {
+            h = (self.collectionView.frame.height - FrameHelper.shared.getYearlessDaysCellSize(for: w).height ) / CGFloat(numberOfWheels)
+        }
         return CGSize(width: w, height: h)
     }
 
@@ -552,10 +579,63 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        var number = 0
+        switch self.mode {
+        case .Basic:
+            number = 4
+        case .MinMax:
+            number = 4
+        case .Yearless:
+            number = 3
+        }
+
+        if self.displayMode == .PopOver {
+            number = number - 1
+        }
+
+        return number
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch self.mode {
+        case .Basic:
+            if indexPath.row == 2 {
+                return daysCellSize()
+            } else {
+                return WheelCellSize()
+            }
+        case .MinMax:
+            if indexPath.row == 2 {
+                return daysCellSize()
+            } else {
+                return WheelCellSize()
+            }
+        case .Yearless:
+            if indexPath.row == 1 {
+                return daysCellSize()
+            } else {
+                return WheelCellSize()
+            }
+        }
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        switch self.mode {
+        case .Basic:
+            return getBasicModeCell(for: indexPath)
+        case .MinMax:
+            return getMinMaxModeCell(for: indexPath)
+        case .Yearless:
+            return getYearlessModeCell(for: indexPath)
+        }
+
+    }
+
+    func getBasicModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.row {
         case 0:
             self.yearsIndexPath = indexPath
@@ -570,7 +650,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         case 2:
             self.daysIndexPath = indexPath
             let cell = getDaysCell(indexPath: indexPath)
-            cell.setup(parent: self)
+            cell.setup(mode: self.mode, parent: self)
             return cell
         default:
             self.buttonIndexPath = indexPath
@@ -582,14 +662,29 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
     }
 
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.row == 2 {
-            return daysCellSize()
-        } else {
-            return WheelCellSize()
-        }
+    func getMinMaxModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
+        return getBasicModeCell(for: indexPath)
     }
 
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func getYearlessModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
+        switch indexPath.row {
+        case 0:
+            self.monthsIndexPath = indexPath
+            let cell = getMonthsCell(indexPath: indexPath)
+            cell.setup(items: FDHelper.shared.months(), parent: self)
+            return cell
+        case 1:
+            self.daysIndexPath = indexPath
+            let cell = getDaysCell(indexPath: indexPath)
+            cell.setup(mode: self.mode, parent: self)
+            return cell
+        default:
+            self.buttonIndexPath = indexPath
+            let cell = getButtonCell(indexPath: indexPath)
+            cell.setup(date: FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
+                self.sendResult()
+            }
+            return cell
+        }
     }
 }

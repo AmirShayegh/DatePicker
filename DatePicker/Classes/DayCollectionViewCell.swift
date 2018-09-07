@@ -59,7 +59,7 @@ class DayCollectionViewCell: UICollectionViewCell {
         self.label.font = Fonts.heavy
         self.label.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
         self.view.backgroundColor = Colors.main
-        self.label.textColor = Colors.selectedText
+        self.label.textColor = Colors.background
     }
 
     func deselect() {

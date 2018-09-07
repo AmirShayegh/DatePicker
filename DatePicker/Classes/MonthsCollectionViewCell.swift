@@ -19,8 +19,6 @@ class MonthsCollectionViewCell: UICollectionViewCell {
 
     var seleced: [IndexPath] = [IndexPath]()
 
-    var monthIsLower: Bool?
-
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var bottomDivider: UIView!
     @IBOutlet weak var middleIndicator: UIView!
@@ -74,6 +72,22 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
         }
     }
 
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if let p = parent {
+            p.YearOrMonthChanged()
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let centerCellIndexPath: IndexPath  = collectionView.centerCellIndexPath {
+            if let current = self.currentCenterCellIndexPath, current != centerCellIndexPath {
+                selection.selectionChanged()
+            }
+            self.currentCenterCellIndexPath = centerCellIndexPath
+            highlightCell(at: centerCellIndexPath)
+        }
+    }
+
     func scrollToMonth(at: IndexPath) {
         if at.row < paddingCells - 1 {
             let indexPath: IndexPath = [0, (paddingCells/2)]
@@ -86,26 +100,10 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
         }
     }
 
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if let p = parent {
-            p.YearOrMonthChanged(back: monthIsLower)
-        }
-    }
-
     func select(month: String) {
         guard let indexPathRow = items.index(of: month)  else { return }
         let indexPath: IndexPath = [0,(indexPathRow + paddingCells / 2)]
         scrollToMonth(at: indexPath)
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let centerCellIndexPath: IndexPath  = collectionView.centerCellIndexPath {
-            if let current = self.currentCenterCellIndexPath, current != centerCellIndexPath {
-                selection.selectionChanged()
-            }
-            self.currentCenterCellIndexPath = centerCellIndexPath
-            highlightCell(at: centerCellIndexPath)
-        }
     }
 
     func highlightCell(at: IndexPath) {
@@ -119,9 +117,6 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.cellForItem(at: at) as! MonthCollectionViewCell
             cell.select()
             if let p = parent, let text = cell.label.text {
-                let new = FDHelper.shared.month(name: text)
-                monthIsLower = p.month > new
-                if p.month == new {monthIsLower = nil}
                 p.month = FDHelper.shared.month(name: text)
             }
         }

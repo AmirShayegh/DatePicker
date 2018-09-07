@@ -7,13 +7,16 @@
 
 import Foundation
 
-enum FreshDateMode {
+enum DatePickerMode {
     case Basic
     case MinMax
-    case YearlessMinMax
+    case Yearless
 }
 
 public class DatePicker {
+
+    public static var leftTransitionAnimation: UIViewAnimationOptions = .transitionFlipFromLeft
+    public static var rightTransitionAnimation: UIViewAnimationOptions = .transitionFlipFromRight
 
     // Bundle
     static var bundle: Bundle {
@@ -38,28 +41,27 @@ public class DatePicker {
     // MARK: Variables
 
     // default width for popover
-    // height is 1.4 times width
-    var popoverWidth: CGFloat = (42 * 7)
-    var popoverHeight: CGFloat = ((42 * 7) * 1.5)
+    // height is 1.3 times width
+    var popoverWidth: CGFloat = (48 * 7)
+    var popoverHeight: CGFloat = ((48 * 7) * 1.3)
 
     public init() {}
 
     // MARK: Setup
 
     // Basic setup, returns a date in the next 100 years from today
-    public func setup(beginWith: Date? = nil, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
+    public func setup(beginWith: Date? = nil, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
         vc.mode = .Basic
         if let begin = beginWith {
-             vc.set(date: begin)
+            vc.set(date: begin)
         } else {
             vc.set(date: Date())
         }
         vc.callBack = selected
-        vc.liveCallBack = dateChanged
     }
 
     // Setup with a min and max date
-    public func setup(beginWith: Date? = nil, min:Date, max: Date, dateChanged: @escaping(_ date: Date) -> Void, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
+    public func setup(beginWith: Date? = nil, min:Date, max: Date, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
         vc.mode = .Basic
         if let begin = beginWith {
             vc.set(date: begin)
@@ -70,14 +72,19 @@ public class DatePicker {
         vc.maxDate = max
         vc.minDate = min
         vc.callBack = selected
-        vc.liveCallBack = dateChanged
     }
 
     // Setup without years
-//    public func setup(minMonth: Int, minDay: Int, maxMonth: Int, maxDay: Int, then: @escaping(_ month: Int,_ day: Int) -> Void) {
-//        vc.mode = .YearlessMinMax
-//        vc.yearlessCallBack = then
-//    }
+    public func setupYearless(minMonth: Int, minDay: Int, maxMonth: Int? = nil, maxDay: Int? = nil, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+        vc.minDay = minDay
+        vc.minMonth = minMonth
+        vc.maxMonth = maxMonth ?? 12
+        vc.maxDay = maxDay ?? FDHelper.shared.daysIn(month: vc.maxMonth, year: vc.year)
+        vc.day = minDay
+        vc.month = minMonth
+        vc.mode = .Yearless
+        vc.yearlessCallBack = selected
+    }
 
     // MARK: Presenataion
 
@@ -86,42 +93,46 @@ public class DatePicker {
         self.parentVC = parent
         vc.displayMode = .Bottom
         vc.display(on: parent)
-//        parent.addChildViewController(vc)
-//        FrameHelper.shared.positionBottomPreAnimation(view: vc.view, in: parent)
-//        FrameHelper.shared.addShadow(to: vc.view.layer)
-//        parent.view.addSubview(vc.view)
-//        vc.didMove(toParentViewController: parent)
-//        vc.collectionView.alpha = 0
-//        vc.setWhiteScreen()
-
     }
 
     // Display as popover on button
-    public func displayPopOver(on: UIButton, in parent: UIViewController, completion: @escaping ()-> Void, width: CGFloat? = nil, arrowColor: UIColor? = nil) {
+    public func displayPopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
+        // dismiss keyboards
+        parent.view.endEditing(true)
+
+        // set mode
         vc.displayMode = .PopOver
 
+        // size
         if let w = width {
             self.popoverWidth = w
-            self.popoverHeight = w * 1.5
+            self.popoverHeight = w * FrameHelper.ratio
         }
 
-        parent.view.endEditing(true)
-        vc.modalPresentationStyle = .popover
-        vc.preferredContentSize = CGSize(width: popoverWidth, height: popoverHeight)
+        var frameSize = CGSize(width: popoverWidth, height: popoverHeight)
+
+        if vc.mode == .Yearless {
+            frameSize = FrameHelper.shared.getYearlessPopOverSize(for: popoverWidth)
+        }
+
+        // style
         FrameHelper.shared.addShadow(to: vc.view.layer)
-        let popover = vc.popoverPresentationController
-        popover?.backgroundColor = arrowColor ?? Colors.background
-        popover?.permittedArrowDirections = .any
-        popover?.sourceView = on
-        popover?.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
-        parent.present(vc, animated: true, completion: completion)
+
+        // popover
+        vc.modalPresentationStyle = .popover
+        vc.preferredContentSize = frameSize
+        guard let popover = vc.popoverPresentationController else {return}
+        popover.backgroundColor = Colors.background
+        popover.permittedArrowDirections = .any
+        popover.sourceView = on
+        popover.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
+        parent.present(vc, animated: true, completion: nil)
     }
 
     // change colors
-    public func colors(main: UIColor, background: UIColor, inactive: UIColor, selectedDay: UIColor) {
+    public func colors(main: UIColor, background: UIColor, inactive: UIColor) {
         Colors.main = main
         Colors.background = background
         Colors.inactiveText = inactive
-        Colors.selectedText = selectedDay
     }
 }
