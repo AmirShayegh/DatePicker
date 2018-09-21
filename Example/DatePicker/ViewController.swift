@@ -43,8 +43,8 @@ class ViewController: UIViewController {
         let fd = DatePicker()
 
         // you can generate dates using this function
-        let date1 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
-        let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
+//        let date1 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
+//        let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
 
         fd.setup { (selected, date) in
             if selected, let d = date {

@@ -90,11 +90,11 @@ public class PickerViewController: UIViewController {
 
     // MARK: Presentation
     func display(on parent: UIViewController) {
-        parent.addChildViewController(self)
+        parent.addChild(self)
         FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: parent, yearless: self.mode == .Yearless)
         FrameHelper.shared.addShadow(to: self.view.layer)
         parent.view.addSubview(self.view)
-        self.didMove(toParentViewController: parent)
+        self.didMove(toParent: parent)
         self.collectionView.alpha = 0
         setWhiteScreen()
         UIView.animate(withDuration: animationDuration, animations: {
@@ -170,8 +170,8 @@ public class PickerViewController: UIViewController {
         notification.notificationOccurred(.error)
         self.removeWhiteScreen()
         self.view.removeFromSuperview()
-        self.removeFromParentViewController()
-        self.didMove(toParentViewController: nil)
+        self.removeFromParent()
+        self.didMove(toParent: nil)
         self.dismiss(animated: true, completion: nil)
         if self.callBack != nil {
             return self.callBack!(false, nil)
@@ -344,7 +344,7 @@ public class PickerViewController: UIViewController {
         self.view.addSubview(copy)
 
         view.isHidden = true
-        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
+        let transitionOptions: UIView.AnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
 
         UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
             copy.isHidden = true
@@ -362,7 +362,7 @@ public class PickerViewController: UIViewController {
         p.view.addSubview(copy)
 
         view.isHidden = true
-        let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
+        let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
 
         UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
             copy.isHidden = true

@@ -15,8 +15,8 @@ enum DatePickerMode {
 
 public class DatePicker {
 
-    public static var leftTransitionAnimation: UIViewAnimationOptions = .transitionFlipFromLeft
-    public static var rightTransitionAnimation: UIViewAnimationOptions = .transitionFlipFromRight
+    public static var leftTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromLeft
+    public static var rightTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromRight
 
     // Bundle
     static var bundle: Bundle {
