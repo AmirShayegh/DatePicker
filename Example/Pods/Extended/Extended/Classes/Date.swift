@@ -1,8 +1,8 @@
 //
-//  DateExtention.swift
-//  FreshDate
+//  Date.swift
+//  Extentions
 //
-//  Created by Amir Shayegh on 2018-08-06.
+//  Created by Amir Shayegh on 2018-09-19.
 //
 
 import Foundation

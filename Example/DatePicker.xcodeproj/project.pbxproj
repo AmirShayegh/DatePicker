@@ -289,10 +289,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DatePicker_Example/Pods-DatePicker_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DatePicker/DatePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/Extended/Extended.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Extended.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

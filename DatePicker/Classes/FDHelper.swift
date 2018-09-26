@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Extended
 
 // String extention to get short hand of day name
 extension String {
