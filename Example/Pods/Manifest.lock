@@ -1,5 +1,5 @@
 PODS:
-  - DatePicker (0.1.6):
+  - DatePicker (0.1.7):
     - Extended
   - Extended (1.0.0)
 
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DatePicker: 0651dfd414ece94369bc9fd4bd1061026ec41771
+  DatePicker: 53c98be32bab55f34dafabd56adf33a17c9cbca4
   Extended: a8343d8b29fed5f6876cdcaf74d5454111732cd2
 
 PODFILE CHECKSUM: 56090e89a3acd022339bee856a8f54e1d88461bb
