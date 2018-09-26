@@ -1,15 +1,15 @@
 //
-//  ColorExtention.swift
-//  FreshDate
+//  Color.swift
+//  Extentions
 //
-//  Created by Amir Shayegh on 2018-08-06.
+//  Created by Amir Shayegh on 2018-09-19.
 //
 
 import Foundation
 import UIKit
 
 extension UIColor {
-    convenience init(hex: String) {
+    public convenience init(hex: String) {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if cString.hasPrefix("#") {
             cString.remove(at: cString.startIndex)
