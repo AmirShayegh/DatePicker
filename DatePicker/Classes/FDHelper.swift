@@ -6,13 +6,8 @@
 //
 
 import Foundation
+import Extended
 
-// String extention to get short hand of day name
-extension String {
-    func charactersUpTo(index: Int) -> String {
-        return String(self.prefix(index))
-    }
-}
 
 public class FDHelper {
     public static let shared = FDHelper()

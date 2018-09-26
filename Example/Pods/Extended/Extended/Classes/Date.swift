@@ -1,8 +1,8 @@
 //
-//  DateExtention.swift
-//  FreshDate
+//  Date.swift
+//  Extentions
 //
-//  Created by Amir Shayegh on 2018-08-06.
+//  Created by Amir Shayegh on 2018-09-19.
 //
 
 import Foundation
@@ -74,5 +74,9 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
         return dateFormatter.string(from: self)
+    }
+
+    public func startOf() -> Date?{
+        return Calendar(identifier: .gregorian).startOfDay(for: self)
     }
 }

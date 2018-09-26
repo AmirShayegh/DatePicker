@@ -32,11 +32,12 @@ public class PickerViewController: UIViewController {
     var buttonIndexPath: IndexPath?
 
     // MARK: Variables
+    var loading: Bool = true
+
     var displayMode: DisplayMode = .Center
     var mode: DatePickerMode = .Basic
-
     var calledFromSwipe: Bool = false
-        
+
     var day: Int = 18 {
         didSet {
             liveReturn()
@@ -73,19 +74,27 @@ public class PickerViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reload()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.loading = false
+        }
     }
 
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        sendResult()
+    }
+
     // MARK: Presentation
     func display(on parent: UIViewController) {
-        parent.addChildViewController(self)
+        parent.addChild(self)
         FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: parent, yearless: self.mode == .Yearless)
         FrameHelper.shared.addShadow(to: self.view.layer)
         parent.view.addSubview(self.view)
-        self.didMove(toParentViewController: parent)
+        self.didMove(toParent: parent)
         self.collectionView.alpha = 0
         setWhiteScreen()
         UIView.animate(withDuration: animationDuration, animations: {
@@ -160,10 +169,10 @@ public class PickerViewController: UIViewController {
     func remove() {
         notification.notificationOccurred(.error)
         self.removeWhiteScreen()
-        self.dismiss(animated: true, completion: nil)
         self.view.removeFromSuperview()
-        self.didMove(toParentViewController: nil)
-        self.removeFromParentViewController()
+        self.removeFromParent()
+        self.didMove(toParent: nil)
+        self.dismiss(animated: true, completion: nil)
         if self.callBack != nil {
             return self.callBack!(false, nil)
         }
@@ -186,6 +195,7 @@ public class PickerViewController: UIViewController {
 
     // select clicked
     func sendResult() {
+        if loading {return}
         notification.notificationOccurred(.success)
         dimissAnimations() {
             if self.mode == .Yearless {
@@ -194,7 +204,7 @@ public class PickerViewController: UIViewController {
                 }
             } else {
                 if self.callBack != nil {
-                   return self.callBack!(true, FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
+                    return self.callBack!(true, FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
                 }
             }
         }
@@ -202,18 +212,28 @@ public class PickerViewController: UIViewController {
 
     // date changed
     func liveReturn() {
-        // if date is valid, send back
-        if self.mode == .Yearless {
-            guard let yearlessLive = yearlessLiveCallBack else {return}
-            yearlessLive(self.month, self.day)
-        } else {
-            guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
-            if let min = self.minDate, let max = self.maxDate {
-                if date < max && date > min {
-                    completion(date)
-                }
-            }
-        }
+
+        /*
+         Live return returns too many dates which can result in issues on the receiving end.
+         No longer being used.
+         */
+        return
+//        if loading {return}
+//        // if date is valid, send back
+//        if self.mode == .Yearless {
+//            if self.month >= 1 && self.month <= 12, let yearlessLive = yearlessLiveCallBack {
+//                yearlessLive(self.month, self.day)
+//            }
+//            //            guard let yearlessLive = yearlessLiveCallBack else {return}
+//            //            yearlessLive(self.month, self.day)
+//        } else {
+//            guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
+//            if let min = self.minDate, let max = self.maxDate {
+//                if date <= max && date >= min {
+//                    completion(date)
+//                }
+//            }
+//        }
     }
 
     // MARK: Utility Functions
@@ -248,7 +268,7 @@ public class PickerViewController: UIViewController {
                 self.month = min.month()
                 self.year = min.year()
                 reload()
-            } 
+            }
         }
 
         // Yearless mode validations
@@ -324,7 +344,7 @@ public class PickerViewController: UIViewController {
         self.view.addSubview(copy)
 
         view.isHidden = true
-        let transitionOptions: UIViewAnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
+        let transitionOptions: UIView.AnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
 
         UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
             copy.isHidden = true
@@ -332,7 +352,7 @@ public class PickerViewController: UIViewController {
         })
 
         UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
-           view.isHidden = false
+            view.isHidden = false
         })
     }
 
@@ -342,7 +362,7 @@ public class PickerViewController: UIViewController {
         p.view.addSubview(copy)
 
         view.isHidden = true
-        let transitionOptions: UIViewAnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
+        let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
 
         UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
             copy.isHidden = true
