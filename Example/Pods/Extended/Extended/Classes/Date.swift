@@ -75,4 +75,8 @@ extension Date {
         dateFormatter.dateFormat = "MMM dd yyyy"
         return dateFormatter.string(from: self)
     }
+
+    public func startOf() -> Date?{
+        return Calendar(identifier: .gregorian).startOfDay(for: self)
+    }
 }

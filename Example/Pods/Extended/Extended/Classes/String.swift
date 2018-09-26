@@ -58,5 +58,9 @@ extension String {
         return ceil(boundingBox.width)
     }
 
+    public func charactersUpTo(index: Int) -> String {
+        return String(self.prefix(index))
+    }
+
 }
 

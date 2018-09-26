@@ -7,57 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		103720C6E5CE78EAA2E34E5F5435D7AE /* ButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 153D69EA18662D7E3A26FD818C8C6189 /* ButtonCollectionViewCell.xib */; };
-		134AE48AC62363081200037C40EE8C98 /* YearsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFC25C460AD695E97BBC15E6DDAD13C /* YearsCollectionViewCell.swift */; };
-		1600D1873154E0D310E17A31D3C5307E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */; };
-		1D83BE538BD38A94F0B6B0634FFEF999 /* FDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B4E581DAA46D50F399EF2EC1D78BC9 /* FDHelper.swift */; };
-		229B16D50EC4A21C125BE5F696E5FBB7 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657BB8B5F440F902556E880239917C76 /* PickerViewController.swift */; };
-		23D505F45611B43DF48EF721FF976364 /* MonthsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 872ACE439913834DD64C32E10A9153D3 /* MonthsCollectionViewCell.xib */; };
-		27F7225B34F2477103DEC1A6A08BFB32 /* DeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC96DEC74C41BEB94071DE499ABA03 /* DeviceOrientation.swift */; };
-		29D08DE72498068A62CEA9BCA94108AC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A01DD737365075B53F6FA35365083D /* String.swift */; };
-		403943CCF5F496E7AAF71508781CC48D /* MonthCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8411F5E394636CF6281DC97D8BFEB310 /* MonthCollectionViewCell.xib */; };
+		003584D21955F3BA62A6211F9C6431AF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EBD69E3EAC24AC54CA62E8C1D4F1B1 /* Colors.swift */; };
+		031BD4482B7B4352EE521F24F8301D70 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B029698D1B7EBBFEF90B57B6C36D68 /* Color.swift */; };
+		04EE011399247553E61F889CA0754E37 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF588515313BF04620D4D0ADBA50C6A1 /* Fonts.swift */; };
+		13B3A4A9BA4E8E6F12FB5CE4D4103268 /* DaysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D73B9202E2978C4F4B6F1BD5E84C8CC /* DaysCollectionViewCell.swift */; };
+		1A00842F7D61C3F1F59E9034C34B8A56 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8ED79FBE3EE42480A73EB4B70715F7 /* String.swift */; };
+		367A3FDEAF3704F430E524D75663A308 /* YearsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E178F277036DE696F416A678B8753C /* YearsCollectionViewCell.swift */; };
+		371E8AFFB5A983035F091251F56C47BB /* DayHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 900269F061E71B181ED1A94B8A05AFD3 /* DayHeaderCollectionViewCell.xib */; };
 		40AB3CA80749D71877321EDD5E56CF32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */; };
-		4A306D0966B770045E526F7E5AC08EE8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3297786FCDA757E9031BE71FCBF8C5CA /* Color.swift */; };
-		4A586D16B701F71866C5306B2C3CA01A /* Extended-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07C18BF53FFF80061CC513F527B20905 /* Extended-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4CA996F834EE2319355E2FF75B7E97B1 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9183FA2B7C36716268946A4E1728FA /* UILabel.swift */; };
-		5D4BFB1AC2854C44E0F292B40A120B8F /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8614C83CB27AD89E2DC1A4F51B21EF2 /* UIApplication.swift */; };
-		5F3CAF2381EAB6C266717276EBB23767 /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25F47357907F0671689280F974A591 /* ButtonCollectionViewCell.swift */; };
-		68A1B09CA85647D2FA5E520DCEF3233C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F2D4CB8885A16A8ECD40344BA6E942 /* Colors.swift */; };
+		4136220E7F88FB1D128B32C8DBE1E108 /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54B530F9AB1CDFF89DEA2A2123F490AB /* Picker.storyboard */; };
+		4B7C2BAB9EF086E3867D36E739455F5F /* YearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5257DF7D9B4C1EBDE7FE0302F4063ED /* YearCollectionViewCell.swift */; };
+		531A4FC62AC6FB8F2904D538CBA3D711 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2EBF7BAD09238DADFC4658C3109B37 /* UICollectionView.swift */; };
+		590E9539E015A8FA34CE96712FD114B4 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15178A57B49AD332EECEFE333C26953C /* TimeInterval.swift */; };
+		59A4E865BD203013DD644ACEC94668A9 /* DayHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383A670EF31940E2D79EBB0EDACB17A7 /* DayHeaderCollectionViewCell.swift */; };
+		59A9E3B3202CA8C8B47EDED595160C5A /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8D0A9D0F669416CB418672E2921F9 /* Map.swift */; };
+		5CCE583BC112E9E5BD9B4B469DB68BF0 /* DatePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6914C8B39DC78683563BDFA98FC3A6E /* DatePicker.bundle */; };
 		68F55F46299D0300BE736687643E2D1D /* Pods-DatePicker_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB4F7E32B6FEECEBC6A528CB013C8FD /* Pods-DatePicker_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6998CFCC1417F694FF616F0BC8CB8B5B /* DaysCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF0C3913F64AE3C06322474228AB2AF6 /* DaysCollectionViewCell.xib */; };
-		6B989B9EBA373BEBFB5B7936E2DE9A63 /* Extended.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F348E7729EC04F24E0145E15F4BAED /* Extended.framework */; };
-		6C25CD082E7A7E97CA9ACE0CFC689B24 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E215B7E467DC5582A3E47A2BE5BCC8 /* Map.swift */; };
-		6C85A4575CA88D79ECF73A6A58E52088 /* MonthsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D018553EB983BD3A60719B849D2B0FC4 /* MonthsCollectionViewCell.swift */; };
-		6D0D30D820D8054C0F9609768171B343 /* DaysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056BE37E1024883D03C5A1E6825ECDDB /* DaysCollectionViewCell.swift */; };
-		6D96CC6A64EC797713BEE4A9109F3FD8 /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47ACE3863EFEC60750F448025DF36CD1 /* Picker.storyboard */; };
-		6F338C2B2BC8A7D8CBF922D418029475 /* DayHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E33AD7B737BB033D742135EDFE8FA /* DayHeaderCollectionViewCell.swift */; };
-		7049688A4C5754F7CAFAF59C952C4F5A /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581AAA295C3B55F4A5335BA0F7512ED7 /* MonthCollectionViewCell.swift */; };
-		76B4DC69F4493BB3EF96DACCE22C1439 /* YearsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0FBADEB402D9595E695939FD3CFC9F9 /* YearsCollectionViewCell.xib */; };
-		81C1BFF8E37C32789096591BD3D59DC6 /* YearCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DB8A5079BCD9F595CCDB5F8C963F42 /* YearCollectionViewCell.swift */; };
-		841EF18A3C314B04839CB3DA764FC400 /* DatePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 403D2E9F71891938A59193800337F1BF /* DatePicker-dummy.m */; };
-		890A9EB4EA33B39A127A41E79EDA7F86 /* FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31EED4178CE9E7E702BD075805B7B0EA /* FrameHelper.swift */; };
-		8D637AC62909ED928052CD4CA51A8AFF /* DayCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48D5EA81E149CD43E9EEAB53251C88E9 /* DayCollectionViewCell.xib */; };
-		9186736FA0525C436C05EF0A7434186D /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325DC5BB455869F34367A4502CDF78EB /* Int.swift */; };
-		92C6ACBAE8CACBB4002F9711D3F8EDF9 /* DayHeaderCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB3F2948E2B6C8AE5A082FB961D025B8 /* DayHeaderCollectionViewCell.xib */; };
-		9CC2508835AC2D7CB332A292901918EA /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899877F52503E7E70D68AEC9C26B2815 /* Date.swift */; };
-		A3D2A547BE86EF1F77D496E5F99CA76F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56D6AFEAD4E7097FAB6A331AEDC0383 /* UIView.swift */; };
-		A9FEB3E6E0DCDA1207D17EA07C947AD9 /* DatePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A09CFA2AC4DBF5BAF92062256F4C4327 /* DatePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AAD12202484CE29689E1221411C25A74 /* CollectionViewExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2FAB098C7D0C361C44C9409350B863 /* CollectionViewExtention.swift */; };
-		AE599376541D9387E919E1A0FC2DAFC5 /* Extended-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D06B07661775F8B89F342BAD63139DF2 /* Extended-dummy.m */; };
-		B6BC935A0FBADA94BE16BFA18FB6E0E9 /* ColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938F2BFB234CD4F21DF5F59EFBE30976 /* ColorExtention.swift */; };
-		BD0BBC707E3346EC123E8D6DBD0DDF21 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFA653D3A323DE8CD83A547EE6DEA81 /* TimeInterval.swift */; };
+		6B4AECBD2F37170574D913540ACA8098 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EA9179BB84E119DCBBC85716588636 /* Int.swift */; };
+		6E448B5562F21734CD10DB88EF3B918C /* FDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82809D2D9EC6FB2F161B8AEF21BC545C /* FDHelper.swift */; };
+		7571B5E27DE91A43DDF9502BBDEA88D1 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A43C9DDF042EBA5E11AAA36041A6C1 /* UILabel.swift */; };
+		77F997E2B7C176554098DCBBE53C8536 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD3951CE75066F86EC9A88A595B76C /* PickerViewController.swift */; };
+		878FCFB65E6F36EA5C90477CAE0B7269 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4DFA4A6783D0C61FFAEBA3AC93C7CF /* UIApplication.swift */; };
+		882000E65A582E88988A4356A12BD89A /* DatePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E896F4DFA38F123A21FCC3E83F89E42D /* DatePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8D615D247910433CE8A4EEB402D87F39 /* MonthCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965504EEE7E2B1FD1561DCE262E3ACD5 /* MonthCollectionViewCell.swift */; };
+		970B891A18DFD012D5C0BAF8D0D617D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */; };
+		9885741C6C2C2B78168185AE29C020BF /* DatePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 24535EDC8184C72CAB48015C860D34E9 /* DatePicker-dummy.m */; };
+		9B2268DBE64C34A3D439D0997CA9AF9B /* ButtonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3115BCC19567615634B0C63702383529 /* ButtonCollectionViewCell.xib */; };
+		9DF16CC3F12BB1EBA7E325F2F242D804 /* DayCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 277114C4C957AA1D74AF274991022C0D /* DayCollectionViewCell.xib */; };
+		A2A97E5D0790F517C94013A18C55150B /* MonthsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBAFA1A8819DBE67CAD8B0D394AD750 /* MonthsCollectionViewCell.swift */; };
+		A820CD30A1540BF29AFA2451D4117DE1 /* MonthCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DE35E3EE2A4127395A463A179C8E5F /* MonthCollectionViewCell.xib */; };
+		A8A2999EFC43BB57EB3745211A3F4B5D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FC5653FE29481BB261672BEAB8CBCE /* UIView.swift */; };
+		A978361A1BD47B80D95E030DE4DF3A31 /* ButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E823E37B0A5E6C086A543E6A16995FF /* ButtonCollectionViewCell.swift */; };
+		BB8839730E91DD36FCDE148AC2BA50E9 /* Extended.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4F348E7729EC04F24E0145E15F4BAED /* Extended.framework */; };
 		BD943116B817026A17DFED87C4C8BAC3 /* Pods-DatePicker_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1A07F20AE78AD73253626A6BBD02C /* Pods-DatePicker_Tests-dummy.m */; };
 		C02567BC2602BEC2E2096D7F18899A8D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */; };
-		C6783122A432B0EA23696F5DE8F3D910 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E26FAD0F60F53BD8DCB5AB44E484D12 /* UIViewController.swift */; };
-		C7AEA979981D667358E83C40C09E11B3 /* YearCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97058966772C8479A6564D7B4195A5F /* YearCollectionViewCell.xib */; };
-		D001C50556A8B64AD1ABE31023808ECC /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711D9D70263BA399AD793A505683CD88 /* Fonts.swift */; };
-		D2EBCF63049FA1FC32F6F0F81D66CF72 /* StringExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B604E8B753943B10ABCF1ADE8A7B1 /* StringExtention.swift */; };
-		D3322CDE790B5A45B78AE56C169F2C01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */; };
-		F105B90AEC97AF84B68A56760B2BD1D1 /* DatePicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6914C8B39DC78683563BDFA98FC3A6E /* DatePicker.bundle */; };
-		F59852E18C03967646A9EA7233F496D5 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C505DA9A6AF70FBDADE6843441B70D /* DatePicker.swift */; };
+		C0839E68A339DA431B480382F705D495 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7ACAF8071A2BB3283FA9DD8E549F0 /* Date.swift */; };
+		C0F1045D65DAFC89FA561F6F92CE9B6B /* MonthsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEBC2B1347DF2843FC0E11287541948D /* MonthsCollectionViewCell.xib */; };
+		C365570884EBA1055995C8FD590D5252 /* Extended-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 16675756FC39A7EC9620F0A318744CA0 /* Extended-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9F48D180D1C1B8863E66D5174475D03 /* DaysCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82F93895DFC4B2643F15BD884D88F6A8 /* DaysCollectionViewCell.xib */; };
+		D07EC0D92A4F14A5F6F401EE39F70B7C /* DeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F9722110BFEADE1B065B35339C488B /* DeviceOrientation.swift */; };
+		D664FE5E2DF529AB16884030092CDC1B /* Extended-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5794B07BDBD8B28CD533BE4428F6385E /* Extended-dummy.m */; };
+		DB17B11A927DF61DE4C708EC60CAB71A /* FrameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650F829F342D5C56E289956F3DA9EE87 /* FrameHelper.swift */; };
+		DB41FE2D59999CF38182C98C7DC50BC4 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701423EE768607ECD7F19AF49D817C67 /* UIViewController.swift */; };
+		E279633E52232585F55B85A7A6242B0C /* YearCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C4F3EEC352F203DEA6127A6AFD7CEB /* YearCollectionViewCell.xib */; };
+		E4778367D5EEBD0F5866CC42FE29D84E /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3871FE5D0CB0C0C93F4646BEDAB6FD /* DatePicker.swift */; };
+		F665C079DD7086E6D95237F35456C945 /* YearsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 715B813F67B73285C3F5CF850AD26511 /* YearsCollectionViewCell.xib */; };
+		F70380BD07EA9A7E903975167E676EE3 /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99EED56F8A90DF06511F7BBC450E97D /* DayCollectionViewCell.swift */; };
 		F817E5847616CA87A996EE70F9337EC9 /* Pods-DatePicker_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B500F6E0918561DEBA2C4758B5FB2656 /* Pods-DatePicker_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FB004A665F887831ADFBCC38ADD07B97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */; };
 		FD3551C39DDE242200CAC4F3DAA90A2D /* Pods-DatePicker_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D232163CA4A5F5E1EB5D66750230F8 /* Pods-DatePicker_Example-dummy.m */; };
-		FF1A6D23463FB8A2BEF03D963FFFF40E /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837359006BE0E8D15909F6F8D296432F /* DayCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,126 +66,139 @@
 			remoteGlobalIDString = 0F461ADE8D2C2C23AEA2E855CDE0165E;
 			remoteInfo = "Pods-DatePicker_Example";
 		};
-		756FB4BF77FE45C84220449B9222427B /* PBXContainerItemProxy */ = {
+		306124FD82C406A589043400BAC6EC00 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3ADD25B805AE1D52B91BB4AB843D9C7D;
+			remoteGlobalIDString = D42B60A677D6B84E5DBDC6BC9BC02E02;
 			remoteInfo = "DatePicker-DatePicker";
 		};
 		765E2EA9817341BD10CE3533DCA16173 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 47740D1C2F8708644F4C98C1794DF55C;
+			remoteGlobalIDString = A5DF948C77A3EFBA2A28ED4047814787;
 			remoteInfo = Extended;
 		};
-		9562F768B06B8C4969AD175CB9102CBC /* PBXContainerItemProxy */ = {
+		95D90F052E29C8EA8734AD9D42A04EF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 47740D1C2F8708644F4C98C1794DF55C;
+			remoteGlobalIDString = A5DF948C77A3EFBA2A28ED4047814787;
 			remoteInfo = Extended;
 		};
 		BF4A4F23A4CDADBFAD54932246CD65D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 93C69CCAE5096408A52244D5FDE66AA2;
+			remoteGlobalIDString = FCAA70D04F30BC2D8D00730DC6041325;
 			remoteInfo = DatePicker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04F9722110BFEADE1B065B35339C488B /* DeviceOrientation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceOrientation.swift; path = Extended/Classes/DeviceOrientation.swift; sourceTree = "<group>"; };
 		04FE6FC8AD7B275EFB5497707FBB4218 /* Pods-DatePicker_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DatePicker_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		056BE37E1024883D03C5A1E6825ECDDB /* DaysCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DaysCollectionViewCell.swift; path = DatePicker/Classes/DaysCollectionViewCell.swift; sourceTree = "<group>"; };
-		07C18BF53FFF80061CC513F527B20905 /* Extended-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Extended-umbrella.h"; sourceTree = "<group>"; };
-		10C505DA9A6AF70FBDADE6843441B70D /* DatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePicker.swift; path = DatePicker/Classes/DatePicker.swift; sourceTree = "<group>"; };
-		123E33AD7B737BB033D742135EDFE8FA /* DayHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DayHeaderCollectionViewCell.swift; path = DatePicker/Classes/DayHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
-		153D69EA18662D7E3A26FD818C8C6189 /* ButtonCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ButtonCollectionViewCell.xib; path = DatePicker/Classes/ButtonCollectionViewCell.xib; sourceTree = "<group>"; };
-		16DB8A5079BCD9F595CCDB5F8C963F42 /* YearCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YearCollectionViewCell.swift; path = DatePicker/Classes/YearCollectionViewCell.swift; sourceTree = "<group>"; };
+		0BF8D0A9D0F669416CB418672E2921F9 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Extended/Classes/Map.swift; sourceTree = "<group>"; };
+		0D38404AB5E537504B886849E022C043 /* Extended.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Extended.modulemap; sourceTree = "<group>"; };
+		13EA9179BB84E119DCBBC85716588636 /* Int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Int.swift; path = Extended/Classes/Int.swift; sourceTree = "<group>"; };
+		15178A57B49AD332EECEFE333C26953C /* TimeInterval.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeInterval.swift; path = Extended/Classes/TimeInterval.swift; sourceTree = "<group>"; };
+		16675756FC39A7EC9620F0A318744CA0 /* Extended-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Extended-umbrella.h"; sourceTree = "<group>"; };
+		1937BEAD08E2DDB7A201EB9755C0DBFA /* Extended-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Extended-prefix.pch"; sourceTree = "<group>"; };
 		1BE412C12FE0851F7D71A37A6C2F08E4 /* Pods-DatePicker_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DatePicker_Tests.modulemap"; sourceTree = "<group>"; };
+		1D2265C90C1A24EB03CEE58265ABDCFF /* Extended.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Extended.xcconfig; sourceTree = "<group>"; };
+		1D73B9202E2978C4F4B6F1BD5E84C8CC /* DaysCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DaysCollectionViewCell.swift; path = DatePicker/Classes/DaysCollectionViewCell.swift; sourceTree = "<group>"; };
+		24535EDC8184C72CAB48015C860D34E9 /* DatePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DatePicker-dummy.m"; sourceTree = "<group>"; };
 		2BF1A07F20AE78AD73253626A6BBD02C /* Pods-DatePicker_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DatePicker_Tests-dummy.m"; sourceTree = "<group>"; };
-		2CFA653D3A323DE8CD83A547EE6DEA81 /* TimeInterval.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TimeInterval.swift; path = Extended/Classes/TimeInterval.swift; sourceTree = "<group>"; };
-		31146495F9C538BF261C5351A18F6769 /* DatePicker.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = DatePicker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		31EED4178CE9E7E702BD075805B7B0EA /* FrameHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameHelper.swift; path = DatePicker/Classes/FrameHelper.swift; sourceTree = "<group>"; };
-		325DC5BB455869F34367A4502CDF78EB /* Int.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Int.swift; path = Extended/Classes/Int.swift; sourceTree = "<group>"; };
-		3297786FCDA757E9031BE71FCBF8C5CA /* Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Extended/Classes/Color.swift; sourceTree = "<group>"; };
-		389BA836363105D75D0E371B0B565049 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F5B604E8B753943B10ABCF1ADE8A7B1 /* StringExtention.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringExtention.swift; path = DatePicker/Classes/StringExtention.swift; sourceTree = "<group>"; };
-		403D2E9F71891938A59193800337F1BF /* DatePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DatePicker-dummy.m"; sourceTree = "<group>"; };
-		47ACE3863EFEC60750F448025DF36CD1 /* Picker.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Picker.storyboard; path = DatePicker/Classes/Picker.storyboard; sourceTree = "<group>"; };
-		4CFFC7844601B88E44081E8C4541FD82 /* DatePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DatePicker.xcconfig; sourceTree = "<group>"; };
-		581AAA295C3B55F4A5335BA0F7512ED7 /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonthCollectionViewCell.swift; path = DatePicker/Classes/MonthCollectionViewCell.swift; sourceTree = "<group>"; };
-		5D01F39938F49B543E1152BA14DA3BDE /* Extended.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Extended.modulemap; sourceTree = "<group>"; };
+		2D618EE1D4D366A351627881890C247C /* DatePicker.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = DatePicker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2FBAFA1A8819DBE67CAD8B0D394AD750 /* MonthsCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonthsCollectionViewCell.swift; path = DatePicker/Classes/MonthsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3115BCC19567615634B0C63702383529 /* ButtonCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = ButtonCollectionViewCell.xib; path = DatePicker/Classes/ButtonCollectionViewCell.xib; sourceTree = "<group>"; };
+		383A670EF31940E2D79EBB0EDACB17A7 /* DayHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DayHeaderCollectionViewCell.swift; path = DatePicker/Classes/DayHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		3EAD3951CE75066F86EC9A88A595B76C /* PickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerViewController.swift; path = DatePicker/Classes/PickerViewController.swift; sourceTree = "<group>"; };
+		4C3871FE5D0CB0C0C93F4646BEDAB6FD /* DatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePicker.swift; path = DatePicker/Classes/DatePicker.swift; sourceTree = "<group>"; };
+		4C75335728B370C18FDA45F8DC7FF239 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54B530F9AB1CDFF89DEA2A2123F490AB /* Picker.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Picker.storyboard; path = DatePicker/Classes/Picker.storyboard; sourceTree = "<group>"; };
+		5794B07BDBD8B28CD533BE4428F6385E /* Extended-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Extended-dummy.m"; sourceTree = "<group>"; };
 		61D467D768740A7412425DE28C85BC35 /* Pods-DatePicker_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DatePicker_Example.modulemap"; sourceTree = "<group>"; };
-		62F2D4CB8885A16A8ECD40344BA6E942 /* Colors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = DatePicker/Classes/Colors.swift; sourceTree = "<group>"; };
+		63D7ACAF8071A2BB3283FA9DD8E549F0 /* Date.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Date.swift; path = Extended/Classes/Date.swift; sourceTree = "<group>"; };
 		64596F0BB1D177D7201E4A8E8F15164B /* Pods-DatePicker_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DatePicker_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		657BB8B5F440F902556E880239917C76 /* PickerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerViewController.swift; path = DatePicker/Classes/PickerViewController.swift; sourceTree = "<group>"; };
-		66DBBFF09798B1D3CA36E4F381421B52 /* DayCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DayCollectionViewCell.xib; path = en.lproj/DayCollectionViewCell.xib; sourceTree = "<group>"; };
+		650F829F342D5C56E289956F3DA9EE87 /* FrameHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FrameHelper.swift; path = DatePicker/Classes/FrameHelper.swift; sourceTree = "<group>"; };
+		66A43C9DDF042EBA5E11AAA36041A6C1 /* UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILabel.swift; path = Extended/Classes/UILabel.swift; sourceTree = "<group>"; };
 		6BD098746F2BC68BAFCB96B69CB8E5EE /* Pods-DatePicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DatePicker_Example.release.xcconfig"; sourceTree = "<group>"; };
-		6E26FAD0F60F53BD8DCB5AB44E484D12 /* UIViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Extended/Classes/UIViewController.swift; sourceTree = "<group>"; };
+		6E823E37B0A5E6C086A543E6A16995FF /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonCollectionViewCell.swift; path = DatePicker/Classes/ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		701423EE768607ECD7F19AF49D817C67 /* UIViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = Extended/Classes/UIViewController.swift; sourceTree = "<group>"; };
 		709ADCB34A18B875B32AC566B545AAB2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		711D9D70263BA399AD793A505683CD88 /* Fonts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = DatePicker/Classes/Fonts.swift; sourceTree = "<group>"; };
-		75E215B7E467DC5582A3E47A2BE5BCC8 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Extended/Classes/Map.swift; sourceTree = "<group>"; };
+		715B813F67B73285C3F5CF850AD26511 /* YearsCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = YearsCollectionViewCell.xib; path = DatePicker/Classes/YearsCollectionViewCell.xib; sourceTree = "<group>"; };
+		73C95B211EA8102FAD84B1747E0A982D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		75F33D3FF3B7E231E907CEE6F8DE5783 /* Pods-DatePicker_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DatePicker_Example-resources.sh"; sourceTree = "<group>"; };
-		77A01DD737365075B53F6FA35365083D /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extended/Classes/String.swift; sourceTree = "<group>"; };
-		81669E245633099B7804514741C119FD /* Extended.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Extended.framework; path = Extended.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		837359006BE0E8D15909F6F8D296432F /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DayCollectionViewCell.swift; path = DatePicker/Classes/DayCollectionViewCell.swift; sourceTree = "<group>"; };
-		8411F5E394636CF6281DC97D8BFEB310 /* MonthCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MonthCollectionViewCell.xib; path = DatePicker/Classes/MonthCollectionViewCell.xib; sourceTree = "<group>"; };
-		872ACE439913834DD64C32E10A9153D3 /* MonthsCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MonthsCollectionViewCell.xib; path = DatePicker/Classes/MonthsCollectionViewCell.xib; sourceTree = "<group>"; };
-		8908FC0E9C417B647EF78A82220B3F79 /* Extended.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Extended.xcconfig; sourceTree = "<group>"; };
+		7F772BD5D760D46FF2AC2C5904ECFF12 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		81669E245633099B7804514741C119FD /* Extended.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Extended.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82809D2D9EC6FB2F161B8AEF21BC545C /* FDHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FDHelper.swift; path = DatePicker/Classes/FDHelper.swift; sourceTree = "<group>"; };
+		82F93895DFC4B2643F15BD884D88F6A8 /* DaysCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DaysCollectionViewCell.xib; path = DatePicker/Classes/DaysCollectionViewCell.xib; sourceTree = "<group>"; };
+		84C4F3EEC352F203DEA6127A6AFD7CEB /* YearCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = YearCollectionViewCell.xib; path = DatePicker/Classes/YearCollectionViewCell.xib; sourceTree = "<group>"; };
+		84DE35E3EE2A4127395A463A179C8E5F /* MonthCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MonthCollectionViewCell.xib; path = DatePicker/Classes/MonthCollectionViewCell.xib; sourceTree = "<group>"; };
+		87EBD69E3EAC24AC54CA62E8C1D4F1B1 /* Colors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = DatePicker/Classes/Colors.swift; sourceTree = "<group>"; };
 		8987E39D894C2283C9E13CD0A0BB2693 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		899877F52503E7E70D68AEC9C26B2815 /* Date.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Date.swift; path = Extended/Classes/Date.swift; sourceTree = "<group>"; };
 		8C78C3169845E3F8F4C88D7D4C437E59 /* Pods-DatePicker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DatePicker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		8FF70EF9D1B1DB5D45ACF20F6B51D590 /* DatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DatePicker.framework; path = DatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		901F47AB353763592161AB7D2B530CE2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		938F2BFB234CD4F21DF5F59EFBE30976 /* ColorExtention.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorExtention.swift; path = DatePicker/Classes/ColorExtention.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8FF70EF9D1B1DB5D45ACF20F6B51D590 /* DatePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DatePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		900269F061E71B181ED1A94B8A05AFD3 /* DayHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DayHeaderCollectionViewCell.xib; path = DatePicker/Classes/DayHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		965504EEE7E2B1FD1561DCE262E3ACD5 /* MonthCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonthCollectionViewCell.swift; path = DatePicker/Classes/MonthCollectionViewCell.swift; sourceTree = "<group>"; };
 		97D232163CA4A5F5E1EB5D66750230F8 /* Pods-DatePicker_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DatePicker_Example-dummy.m"; sourceTree = "<group>"; };
 		9AB4F7E32B6FEECEBC6A528CB013C8FD /* Pods-DatePicker_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DatePicker_Tests-umbrella.h"; sourceTree = "<group>"; };
-		9C58A5432B52A52642D306D2100FD5C5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		9D49550E3DC6423D0AA65EB56F69ACF1 /* DatePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DatePicker-prefix.pch"; sourceTree = "<group>"; };
 		9D76B3AFB8EA02404FCBB777F4375171 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E0D17270FA08A3CB10E51ABA2C00612 /* Pods-DatePicker_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DatePicker_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A068939CDAD002139C59098BA4B292DE /* Pods_DatePicker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DatePicker_Tests.framework; path = "Pods-DatePicker_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A09CFA2AC4DBF5BAF92062256F4C4327 /* DatePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DatePicker-umbrella.h"; sourceTree = "<group>"; };
+		A068939CDAD002139C59098BA4B292DE /* Pods_DatePicker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatePicker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2B029698D1B7EBBFEF90B57B6C36D68 /* Color.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Extended/Classes/Color.swift; sourceTree = "<group>"; };
 		A619CADC6F347A9D35044326FA7CAFE1 /* Pods-DatePicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DatePicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		A9DFB9661C0061A86BC4712FADBC5311 /* Pods_DatePicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DatePicker_Example.framework; path = "Pods-DatePicker_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB2FAB098C7D0C361C44C9409350B863 /* CollectionViewExtention.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionViewExtention.swift; path = DatePicker/Classes/CollectionViewExtention.swift; sourceTree = "<group>"; };
-		AC6B30444EEA8B991AB06BFF659A1BB0 /* DatePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DatePicker.modulemap; sourceTree = "<group>"; };
+		A7101A06292D68454029AA15608FC747 /* DatePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DatePicker.modulemap; sourceTree = "<group>"; };
+		A9DFB9661C0061A86BC4712FADBC5311 /* Pods_DatePicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatePicker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B010AE9FB04591FF3F6A35C7282AFCDD /* Pods-DatePicker_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DatePicker_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B142B8DA9B1556AB063B1CE3F64F6FEE /* Pods-DatePicker_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DatePicker_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B1B4E581DAA46D50F399EF2EC1D78BC9 /* FDHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FDHelper.swift; path = DatePicker/Classes/FDHelper.swift; sourceTree = "<group>"; };
-		B3DC96DEC74C41BEB94071DE499ABA03 /* DeviceOrientation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceOrientation.swift; path = Extended/Classes/DeviceOrientation.swift; sourceTree = "<group>"; };
 		B500F6E0918561DEBA2C4758B5FB2656 /* Pods-DatePicker_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DatePicker_Example-umbrella.h"; sourceTree = "<group>"; };
-		B8614C83CB27AD89E2DC1A4F51B21EF2 /* UIApplication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIApplication.swift; path = Extended/Classes/UIApplication.swift; sourceTree = "<group>"; };
-		BFDF48A384B4040535BC683657A49219 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C0FBADEB402D9595E695939FD3CFC9F9 /* YearsCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = YearsCollectionViewCell.xib; path = DatePicker/Classes/YearsCollectionViewCell.xib; sourceTree = "<group>"; };
+		BB8ED79FBE3EE42480A73EB4B70715F7 /* String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = String.swift; path = Extended/Classes/String.swift; sourceTree = "<group>"; };
+		BF588515313BF04620D4D0ADBA50C6A1 /* Fonts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = DatePicker/Classes/Fonts.swift; sourceTree = "<group>"; };
 		C4F348E7729EC04F24E0145E15F4BAED /* Extended.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Extended.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6EA8CD0F461702381E661C234D9EFD4 /* Pods-DatePicker_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DatePicker_Tests-resources.sh"; sourceTree = "<group>"; };
-		CCFC25C460AD695E97BBC15E6DDAD13C /* YearsCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YearsCollectionViewCell.swift; path = DatePicker/Classes/YearsCollectionViewCell.swift; sourceTree = "<group>"; };
-		CE9183FA2B7C36716268946A4E1728FA /* UILabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UILabel.swift; path = Extended/Classes/UILabel.swift; sourceTree = "<group>"; };
-		D018553EB983BD3A60719B849D2B0FC4 /* MonthsCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MonthsCollectionViewCell.swift; path = DatePicker/Classes/MonthsCollectionViewCell.swift; sourceTree = "<group>"; };
-		D06B07661775F8B89F342BAD63139DF2 /* Extended-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Extended-dummy.m"; sourceTree = "<group>"; };
-		D6914C8B39DC78683563BDFA98FC3A6E /* DatePicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DatePicker.bundle; path = "DatePicker-DatePicker.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBCB084743DA4A678206DD0ED392AF69 /* ResourceBundle-DatePicker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-DatePicker-Info.plist"; sourceTree = "<group>"; };
+		D6914C8B39DC78683563BDFA98FC3A6E /* DatePicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DatePicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6CB644B8F90ACCDA150DF3F8C3A0D9A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D99EED56F8A90DF06511F7BBC450E97D /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DayCollectionViewCell.swift; path = DatePicker/Classes/DayCollectionViewCell.swift; sourceTree = "<group>"; };
+		DB2EBF7BAD09238DADFC4658C3109B37 /* UICollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UICollectionView.swift; path = Extended/Classes/UICollectionView.swift; sourceTree = "<group>"; };
+		DD4DFA4A6783D0C61FFAEBA3AC93C7CF /* UIApplication.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIApplication.swift; path = Extended/Classes/UIApplication.swift; sourceTree = "<group>"; };
 		E56E0EDD7EBF4F259CDD414BA19C7F74 /* Pods-DatePicker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DatePicker_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E6E178F277036DE696F416A678B8753C /* YearsCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YearsCollectionViewCell.swift; path = DatePicker/Classes/YearsCollectionViewCell.swift; sourceTree = "<group>"; };
+		E8449927CB82AC2ECFF6310208B0DD63 /* ResourceBundle-DatePicker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-DatePicker-Info.plist"; sourceTree = "<group>"; };
+		E896F4DFA38F123A21FCC3E83F89E42D /* DatePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DatePicker-umbrella.h"; sourceTree = "<group>"; };
 		EB30F5687E5BD365DB784D4057929B93 /* Pods-DatePicker_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DatePicker_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		EB3F2948E2B6C8AE5A082FB961D025B8 /* DayHeaderCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DayHeaderCollectionViewCell.xib; path = DatePicker/Classes/DayHeaderCollectionViewCell.xib; sourceTree = "<group>"; };
-		EF0C3913F64AE3C06322474228AB2AF6 /* DaysCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DaysCollectionViewCell.xib; path = DatePicker/Classes/DaysCollectionViewCell.xib; sourceTree = "<group>"; };
-		F56D6AFEAD4E7097FAB6A331AEDC0383 /* UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Extended/Classes/UIView.swift; sourceTree = "<group>"; };
-		F97058966772C8479A6564D7B4195A5F /* YearCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = YearCollectionViewCell.xib; path = DatePicker/Classes/YearCollectionViewCell.xib; sourceTree = "<group>"; };
-		FDCBC944209C03B36B8CE4BBBBF11DB0 /* Extended-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Extended-prefix.pch"; sourceTree = "<group>"; };
-		FE25F47357907F0671689280F974A591 /* ButtonCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonCollectionViewCell.swift; path = DatePicker/Classes/ButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		EFCADD071D52AC1C3DBE4DA4BB569D6F /* DayCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = DayCollectionViewCell.xib; path = en.lproj/DayCollectionViewCell.xib; sourceTree = "<group>"; };
+		F3FC5653FE29481BB261672BEAB8CBCE /* UIView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIView.swift; path = Extended/Classes/UIView.swift; sourceTree = "<group>"; };
+		F5257DF7D9B4C1EBDE7FE0302F4063ED /* YearCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YearCollectionViewCell.swift; path = DatePicker/Classes/YearCollectionViewCell.swift; sourceTree = "<group>"; };
+		F556E94B845B24AB79867E83018B03B9 /* DatePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DatePicker-prefix.pch"; sourceTree = "<group>"; };
+		FC7404243E049B255E2C2AD54C0B52C0 /* DatePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DatePicker.xcconfig; sourceTree = "<group>"; };
+		FEBC2B1347DF2843FC0E11287541948D /* MonthsCollectionViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MonthsCollectionViewCell.xib; path = DatePicker/Classes/MonthsCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		019C4760DFEC7661293AC517A876CAC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0556307C057EF40D618C96BBD0F3B97A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				40AB3CA80749D71877321EDD5E56CF32 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A56AE22C6B04D840388EBF461CCECF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB004A665F887831ADFBCC38ADD07B97 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,27 +210,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		714341AAB35484CAEE8B40DD68DEBE94 /* Frameworks */ = {
+		A49A54D8084C5D7C36CD5DD202C60919 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4E5F9ED767B02CA8EAC71A57773B7B6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6B989B9EBA373BEBFB5B7936E2DE9A63 /* Extended.framework in Frameworks */,
-				D3322CDE790B5A45B78AE56C169F2C01 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F4E4B4655500D5DDE29570F3F8235919 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1600D1873154E0D310E17A31D3C5307E /* Foundation.framework in Frameworks */,
+				BB8839730E91DD36FCDE148AC2BA50E9 /* Extended.framework in Frameworks */,
+				970B891A18DFD012D5C0BAF8D0D617D0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,14 +257,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		0BF3C6315F94DC50476ABB1E75D537D1 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D496085B080359A15B819B0454913A32 /* DatePicker */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		20316DEE0BB9EE99531DE1D3F09874F1 /* Pods-DatePicker_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -287,18 +275,57 @@
 			path = "Target Support Files/Pods-DatePicker_Tests";
 			sourceTree = "<group>";
 		};
-		22DC5B6CDAE89D892B007EF8FFE22979 /* Support Files */ = {
+		20EE01D21B4A2245C6345500A8C4C626 /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
-				5D01F39938F49B543E1152BA14DA3BDE /* Extended.modulemap */,
-				8908FC0E9C417B647EF78A82220B3F79 /* Extended.xcconfig */,
-				D06B07661775F8B89F342BAD63139DF2 /* Extended-dummy.m */,
-				FDCBC944209C03B36B8CE4BBBBF11DB0 /* Extended-prefix.pch */,
-				07C18BF53FFF80061CC513F527B20905 /* Extended-umbrella.h */,
-				389BA836363105D75D0E371B0B565049 /* Info.plist */,
+				6E823E37B0A5E6C086A543E6A16995FF /* ButtonCollectionViewCell.swift */,
+				87EBD69E3EAC24AC54CA62E8C1D4F1B1 /* Colors.swift */,
+				4C3871FE5D0CB0C0C93F4646BEDAB6FD /* DatePicker.swift */,
+				D99EED56F8A90DF06511F7BBC450E97D /* DayCollectionViewCell.swift */,
+				383A670EF31940E2D79EBB0EDACB17A7 /* DayHeaderCollectionViewCell.swift */,
+				1D73B9202E2978C4F4B6F1BD5E84C8CC /* DaysCollectionViewCell.swift */,
+				82809D2D9EC6FB2F161B8AEF21BC545C /* FDHelper.swift */,
+				BF588515313BF04620D4D0ADBA50C6A1 /* Fonts.swift */,
+				650F829F342D5C56E289956F3DA9EE87 /* FrameHelper.swift */,
+				965504EEE7E2B1FD1561DCE262E3ACD5 /* MonthCollectionViewCell.swift */,
+				2FBAFA1A8819DBE67CAD8B0D394AD750 /* MonthsCollectionViewCell.swift */,
+				3EAD3951CE75066F86EC9A88A595B76C /* PickerViewController.swift */,
+				F5257DF7D9B4C1EBDE7FE0302F4063ED /* YearCollectionViewCell.swift */,
+				E6E178F277036DE696F416A678B8753C /* YearsCollectionViewCell.swift */,
+				C5FACD66322912CD24895E392447D083 /* Pod */,
+				E30F8F6747A8AF92C7B11FCAC6B0FC31 /* Resources */,
+				77384228152307CA988593019B4598DC /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Extended";
+			name = DatePicker;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		456C2C292820E03F8D18C94BDAB678AA /* Extended */ = {
+			isa = PBXGroup;
+			children = (
+				A2B029698D1B7EBBFEF90B57B6C36D68 /* Color.swift */,
+				63D7ACAF8071A2BB3283FA9DD8E549F0 /* Date.swift */,
+				04F9722110BFEADE1B065B35339C488B /* DeviceOrientation.swift */,
+				13EA9179BB84E119DCBBC85716588636 /* Int.swift */,
+				0BF8D0A9D0F669416CB418672E2921F9 /* Map.swift */,
+				BB8ED79FBE3EE42480A73EB4B70715F7 /* String.swift */,
+				15178A57B49AD332EECEFE333C26953C /* TimeInterval.swift */,
+				DD4DFA4A6783D0C61FFAEBA3AC93C7CF /* UIApplication.swift */,
+				DB2EBF7BAD09238DADFC4658C3109B37 /* UICollectionView.swift */,
+				66A43C9DDF042EBA5E11AAA36041A6C1 /* UILabel.swift */,
+				F3FC5653FE29481BB261672BEAB8CBCE /* UIView.swift */,
+				701423EE768607ECD7F19AF49D817C67 /* UIViewController.swift */,
+				F400AFD31B17F63BB026627BD1F4C272 /* Support Files */,
+			);
+			path = Extended;
+			sourceTree = "<group>";
+		};
+		4F69BA1037DDD9131BC532A0F9371D0D /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20EE01D21B4A2245C6345500A8C4C626 /* DatePicker */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		56690FBCD0ED508BFD2D55381E2A436F /* Products */ = {
@@ -322,131 +349,97 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7DB346D0F39D3F0E887471402A8071AB = {
+		77384228152307CA988593019B4598DC /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				0BF3C6315F94DC50476ABB1E75D537D1 /* Development Pods */,
-				096BBBA8D31A80C3F2BE5D561EAE9ABA /* Frameworks */,
-				F86329DC2A9B649F54242FEBFEBA0497 /* Pods */,
-				56690FBCD0ED508BFD2D55381E2A436F /* Products */,
-				73D7985910667C756DD592E643E7F72A /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		98BF0F071E894C212D022E04F03DB63F /* Extended */ = {
-			isa = PBXGroup;
-			children = (
-				3297786FCDA757E9031BE71FCBF8C5CA /* Color.swift */,
-				899877F52503E7E70D68AEC9C26B2815 /* Date.swift */,
-				B3DC96DEC74C41BEB94071DE499ABA03 /* DeviceOrientation.swift */,
-				325DC5BB455869F34367A4502CDF78EB /* Int.swift */,
-				75E215B7E467DC5582A3E47A2BE5BCC8 /* Map.swift */,
-				77A01DD737365075B53F6FA35365083D /* String.swift */,
-				2CFA653D3A323DE8CD83A547EE6DEA81 /* TimeInterval.swift */,
-				B8614C83CB27AD89E2DC1A4F51B21EF2 /* UIApplication.swift */,
-				CE9183FA2B7C36716268946A4E1728FA /* UILabel.swift */,
-				F56D6AFEAD4E7097FAB6A331AEDC0383 /* UIView.swift */,
-				6E26FAD0F60F53BD8DCB5AB44E484D12 /* UIViewController.swift */,
-				22DC5B6CDAE89D892B007EF8FFE22979 /* Support Files */,
-			);
-			name = Extended;
-			path = Extended;
-			sourceTree = "<group>";
-		};
-		AEF2D340A068CA9B5922A2296F5CD577 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				153D69EA18662D7E3A26FD818C8C6189 /* ButtonCollectionViewCell.xib */,
-				48D5EA81E149CD43E9EEAB53251C88E9 /* DayCollectionViewCell.xib */,
-				EB3F2948E2B6C8AE5A082FB961D025B8 /* DayHeaderCollectionViewCell.xib */,
-				EF0C3913F64AE3C06322474228AB2AF6 /* DaysCollectionViewCell.xib */,
-				8411F5E394636CF6281DC97D8BFEB310 /* MonthCollectionViewCell.xib */,
-				872ACE439913834DD64C32E10A9153D3 /* MonthsCollectionViewCell.xib */,
-				47ACE3863EFEC60750F448025DF36CD1 /* Picker.storyboard */,
-				F97058966772C8479A6564D7B4195A5F /* YearCollectionViewCell.xib */,
-				C0FBADEB402D9595E695939FD3CFC9F9 /* YearsCollectionViewCell.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		CFBDD5D843BC05ABCF423809F51F7F8B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AC6B30444EEA8B991AB06BFF659A1BB0 /* DatePicker.modulemap */,
-				4CFFC7844601B88E44081E8C4541FD82 /* DatePicker.xcconfig */,
-				403D2E9F71891938A59193800337F1BF /* DatePicker-dummy.m */,
-				9D49550E3DC6423D0AA65EB56F69ACF1 /* DatePicker-prefix.pch */,
-				A09CFA2AC4DBF5BAF92062256F4C4327 /* DatePicker-umbrella.h */,
-				BFDF48A384B4040535BC683657A49219 /* Info.plist */,
-				DBCB084743DA4A678206DD0ED392AF69 /* ResourceBundle-DatePicker-Info.plist */,
+				A7101A06292D68454029AA15608FC747 /* DatePicker.modulemap */,
+				FC7404243E049B255E2C2AD54C0B52C0 /* DatePicker.xcconfig */,
+				24535EDC8184C72CAB48015C860D34E9 /* DatePicker-dummy.m */,
+				F556E94B845B24AB79867E83018B03B9 /* DatePicker-prefix.pch */,
+				E896F4DFA38F123A21FCC3E83F89E42D /* DatePicker-umbrella.h */,
+				D6CB644B8F90ACCDA150DF3F8C3A0D9A /* Info.plist */,
+				E8449927CB82AC2ECFF6310208B0DD63 /* ResourceBundle-DatePicker-Info.plist */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/DatePicker";
 			sourceTree = "<group>";
 		};
-		D496085B080359A15B819B0454913A32 /* DatePicker */ = {
+		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
-				FE25F47357907F0671689280F974A591 /* ButtonCollectionViewCell.swift */,
-				AB2FAB098C7D0C361C44C9409350B863 /* CollectionViewExtention.swift */,
-				938F2BFB234CD4F21DF5F59EFBE30976 /* ColorExtention.swift */,
-				62F2D4CB8885A16A8ECD40344BA6E942 /* Colors.swift */,
-				10C505DA9A6AF70FBDADE6843441B70D /* DatePicker.swift */,
-				837359006BE0E8D15909F6F8D296432F /* DayCollectionViewCell.swift */,
-				123E33AD7B737BB033D742135EDFE8FA /* DayHeaderCollectionViewCell.swift */,
-				056BE37E1024883D03C5A1E6825ECDDB /* DaysCollectionViewCell.swift */,
-				B1B4E581DAA46D50F399EF2EC1D78BC9 /* FDHelper.swift */,
-				711D9D70263BA399AD793A505683CD88 /* Fonts.swift */,
-				31EED4178CE9E7E702BD075805B7B0EA /* FrameHelper.swift */,
-				581AAA295C3B55F4A5335BA0F7512ED7 /* MonthCollectionViewCell.swift */,
-				D018553EB983BD3A60719B849D2B0FC4 /* MonthsCollectionViewCell.swift */,
-				657BB8B5F440F902556E880239917C76 /* PickerViewController.swift */,
-				3F5B604E8B753943B10ABCF1ADE8A7B1 /* StringExtention.swift */,
-				16DB8A5079BCD9F595CCDB5F8C963F42 /* YearCollectionViewCell.swift */,
-				CCFC25C460AD695E97BBC15E6DDAD13C /* YearsCollectionViewCell.swift */,
-				E630CB2236552DC3A9EFA333E0D25394 /* Pod */,
-				AEF2D340A068CA9B5922A2296F5CD577 /* Resources */,
-				CFBDD5D843BC05ABCF423809F51F7F8B /* Support Files */,
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				4F69BA1037DDD9131BC532A0F9371D0D /* Development Pods */,
+				096BBBA8D31A80C3F2BE5D561EAE9ABA /* Frameworks */,
+				9AA6B45C1E00251EA087246D95F94EA6 /* Pods */,
+				56690FBCD0ED508BFD2D55381E2A436F /* Products */,
+				73D7985910667C756DD592E643E7F72A /* Targets Support Files */,
 			);
-			name = DatePicker;
-			path = ../..;
 			sourceTree = "<group>";
 		};
-		E630CB2236552DC3A9EFA333E0D25394 /* Pod */ = {
+		9AA6B45C1E00251EA087246D95F94EA6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				31146495F9C538BF261C5351A18F6769 /* DatePicker.podspec */,
-				901F47AB353763592161AB7D2B530CE2 /* LICENSE */,
-				9C58A5432B52A52642D306D2100FD5C5 /* README.md */,
+				456C2C292820E03F8D18C94BDAB678AA /* Extended */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C5FACD66322912CD24895E392447D083 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				2D618EE1D4D366A351627881890C247C /* DatePicker.podspec */,
+				7F772BD5D760D46FF2AC2C5904ECFF12 /* LICENSE */,
+				73C95B211EA8102FAD84B1747E0A982D /* README.md */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
 		};
-		F86329DC2A9B649F54242FEBFEBA0497 /* Pods */ = {
+		E30F8F6747A8AF92C7B11FCAC6B0FC31 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				98BF0F071E894C212D022E04F03DB63F /* Extended */,
+				3115BCC19567615634B0C63702383529 /* ButtonCollectionViewCell.xib */,
+				277114C4C957AA1D74AF274991022C0D /* DayCollectionViewCell.xib */,
+				900269F061E71B181ED1A94B8A05AFD3 /* DayHeaderCollectionViewCell.xib */,
+				82F93895DFC4B2643F15BD884D88F6A8 /* DaysCollectionViewCell.xib */,
+				84DE35E3EE2A4127395A463A179C8E5F /* MonthCollectionViewCell.xib */,
+				FEBC2B1347DF2843FC0E11287541948D /* MonthsCollectionViewCell.xib */,
+				54B530F9AB1CDFF89DEA2A2123F490AB /* Picker.storyboard */,
+				84C4F3EEC352F203DEA6127A6AFD7CEB /* YearCollectionViewCell.xib */,
+				715B813F67B73285C3F5CF850AD26511 /* YearsCollectionViewCell.xib */,
 			);
-			name = Pods;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F400AFD31B17F63BB026627BD1F4C272 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0D38404AB5E537504B886849E022C043 /* Extended.modulemap */,
+				1D2265C90C1A24EB03CEE58265ABDCFF /* Extended.xcconfig */,
+				5794B07BDBD8B28CD533BE4428F6385E /* Extended-dummy.m */,
+				1937BEAD08E2DDB7A201EB9755C0DBFA /* Extended-prefix.pch */,
+				16675756FC39A7EC9620F0A318744CA0 /* Extended-umbrella.h */,
+				4C75335728B370C18FDA45F8DC7FF239 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Extended";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		2FEE76D9C710FB44C3B86B4DEB57F541 /* Headers */ = {
+		55E0333D02D76618E502865974F64456 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A586D16B701F71866C5306B2C3CA01A /* Extended-umbrella.h in Headers */,
+				C365570884EBA1055995C8FD590D5252 /* Extended-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		432F40254E118CFB443F18183968D466 /* Headers */ = {
+		B8891CFFCCCA9C2D51EBD2A7BE1232F8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9FEB3E6E0DCDA1207D17EA07C947AD9 /* DatePicker-umbrella.h in Headers */,
+				882000E65A582E88988A4356A12BD89A /* DatePicker-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,40 +481,6 @@
 			productReference = A9DFB9661C0061A86BC4712FADBC5311 /* Pods_DatePicker_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3ADD25B805AE1D52B91BB4AB843D9C7D /* DatePicker-DatePicker */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EB3CDF83A3341D16CD1D71D69D95F5A1 /* Build configuration list for PBXNativeTarget "DatePicker-DatePicker" */;
-			buildPhases = (
-				FC41CB77661C1A1EAB9DDFC71AEA2D64 /* Sources */,
-				714341AAB35484CAEE8B40DD68DEBE94 /* Frameworks */,
-				067E10FF56C2C87FF0F26D0C273EE766 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "DatePicker-DatePicker";
-			productName = "DatePicker-DatePicker";
-			productReference = D6914C8B39DC78683563BDFA98FC3A6E /* DatePicker.bundle */;
-			productType = "com.apple.product-type.bundle";
-		};
-		47740D1C2F8708644F4C98C1794DF55C /* Extended */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 325A961E47FE0812480284BDD3DE2BC8 /* Build configuration list for PBXNativeTarget "Extended" */;
-			buildPhases = (
-				F53B70FB22EAD1AE901606FC258FF4E6 /* Sources */,
-				F4E4B4655500D5DDE29570F3F8235919 /* Frameworks */,
-				2FEE76D9C710FB44C3B86B4DEB57F541 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Extended;
-			productName = Extended;
-			productReference = 81669E245633099B7804514741C119FD /* Extended.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		6327C5D6226C3184E1ADFCD3E4643A63 /* Pods-DatePicker_Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1528577277A0392BBA4BBDE138FA492 /* Build configuration list for PBXNativeTarget "Pods-DatePicker_Tests" */;
@@ -540,20 +499,54 @@
 			productReference = A068939CDAD002139C59098BA4B292DE /* Pods_DatePicker_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		93C69CCAE5096408A52244D5FDE66AA2 /* DatePicker */ = {
+		A5DF948C77A3EFBA2A28ED4047814787 /* Extended */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C6C459F53A9E13E03B50D78CE2EB6B4 /* Build configuration list for PBXNativeTarget "DatePicker" */;
+			buildConfigurationList = B9475BC8A82807E45D27298723425021 /* Build configuration list for PBXNativeTarget "Extended" */;
 			buildPhases = (
-				57FF1A330B2C5770AABEC80FE2674443 /* Sources */,
-				D4E5F9ED767B02CA8EAC71A57773B7B6 /* Frameworks */,
-				B12456B4AC348DA7D2518BDC7ADE45D5 /* Resources */,
-				432F40254E118CFB443F18183968D466 /* Headers */,
+				2E8513E97ACE409BEAB144FFE734A5AD /* Sources */,
+				0A56AE22C6B04D840388EBF461CCECF0 /* Frameworks */,
+				55E0333D02D76618E502865974F64456 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A69888D5B6C750BA816C80D07E828158 /* PBXTargetDependency */,
-				800B0DA3E3EB2A7F98DF3ABA31A01333 /* PBXTargetDependency */,
+			);
+			name = Extended;
+			productName = Extended;
+			productReference = 81669E245633099B7804514741C119FD /* Extended.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D42B60A677D6B84E5DBDC6BC9BC02E02 /* DatePicker-DatePicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 047A11BA0B05B6602BE1A3717AC3382E /* Build configuration list for PBXNativeTarget "DatePicker-DatePicker" */;
+			buildPhases = (
+				2E29F1A2D2804B77AF97EB2F817EAE64 /* Sources */,
+				019C4760DFEC7661293AC517A876CAC5 /* Frameworks */,
+				2FF04716B46DEB3AEF88B4C51419DDF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "DatePicker-DatePicker";
+			productName = "DatePicker-DatePicker";
+			productReference = D6914C8B39DC78683563BDFA98FC3A6E /* DatePicker.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		FCAA70D04F30BC2D8D00730DC6041325 /* DatePicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FD4C9C07D9B7ECED7DCF0056E31BAF37 /* Build configuration list for PBXNativeTarget "DatePicker" */;
+			buildPhases = (
+				B40270DE1B1EDE3971AE0F2485BBD1ED /* Sources */,
+				A49A54D8084C5D7C36CD5DD202C60919 /* Frameworks */,
+				2B49DD290CAC6AFB53DC06C036327E77 /* Resources */,
+				B8891CFFCCCA9C2D51EBD2A7BE1232F8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0332B3130B75B2F3F2829A281371B00E /* PBXTargetDependency */,
+				8E82228EECB1F90ECB1D8AB54AC1315D /* PBXTargetDependency */,
 			);
 			name = DatePicker;
 			productName = DatePicker;
@@ -567,7 +560,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -581,9 +574,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				93C69CCAE5096408A52244D5FDE66AA2 /* DatePicker */,
-				3ADD25B805AE1D52B91BB4AB843D9C7D /* DatePicker-DatePicker */,
-				47740D1C2F8708644F4C98C1794DF55C /* Extended */,
+				FCAA70D04F30BC2D8D00730DC6041325 /* DatePicker */,
+				D42B60A677D6B84E5DBDC6BC9BC02E02 /* DatePicker-DatePicker */,
+				A5DF948C77A3EFBA2A28ED4047814787 /* Extended */,
 				0F461ADE8D2C2C23AEA2E855CDE0165E /* Pods-DatePicker_Example */,
 				6327C5D6226C3184E1ADFCD3E4643A63 /* Pods-DatePicker_Tests */,
 			);
@@ -591,55 +584,57 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		067E10FF56C2C87FF0F26D0C273EE766 /* Resources */ = {
+		2B49DD290CAC6AFB53DC06C036327E77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				103720C6E5CE78EAA2E34E5F5435D7AE /* ButtonCollectionViewCell.xib in Resources */,
-				8D637AC62909ED928052CD4CA51A8AFF /* DayCollectionViewCell.xib in Resources */,
-				92C6ACBAE8CACBB4002F9711D3F8EDF9 /* DayHeaderCollectionViewCell.xib in Resources */,
-				6998CFCC1417F694FF616F0BC8CB8B5B /* DaysCollectionViewCell.xib in Resources */,
-				403943CCF5F496E7AAF71508781CC48D /* MonthCollectionViewCell.xib in Resources */,
-				23D505F45611B43DF48EF721FF976364 /* MonthsCollectionViewCell.xib in Resources */,
-				6D96CC6A64EC797713BEE4A9109F3FD8 /* Picker.storyboard in Resources */,
-				C7AEA979981D667358E83C40C09E11B3 /* YearCollectionViewCell.xib in Resources */,
-				76B4DC69F4493BB3EF96DACCE22C1439 /* YearsCollectionViewCell.xib in Resources */,
+				5CCE583BC112E9E5BD9B4B469DB68BF0 /* DatePicker.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B12456B4AC348DA7D2518BDC7ADE45D5 /* Resources */ = {
+		2FF04716B46DEB3AEF88B4C51419DDF3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F105B90AEC97AF84B68A56760B2BD1D1 /* DatePicker.bundle in Resources */,
+				9B2268DBE64C34A3D439D0997CA9AF9B /* ButtonCollectionViewCell.xib in Resources */,
+				9DF16CC3F12BB1EBA7E325F2F242D804 /* DayCollectionViewCell.xib in Resources */,
+				371E8AFFB5A983035F091251F56C47BB /* DayHeaderCollectionViewCell.xib in Resources */,
+				C9F48D180D1C1B8863E66D5174475D03 /* DaysCollectionViewCell.xib in Resources */,
+				A820CD30A1540BF29AFA2451D4117DE1 /* MonthCollectionViewCell.xib in Resources */,
+				C0F1045D65DAFC89FA561F6F92CE9B6B /* MonthsCollectionViewCell.xib in Resources */,
+				4136220E7F88FB1D128B32C8DBE1E108 /* Picker.storyboard in Resources */,
+				E279633E52232585F55B85A7A6242B0C /* YearCollectionViewCell.xib in Resources */,
+				F665C079DD7086E6D95237F35456C945 /* YearsCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		57FF1A330B2C5770AABEC80FE2674443 /* Sources */ = {
+		2E29F1A2D2804B77AF97EB2F817EAE64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F3CAF2381EAB6C266717276EBB23767 /* ButtonCollectionViewCell.swift in Sources */,
-				AAD12202484CE29689E1221411C25A74 /* CollectionViewExtention.swift in Sources */,
-				B6BC935A0FBADA94BE16BFA18FB6E0E9 /* ColorExtention.swift in Sources */,
-				68A1B09CA85647D2FA5E520DCEF3233C /* Colors.swift in Sources */,
-				841EF18A3C314B04839CB3DA764FC400 /* DatePicker-dummy.m in Sources */,
-				F59852E18C03967646A9EA7233F496D5 /* DatePicker.swift in Sources */,
-				FF1A6D23463FB8A2BEF03D963FFFF40E /* DayCollectionViewCell.swift in Sources */,
-				6F338C2B2BC8A7D8CBF922D418029475 /* DayHeaderCollectionViewCell.swift in Sources */,
-				6D0D30D820D8054C0F9609768171B343 /* DaysCollectionViewCell.swift in Sources */,
-				1D83BE538BD38A94F0B6B0634FFEF999 /* FDHelper.swift in Sources */,
-				D001C50556A8B64AD1ABE31023808ECC /* Fonts.swift in Sources */,
-				890A9EB4EA33B39A127A41E79EDA7F86 /* FrameHelper.swift in Sources */,
-				7049688A4C5754F7CAFAF59C952C4F5A /* MonthCollectionViewCell.swift in Sources */,
-				6C85A4575CA88D79ECF73A6A58E52088 /* MonthsCollectionViewCell.swift in Sources */,
-				229B16D50EC4A21C125BE5F696E5FBB7 /* PickerViewController.swift in Sources */,
-				D2EBCF63049FA1FC32F6F0F81D66CF72 /* StringExtention.swift in Sources */,
-				81C1BFF8E37C32789096591BD3D59DC6 /* YearCollectionViewCell.swift in Sources */,
-				134AE48AC62363081200037C40EE8C98 /* YearsCollectionViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E8513E97ACE409BEAB144FFE734A5AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				031BD4482B7B4352EE521F24F8301D70 /* Color.swift in Sources */,
+				C0839E68A339DA431B480382F705D495 /* Date.swift in Sources */,
+				D07EC0D92A4F14A5F6F401EE39F70B7C /* DeviceOrientation.swift in Sources */,
+				D664FE5E2DF529AB16884030092CDC1B /* Extended-dummy.m in Sources */,
+				6B4AECBD2F37170574D913540ACA8098 /* Int.swift in Sources */,
+				59A9E3B3202CA8C8B47EDED595160C5A /* Map.swift in Sources */,
+				1A00842F7D61C3F1F59E9034C34B8A56 /* String.swift in Sources */,
+				590E9539E015A8FA34CE96712FD114B4 /* TimeInterval.swift in Sources */,
+				878FCFB65E6F36EA5C90477CAE0B7269 /* UIApplication.swift in Sources */,
+				531A4FC62AC6FB8F2904D538CBA3D711 /* UICollectionView.swift in Sources */,
+				7571B5E27DE91A43DDF9502BBDEA88D1 /* UILabel.swift in Sources */,
+				A8A2999EFC43BB57EB3745211A3F4B5D /* UIView.swift in Sources */,
+				DB41FE2D59999CF38182C98C7DC50BC4 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,52 +654,48 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F53B70FB22EAD1AE901606FC258FF4E6 /* Sources */ = {
+		B40270DE1B1EDE3971AE0F2485BBD1ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A306D0966B770045E526F7E5AC08EE8 /* Color.swift in Sources */,
-				9CC2508835AC2D7CB332A292901918EA /* Date.swift in Sources */,
-				27F7225B34F2477103DEC1A6A08BFB32 /* DeviceOrientation.swift in Sources */,
-				AE599376541D9387E919E1A0FC2DAFC5 /* Extended-dummy.m in Sources */,
-				9186736FA0525C436C05EF0A7434186D /* Int.swift in Sources */,
-				6C25CD082E7A7E97CA9ACE0CFC689B24 /* Map.swift in Sources */,
-				29D08DE72498068A62CEA9BCA94108AC /* String.swift in Sources */,
-				BD0BBC707E3346EC123E8D6DBD0DDF21 /* TimeInterval.swift in Sources */,
-				5D4BFB1AC2854C44E0F292B40A120B8F /* UIApplication.swift in Sources */,
-				4CA996F834EE2319355E2FF75B7E97B1 /* UILabel.swift in Sources */,
-				A3D2A547BE86EF1F77D496E5F99CA76F /* UIView.swift in Sources */,
-				C6783122A432B0EA23696F5DE8F3D910 /* UIViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FC41CB77661C1A1EAB9DDFC71AEA2D64 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				A978361A1BD47B80D95E030DE4DF3A31 /* ButtonCollectionViewCell.swift in Sources */,
+				003584D21955F3BA62A6211F9C6431AF /* Colors.swift in Sources */,
+				9885741C6C2C2B78168185AE29C020BF /* DatePicker-dummy.m in Sources */,
+				E4778367D5EEBD0F5866CC42FE29D84E /* DatePicker.swift in Sources */,
+				F70380BD07EA9A7E903975167E676EE3 /* DayCollectionViewCell.swift in Sources */,
+				59A4E865BD203013DD644ACEC94668A9 /* DayHeaderCollectionViewCell.swift in Sources */,
+				13B3A4A9BA4E8E6F12FB5CE4D4103268 /* DaysCollectionViewCell.swift in Sources */,
+				6E448B5562F21734CD10DB88EF3B918C /* FDHelper.swift in Sources */,
+				04EE011399247553E61F889CA0754E37 /* Fonts.swift in Sources */,
+				DB17B11A927DF61DE4C708EC60CAB71A /* FrameHelper.swift in Sources */,
+				8D615D247910433CE8A4EEB402D87F39 /* MonthCollectionViewCell.swift in Sources */,
+				A2A97E5D0790F517C94013A18C55150B /* MonthsCollectionViewCell.swift in Sources */,
+				77F997E2B7C176554098DCBBE53C8536 /* PickerViewController.swift in Sources */,
+				4B7C2BAB9EF086E3867D36E739455F5F /* YearCollectionViewCell.swift in Sources */,
+				367A3FDEAF3704F430E524D75663A308 /* YearsCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0332B3130B75B2F3F2829A281371B00E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "DatePicker-DatePicker";
+			target = D42B60A677D6B84E5DBDC6BC9BC02E02 /* DatePicker-DatePicker */;
+			targetProxy = 306124FD82C406A589043400BAC6EC00 /* PBXContainerItemProxy */;
+		};
 		03A36A95B838659C507BF554B1843B1B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Extended;
-			target = 47740D1C2F8708644F4C98C1794DF55C /* Extended */;
+			target = A5DF948C77A3EFBA2A28ED4047814787 /* Extended */;
 			targetProxy = 765E2EA9817341BD10CE3533DCA16173 /* PBXContainerItemProxy */;
 		};
 		1C5CA536C8EB64426187155FD320F203 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DatePicker;
-			target = 93C69CCAE5096408A52244D5FDE66AA2 /* DatePicker */;
+			target = FCAA70D04F30BC2D8D00730DC6041325 /* DatePicker */;
 			targetProxy = BF4A4F23A4CDADBFAD54932246CD65D7 /* PBXContainerItemProxy */;
-		};
-		800B0DA3E3EB2A7F98DF3ABA31A01333 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Extended;
-			target = 47740D1C2F8708644F4C98C1794DF55C /* Extended */;
-			targetProxy = 9562F768B06B8C4969AD175CB9102CBC /* PBXContainerItemProxy */;
 		};
 		810B3F1DF6AC6BF88BA097390B5932A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -712,19 +703,19 @@
 			target = 0F461ADE8D2C2C23AEA2E855CDE0165E /* Pods-DatePicker_Example */;
 			targetProxy = 302E50DCD0847846A45E9E773AD62DDF /* PBXContainerItemProxy */;
 		};
-		A69888D5B6C750BA816C80D07E828158 /* PBXTargetDependency */ = {
+		8E82228EECB1F90ECB1D8AB54AC1315D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "DatePicker-DatePicker";
-			target = 3ADD25B805AE1D52B91BB4AB843D9C7D /* DatePicker-DatePicker */;
-			targetProxy = 756FB4BF77FE45C84220449B9222427B /* PBXContainerItemProxy */;
+			name = Extended;
+			target = A5DF948C77A3EFBA2A28ED4047814787 /* Extended */;
+			targetProxy = 95D90F052E29C8EA8734AD9D42A04EF3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		48D5EA81E149CD43E9EEAB53251C88E9 /* DayCollectionViewCell.xib */ = {
+		277114C4C957AA1D74AF274991022C0D /* DayCollectionViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				66DBBFF09798B1D3CA36E4F381421B52 /* DayCollectionViewCell.xib */,
+				EFCADD071D52AC1C3DBE4DA4BB569D6F /* DayCollectionViewCell.xib */,
 			);
 			name = DayCollectionViewCell.xib;
 			path = DatePicker/Classes;
@@ -802,19 +793,36 @@
 			};
 			name = Release;
 		};
-		120934AD4171EF6A0E8804A2F9369AC3 /* Debug */ = {
+		1AA407F0DE9F65F1B669D1775DBBA3CC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CFFC7844601B88E44081E8C4541FD82 /* DatePicker.xcconfig */;
+			baseConfigurationReference = 1D2265C90C1A24EB03CEE58265ABDCFF /* Extended.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DatePicker";
-				INFOPLIST_FILE = "Target Support Files/DatePicker/ResourceBundle-DatePicker-Info.plist";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Extended/Extended-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Extended/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				PRODUCT_NAME = DatePicker;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Extended/Extended.modulemap";
+				PRODUCT_MODULE_NAME = Extended;
+				PRODUCT_NAME = Extended;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -872,9 +880,43 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
+		};
+		6450BFCE23748F4ABD7F8F4DC0D4BD54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC7404243E049B255E2C2AD54C0B52C0 /* DatePicker.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DatePicker/DatePicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DatePicker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DatePicker/DatePicker.modulemap";
+				PRODUCT_MODULE_NAME = DatePicker;
+				PRODUCT_NAME = DatePicker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		7017AA2BB1D6B64843D0CC2C3F74391B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -939,37 +981,19 @@
 			};
 			name = Debug;
 		};
-		837402984B1C840026E1BD0D82208EF5 /* Release */ = {
+		90D9572B9534F31738C1EEBB7D96547F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8908FC0E9C417B647EF78A82220B3F79 /* Extended.xcconfig */;
+			baseConfigurationReference = FC7404243E049B255E2C2AD54C0B52C0 /* DatePicker.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Extended/Extended-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Extended/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DatePicker";
+				INFOPLIST_FILE = "Target Support Files/DatePicker/ResourceBundle-DatePicker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Extended/Extended.modulemap";
-				PRODUCT_MODULE_NAME = Extended;
-				PRODUCT_NAME = Extended;
+				PRODUCT_NAME = DatePicker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -1009,36 +1033,19 @@
 			};
 			name = Debug;
 		};
-		DC252E571548CD8ACEE73CF5CDA8C561 /* Debug */ = {
+		A3487D729006E9D8CE3FE570A4D63A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8908FC0E9C417B647EF78A82220B3F79 /* Extended.xcconfig */;
+			baseConfigurationReference = FC7404243E049B255E2C2AD54C0B52C0 /* DatePicker.xcconfig */;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Extended/Extended-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Extended/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DatePicker";
+				INFOPLIST_FILE = "Target Support Files/DatePicker/ResourceBundle-DatePicker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Extended/Extended.modulemap";
-				PRODUCT_MODULE_NAME = Extended;
-				PRODUCT_NAME = Extended;
+				PRODUCT_NAME = DatePicker;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
@@ -1078,9 +1085,9 @@
 			};
 			name = Release;
 		};
-		F6496A039F3670A70EDCCAC029C3218A /* Release */ = {
+		FD6F4F03F760AE35CCCFC4170A85453F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CFFC7844601B88E44081E8C4541FD82 /* DatePicker.xcconfig */;
+			baseConfigurationReference = FC7404243E049B255E2C2AD54C0B52C0 /* DatePicker.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1112,25 +1119,9 @@
 			};
 			name = Release;
 		};
-		F6688A2D4C00286A20EB71178E7EB490 /* Release */ = {
+		FD94F37E82A8CC977DE65CFD6A728040 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CFFC7844601B88E44081E8C4541FD82 /* DatePicker.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DatePicker";
-				INFOPLIST_FILE = "Target Support Files/DatePicker/ResourceBundle-DatePicker-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				PRODUCT_NAME = DatePicker;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		F7B7F7DC5E431FAEB5A1CE63A77BFC8C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CFFC7844601B88E44081E8C4541FD82 /* DatePicker.xcconfig */;
+			baseConfigurationReference = 1D2265C90C1A24EB03CEE58265ABDCFF /* Extended.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1142,33 +1133,34 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/DatePicker/DatePicker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DatePicker/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Extended/Extended-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Extended/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DatePicker/DatePicker.modulemap";
-				PRODUCT_MODULE_NAME = DatePicker;
-				PRODUCT_NAME = DatePicker;
+				MODULEMAP_FILE = "Target Support Files/Extended/Extended.modulemap";
+				PRODUCT_MODULE_NAME = Extended;
+				PRODUCT_NAME = Extended;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C6C459F53A9E13E03B50D78CE2EB6B4 /* Build configuration list for PBXNativeTarget "DatePicker" */ = {
+		047A11BA0B05B6602BE1A3717AC3382E /* Build configuration list for PBXNativeTarget "DatePicker-DatePicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F7B7F7DC5E431FAEB5A1CE63A77BFC8C /* Debug */,
-				F6496A039F3670A70EDCCAC029C3218A /* Release */,
+				A3487D729006E9D8CE3FE570A4D63A07 /* Debug */,
+				90D9572B9534F31738C1EEBB7D96547F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1182,11 +1174,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		325A961E47FE0812480284BDD3DE2BC8 /* Build configuration list for PBXNativeTarget "Extended" */ = {
+		B9475BC8A82807E45D27298723425021 /* Build configuration list for PBXNativeTarget "Extended" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DC252E571548CD8ACEE73CF5CDA8C561 /* Debug */,
-				837402984B1C840026E1BD0D82208EF5 /* Release */,
+				1AA407F0DE9F65F1B669D1775DBBA3CC /* Debug */,
+				FD94F37E82A8CC977DE65CFD6A728040 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1209,11 +1201,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EB3CDF83A3341D16CD1D71D69D95F5A1 /* Build configuration list for PBXNativeTarget "DatePicker-DatePicker" */ = {
+		FD4C9C07D9B7ECED7DCF0056E31BAF37 /* Build configuration list for PBXNativeTarget "DatePicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				120934AD4171EF6A0E8804A2F9369AC3 /* Debug */,
-				F6688A2D4C00286A20EB71178E7EB490 /* Release */,
+				6450BFCE23748F4ABD7F8F4DC0D4BD54 /* Debug */,
+				FD6F4F03F760AE35CCCFC4170A85453F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
