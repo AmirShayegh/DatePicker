@@ -17,11 +17,9 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-"A simple, elegant Date Picker library for iOS"
-                       DESC
+  s.description      = 'A simple, elegant Date Picker library for iOS'
 
-  s.homepage         = 'https://github.com/FreshworksStudio/DatePicker.git'
+  s.homepage         = 'https://github.com/FreshworksStudio/DatePicker'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'amirshayegh' => 'shayegh@me.com' }
@@ -32,7 +30,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'DatePicker/Classes/**/*.{swift}'
   
-   s.resource_bundles = {
+  s.resource_bundles = {
   #   'DatePicker' => ['DatePicker/Assets/*.png']
       'DatePicker' => ['DatePicker/Classes/**/*.{storyboard,xib}']
    }
