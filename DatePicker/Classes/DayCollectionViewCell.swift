@@ -47,7 +47,11 @@ class DayCollectionViewCell: UICollectionViewCell {
     func setup(day: Int, selected: Bool? = false, disabled: Bool? = false, indexPath: IndexPath, parent: DaysCollectionViewCell) {
         self.alpha = 0
         self.parent = parent
-        self.label.text = "\(day)"
+        if day == -1 {
+            self.label.text = ""
+        } else {
+            self.label.text = "\(day)"
+        }
         self.view.layer.cornerRadius = 8
         self.indexPath = indexPath
         if let s = selected, s {
