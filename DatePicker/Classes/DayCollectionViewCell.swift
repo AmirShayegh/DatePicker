@@ -19,13 +19,21 @@ class DayCollectionViewCell: UICollectionViewCell {
 
     let selection = UISelectionFeedbackGenerator()
 
+    var indexPath: IndexPath?
+
     // MARK: Outlet Actions
     @IBAction func selectAction(_ sender: UIButton) {
         if let p = parent, let gp = p.parent, let day = self.label.text, let dayInt = Int(day) {
             gp.day = dayInt
             selection.selectionChanged()
             gp.reloadButton()
-            p.update()
+//            p.update()
+            if let i = indexPath {
+                if let pi = p.selectedIndexPath, pi == i {
+                    return
+                }
+                p.update(indexpath: i)
+            }
         }
     }
 
@@ -36,11 +44,12 @@ class DayCollectionViewCell: UICollectionViewCell {
      - Parameter disabled: is day out of not selectable?
      - Parameter parent: parent cell - DaysCollectionViewCell
      */
-    func setup(day: Int, selected: Bool? = false, disabled: Bool? = false, parent: DaysCollectionViewCell) {
+    func setup(day: Int, selected: Bool? = false, disabled: Bool? = false, indexPath: IndexPath, parent: DaysCollectionViewCell) {
+        self.alpha = 0
         self.parent = parent
         self.label.text = "\(day)"
         self.view.layer.cornerRadius = 8
-
+        self.indexPath = indexPath
         if let s = selected, s {
             select()
         } else {
@@ -52,6 +61,10 @@ class DayCollectionViewCell: UICollectionViewCell {
             self.button.isUserInteractionEnabled = false
         } else {
             self.button.isUserInteractionEnabled = true
+        }
+
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 1
         }
     }
 
@@ -67,5 +80,11 @@ class DayCollectionViewCell: UICollectionViewCell {
         self.label.backgroundColor = Colors.background
         self.view.backgroundColor = Colors.background
         self.label.textColor = Colors.main
+    }
+
+    func fadeOff() {
+        UIView.animate(withDuration: 0.2) {
+            self.alpha = 0
+        }
     }
 }
