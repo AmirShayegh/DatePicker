@@ -304,7 +304,7 @@ public class PickerViewController: UIViewController {
 
     func reloadDays() {
         guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
-        let fadeDuration: Double = 0.2
+//        let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
             if !calledFromSwipe {
                 cell.randomReload(done: {

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DatePicker'
-  s.version          = '0.1.7'
+  s.version          = '1.0.0'
   s.summary          = 'Date Picker for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -39,5 +39,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Extended'
+  s.dependency 'Extended', '~> 1.0.4'
 end

@@ -43,8 +43,10 @@ class ViewController: UIViewController {
         let fd = DatePicker()
 
         // you can generate dates using this function
-//        let date1 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
-//        let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
+        // let date1 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
+        // let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
+
+        // Yearless
         fd.setupYearless { (selected, month, day) in
             self.label.alpha = 1
             if selected, let day = day, let month = month {
@@ -53,6 +55,8 @@ class ViewController: UIViewController {
                 self.label.text = "Cancelled"
             }
         }
+
+        // Regular
         /*
         fd.setup { (selected, date) in
             self.label.alpha = 1
@@ -63,10 +67,8 @@ class ViewController: UIViewController {
             }
         }*/
 
+
         fd.display(in: self)
-
     }
-
-
 }
 
