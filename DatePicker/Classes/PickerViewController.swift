@@ -204,7 +204,7 @@ public class PickerViewController: UIViewController {
                 }
             } else {
                 if self.callBack != nil {
-                    return self.callBack!(true, FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
+                    return self.callBack!(true, DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
                 }
             }
         }
@@ -255,7 +255,7 @@ public class PickerViewController: UIViewController {
     func validate() {
 
         // Min Max mode validations
-        if self.mode == .MinMax, let current = FDHelper.shared.dateFrom(day: day, month: month, year: year), let max = maxDate, let min = minDate {
+        if self.mode == .MinMax, let current = DatePickerHelper.shared.dateFrom(day: day, month: month, year: year), let max = maxDate, let min = minDate {
             if current > max {
                 // select max date
                 self.day = max.day()
@@ -303,21 +303,27 @@ public class PickerViewController: UIViewController {
     }
 
     func reloadDays() {
-        guard let indexPath = daysIndexPath else {return}
-        let fadeDuration: Double = 0.2
+        guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
+//        let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
-            let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
             if !calledFromSwipe {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.1, animations: {
-                        cell.alpha = 0
-                    }, completion: { (done) in
+                cell.randomReload(done: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         cell.collectionView.reloadData()
-                        UIView.animate(withDuration: fadeDuration, animations: {
-                            cell.alpha = 1
-                        })
-                    })
-                }
+                    }
+                })
+//                DispatchQueue.main.async {
+//                    UIView.animate(withDuration: 0.1, animations: {
+//                        cell.alpha = 0
+//                    }, completion: { (done) in
+//                        cell.collectionView.reloadData()
+//                        UIView.animate(withDuration: fadeDuration, animations: {
+//                            cell.alpha = 1
+//                        })
+//                    })
+//                }
+
+//                cell.collectionView.reloadData()
             } else {
                 cell.collectionView.reloadData()
             }
@@ -325,9 +331,8 @@ public class PickerViewController: UIViewController {
     }
 
     func flipDays(back: Bool) {
-        guard let indexPath = daysIndexPath else {return}
+        guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
-            let cell = collectionView.cellForItem(at: indexPath) as! DaysCollectionViewCell
             if back {
                 let copy = FrameHelper.shared.getCloneView(of: cell)
                 cell.collectionView.reloadData()
@@ -380,7 +385,7 @@ public class PickerViewController: UIViewController {
         // scroll to month
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
             let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
-            cell.select(month: FDHelper.shared.month(number: month))
+            cell.select(month: DatePickerHelper.shared.month(number: month))
         }
     }
 
@@ -403,7 +408,7 @@ public class PickerViewController: UIViewController {
         guard let indexPath = monthsIndexPath else {return}
         // scroll to month
         let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
-        cell.select(month: FDHelper.shared.month(number: nextMonth))
+        cell.select(month: DatePickerHelper.shared.month(number: nextMonth))
         // store month
         self.month = nextMonth
     }
@@ -417,7 +422,7 @@ public class PickerViewController: UIViewController {
         guard let indexPath = monthsIndexPath else {return}
         // scroll to month
         let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
-        cell.select(month: FDHelper.shared.month(number: prevMonth))
+        cell.select(month: DatePickerHelper.shared.month(number: prevMonth))
         // store month
         self.month = prevMonth
     }
@@ -429,7 +434,7 @@ public class PickerViewController: UIViewController {
         let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
         cell.select(month: to)
         // store month
-        self.month = FDHelper.shared.month(name: to)
+        self.month = DatePickerHelper.shared.month(name: to)
     }
 
     func changeYear(to: Int) {
@@ -440,7 +445,7 @@ public class PickerViewController: UIViewController {
     }
 
     func currentDate() -> Date {
-        if let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) {
+        if let date = DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) {
             return date
         } else {
             return Date()
@@ -448,20 +453,20 @@ public class PickerViewController: UIViewController {
     }
 
     func daysInMonth() -> Int {
-        return FDHelper.shared.daysIn(month: self.month, year: self.year)
+        return DatePickerHelper.shared.daysIn(month: self.month, year: self.year)
     }
 
     func firstDayOfMonth() -> String {
-        return FDHelper.shared.firstDayOf(month: self.month, year: self.year)
+        return DatePickerHelper.shared.firstDayOf(month: self.month, year: self.year)
     }
 
     func lastDayOfMonth() -> String {
-        return FDHelper.shared.lastDayOf(month: self.month, year: self.year)
+        return DatePickerHelper.shared.lastDayOf(month: self.month, year: self.year)
     }
 
     func firstDayOfMonthIndex() -> Int {
         let day = firstDayOfMonth()
-        let days = FDHelper.shared.days()
+        let days = DatePickerHelper.shared.days()
         if let i = days.index(of: day.charactersUpTo(index: 3)) {
             return i + days.count
         } else {
@@ -475,8 +480,8 @@ public class PickerViewController: UIViewController {
 
     func getYearsList() -> [Int] {
         var years: [Int] = [Int]()
-        var minYear = FDHelper.minYear
-        var maxYear = FDHelper.maxYear
+        var minYear = DatePickerHelper.minYear
+        var maxYear = DatePickerHelper.maxYear
         if let min = minDate {
             minYear = min.year()
         }
@@ -645,7 +650,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         case 1:
             self.monthsIndexPath = indexPath
             let cell = getMonthsCell(indexPath: indexPath)
-            cell.setup(items: FDHelper.shared.months(), parent: self)
+            cell.setup(items: DatePickerHelper.shared.months(), parent: self)
             return cell
         case 2:
             self.daysIndexPath = indexPath
@@ -655,7 +660,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(date: FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
+            cell.setup(date: DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
                 self.sendResult()
             }
             return cell
@@ -671,7 +676,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         case 0:
             self.monthsIndexPath = indexPath
             let cell = getMonthsCell(indexPath: indexPath)
-            cell.setup(items: FDHelper.shared.months(), parent: self)
+            cell.setup(items: DatePickerHelper.shared.months(), parent: self)
             return cell
         case 1:
             self.daysIndexPath = indexPath
@@ -681,7 +686,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(date: FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
+            cell.setup(date: DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
                 self.sendResult()
             }
             return cell

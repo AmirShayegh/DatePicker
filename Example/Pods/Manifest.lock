@@ -1,7 +1,7 @@
 PODS:
-  - DatePicker (0.1.6):
-    - Extended
-  - Extended (1.0.0)
+  - DatePicker (1.0.0):
+    - Extended (~> 1.0.4)
+  - Extended (1.0.4)
 
 DEPENDENCIES:
   - DatePicker (from `../`)
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DatePicker: 0651dfd414ece94369bc9fd4bd1061026ec41771
-  Extended: a8343d8b29fed5f6876cdcaf74d5454111732cd2
+  DatePicker: 52abd80386fa1ed191f48d6884262604a3b0e2cd
+  Extended: 94fe9d842694e7d81da413f5762d401829bbffd9
 
 PODFILE CHECKSUM: 56090e89a3acd022339bee856a8f54e1d88461bb
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

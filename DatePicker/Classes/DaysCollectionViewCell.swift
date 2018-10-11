@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Extended
 
 class DaysCollectionViewCell: UICollectionViewCell {
 
@@ -15,6 +16,8 @@ class DaysCollectionViewCell: UICollectionViewCell {
     var updating = false
 
     var mode: DatePickerMode = .Basic
+
+    var selectedIndexPath: IndexPath?
 
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -73,13 +76,21 @@ class DaysCollectionViewCell: UICollectionViewCell {
     }
 
     func update() {
+
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
 
+    func update(indexpath: IndexPath) {
+        if let prev = selectedIndexPath {
+            self.collectionView.reloadItems(at: [prev, indexpath])
+        }
+    }
+
     @objc func flipLeft() {
         guard let p = parent else {return}
+        if p.month < 2 {return}
         let copy = FrameHelper.shared.getCloneView( of: self)
         p.view.addSubview(copy)
 
@@ -99,6 +110,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
 
     @objc func flipRight() {
         guard let p = parent else {return}
+        if p.month > 11 {return}
         let copy = FrameHelper.shared.getCloneView( of: self)
         p.view.addSubview(copy)
 
@@ -115,6 +127,49 @@ class DaysCollectionViewCell: UICollectionViewCell {
         UIView.transition(with: self, duration: flipDuration, options: transitionOptions, animations: {
             self.isHidden = false
         })
+    }
+
+
+    var randomlyRealodedIndexes: [Int] = [Int]()
+
+    func randomReload(done: @escaping()-> Void) {
+
+            let numberOfElements = getNumberOfElements()
+            if randomlyRealodedIndexes.count >= numberOfElements {
+                randomlyRealodedIndexes.removeAll()
+                return done()
+            }
+            var random = 0
+
+            while randomlyRealodedIndexes.contains(random) {
+//                random = Int.random(min: 0, max: (numberOfElements - 1))
+                random = random + 1
+            }
+            randomlyRealodedIndexes.append(random)
+            let indexPath = IndexPath(row: random, section: 0)
+            if let cell = self.collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell {
+                cell.fadeOff()
+            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.007) {
+            self.randomReload(done: done)
+
+        }
+    }
+
+    func getNumberOfElements() -> Int {
+        guard let p = self.parent else { return 0}
+        switch self.mode {
+        case .Basic:
+            let rows = 7
+            let colums = 7
+            return (rows * colums)
+        case .MinMax:
+            let rows = 7
+            let colums = 7
+            return (rows * colums)
+        case .Yearless:
+            return p.daysInMonth()
+        }
     }
 
 }
@@ -152,19 +207,7 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let p = self.parent else { return 0}
-        switch self.mode {
-        case .Basic:
-            let rows = 7
-            let colums = 7
-            return (rows * colums)
-        case .MinMax:
-            let rows = 7
-            let colums = 7
-            return (rows * colums)
-        case .Yearless:
-            return p.daysInMonth()
-        }
+        return getNumberOfElements()
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -187,19 +230,20 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
         let daysOfWeek = 7
         if indexPath.row < daysOfWeek {
             let cell = getHeaderCell(indexPath: indexPath)
-            cell.setup(day: FDHelper.shared.days()[indexPath.row])
+            cell.setup(day: DatePickerHelper.shared.days()[indexPath.row])
             return cell
         } else if indexPath.row >= p.firstDayOfMonthIndex() && indexPath.row < p.lastDayOfMonthIndex() {
             let cell = getDayCell(indexPath: indexPath)
             let current = (indexPath.row - p.firstDayOfMonthIndex() + 1)
             // if day is currently selected, set selected to true
             if current == p.day {
-                cell.setup(day: current, selected: true, parent: self)
+                cell.setup(day: current, selected: true, indexPath: indexPath, parent: self)
+                selectedIndexPath = indexPath
             } else {
-                if let maxDate = p.maxDate, let minDate = p.minDate, let dateOfDay = FDHelper.shared.dateFrom(day: current, month: p.month, year: p.year), dateOfDay > maxDate || dateOfDay < minDate {
-                    cell.setup(day: current, disabled: true, parent: self)
+                if let maxDate = p.maxDate, let minDate = p.minDate, let dateOfDay = DatePickerHelper.shared.dateFrom(day: current, month: p.month, year: p.year), dateOfDay > maxDate || dateOfDay < minDate {
+                    cell.setup(day: current, disabled: true, indexPath: indexPath, parent: self)
                 } else {
-                    cell.setup(day: current, parent: self)
+                    cell.setup(day: current, indexPath: indexPath, parent: self)
                 }
             }
             return cell
@@ -228,8 +272,10 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             }
         }
         let cell = getDayCell(indexPath: indexPath)
-        cell.setup(day: currentDay, selected: selected, disabled: disabled, parent: self)
-//        cell.setup(day: indexPath.row + 1, selected: selected, parent: self)
+        cell.setup(day: currentDay, selected: selected, disabled: disabled, indexPath: indexPath, parent: self)
+        if selected {
+            self.selectedIndexPath = indexPath
+        }
         return cell
     }
 

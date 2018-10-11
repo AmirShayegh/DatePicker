@@ -75,13 +75,13 @@ public class DatePicker {
     }
 
     // Setup without years
-    public func setupYearless(minMonth: Int, minDay: Int, maxMonth: Int? = nil, maxDay: Int? = nil, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
-        vc.minDay = minDay
-        vc.minMonth = minMonth
+    public func setupYearless(minMonth: Int? = nil, minDay: Int? = nil, maxMonth: Int? = nil, maxDay: Int? = nil, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+        vc.minDay = minDay ?? 1
+        vc.minMonth = minMonth ?? 1
         vc.maxMonth = maxMonth ?? 12
-        vc.maxDay = maxDay ?? FDHelper.shared.daysIn(month: vc.maxMonth, year: vc.year)
-        vc.day = minDay
-        vc.month = minMonth
+        vc.maxDay = maxDay ?? DatePickerHelper.shared.daysIn(month: vc.maxMonth, year: vc.year)
+        vc.day = minDay ?? 1
+        vc.month = minMonth ?? 1
         vc.mode = .Yearless
         vc.yearlessCallBack = selected
     }

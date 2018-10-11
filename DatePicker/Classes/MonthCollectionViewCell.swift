@@ -26,7 +26,7 @@ class MonthCollectionViewCell: UICollectionViewCell {
         self.label.text = month
         self.parent = parent
         if let gp = parent.parent {
-            if FDHelper.shared.month(name: month) == gp.month {
+            if DatePickerHelper.shared.month(name: month) == gp.month {
                 select()
                 return
             }

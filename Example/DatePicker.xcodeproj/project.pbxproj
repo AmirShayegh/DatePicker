@@ -287,7 +287,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DatePicker_Example/Pods-DatePicker_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DatePicker_Example/Pods-DatePicker_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DatePicker/DatePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/Extended/Extended.framework",
 			);
@@ -298,7 +298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DatePicker_Example/Pods-DatePicker_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DatePicker_Example/Pods-DatePicker_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		92C69511AB3E5920990779CA /* [CP] Check Pods Manifest.lock */ = {
