@@ -9,8 +9,8 @@ import Foundation
 import Extended
 
 
-public class FDHelper {
-    public static let shared = FDHelper()
+public class DatePickerHelper {
+    public static let shared = DatePickerHelper()
     static let minYear: Int = 2018
     static let maxYear: Int = 2100
     var monthsList: [String] = [String]()
@@ -133,13 +133,13 @@ public class FDHelper {
     func test() {
         print("*** Testing Month number and name conversion functions ***")
         for i in 1...12 {
-            print("\(i): \(FDHelper.shared.month(name: months()[i-1])) is \(FDHelper.shared.month(number: i))")
+            print("\(i): \(DatePickerHelper.shared.month(name: months()[i-1])) is \(DatePickerHelper.shared.month(number: i))")
         }
 
         print("**** Testing First days of months ***")
         for i in 2010...2025 {
             for j in 1...12 {
-                print("Year: \(i), Month: \(FDHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).charactersUpTo(index: 3))")
+                print("Year: \(i), Month: \(DatePickerHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).charactersUpTo(index: 3))")
             }
         }
 

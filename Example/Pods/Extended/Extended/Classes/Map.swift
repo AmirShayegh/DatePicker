@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import CoreLocation
+import MapKit
 
 extension MKMapView {
     public func clearPins() {
@@ -28,7 +29,7 @@ extension MKMapView {
 
     // move map center to specified location
     public func focusOn(location: CLLocation, radius: Double) {
-        let coordinateRegion = MKCoordinateRegion.init(center: location.coordinate,latitudinalMeters: radius * 2.0, longitudinalMeters: radius * 2.0)
-        self.setRegion(coordinateRegion, animated: true)
+        let region = MKCoordinateRegion(center:location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.95, longitudeDelta: 0.95))
+        self.setRegion(region, animated: true)
     }
 }

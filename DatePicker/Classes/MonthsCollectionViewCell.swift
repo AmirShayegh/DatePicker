@@ -117,7 +117,7 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.cellForItem(at: at) as! MonthCollectionViewCell
             cell.select()
             if let p = parent, let text = cell.label.text {
-                p.month = FDHelper.shared.month(name: text)
+                p.month = DatePickerHelper.shared.month(name: text)
             }
         }
     }
