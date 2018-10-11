@@ -230,6 +230,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+
 		0BBAE0CB8F6A120876E580D4F2AA1FD8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +278,7 @@
 				F301038D85DDF7649D2E72E478B13B66 /* UIView.swift */,
 				B6413A7ECE31E7FC4390FD72660DFEB6 /* UIViewController.swift */,
 				0BBAE0CB8F6A120876E580D4F2AA1FD8 /* Support Files */,
+
 			);
 			name = Extended;
 			path = Extended;
@@ -347,8 +349,8 @@
 				495F97003DE9308407210E3E98C79FE1 /* DatePicker-umbrella.h */,
 				473240E3C9E5D2B2540B9689EB90FA14 /* ResourceBundle-DatePicker-DatePicker-Info.plist */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/DatePicker";
+			name = "Pods-DatePicker_Example";
+			path = "Target Support Files/Pods-DatePicker_Example";
 			sourceTree = "<group>";
 		};
 		730F440493B2166B26881688EFF57F73 /* Pods-DatePicker_Example */ = {
@@ -388,7 +390,9 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+
 		C30E6AF47D3107D63BE16D2C08228F25 /* Pods-DatePicker_Tests */ = {
+
 			isa = PBXGroup;
 			children = (
 				1C3E403509236F75CA9457D675DC021E /* Pods-DatePicker_Tests.modulemap */,
@@ -412,12 +416,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+
 		E849DE08DC6D34BE27107785DFE5C25E /* Pod */ = {
 			isa = PBXGroup;
 			children = (
 				DAAA92402697397B506441B28DFC179E /* DatePicker.podspec */,
 				3A89958E31523DD92764BE9EF49DE2A3 /* LICENSE */,
 				435FBE40585C6DCD133C348F4E942EE3 /* README.md */,
+
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 			buildPhases = (
 				2A3089AC240C54558F32B03DCFFEFFF4 /* Headers */,
 				512F837CD8B5163EC42C8D8AD7825CC9 /* Sources */,
+
 				AE95F73D24FF2F0748A143BAB08FBAB3 /* Frameworks */,
 				D2E296A66DDEF5DF13806F3A0B228253 /* Resources */,
 			);
@@ -633,6 +640,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+
 		4E80B7F1AEE824468A2677F3CA75C3EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -749,7 +757,9 @@
 /* Begin XCBuildConfiguration section */
 		0C1E22D88E05D6A34FBE7EB35AE84784 /* Debug */ = {
 			isa = XCBuildConfiguration;
+
 			baseConfigurationReference = BF0826D5E830CE2A81372AA99B73CECE /* Extended.xcconfig */;
+
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -916,6 +926,7 @@
 		7303EBFB7EDECF6E36A8D7389E568B10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84FC269B3ED1E0C2529395520D5BCAAE /* DatePicker.xcconfig */;
+
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/DatePicker";

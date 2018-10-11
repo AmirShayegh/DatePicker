@@ -2,8 +2,8 @@
   "name": "DatePicker",
   "version": "1.0.0",
   "summary": "Date Picker for iOS",
-  "description": "\"A simple, elegant Date Picker library for iOS\"",
-  "homepage": "https://github.com/FreshworksStudio/DatePicker.git",
+  "description": "A simple, elegant Date Picker library for iOS",
+  "homepage": "https://github.com/FreshworksStudio/DatePicker",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
