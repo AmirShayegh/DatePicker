@@ -56,7 +56,7 @@ public class DatePickerHelper {
     // Returns the number of the month for given month name
     public func month(name: String) -> Int {
         let months = self.months()
-        if let m = months.index(of: name) {
+        if let m = months.firstIndex(of: name) {
             return m + 1
         }
         return 0

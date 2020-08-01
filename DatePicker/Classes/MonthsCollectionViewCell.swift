@@ -39,7 +39,7 @@ class MonthsCollectionViewCell: UICollectionViewCell {
         self.middleIndicator.backgroundColor = Colors.inactiveText
         middleIndicator.alpha = 0
         self.bottomDivider.backgroundColor = Colors.inactiveText
-        self.collectionView.backgroundColor = Colors.background
+        self.collectionView.backgroundColor = .clear
     }
 
 }
@@ -101,7 +101,7 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func select(month: String) {
-        guard let indexPathRow = items.index(of: month)  else { return }
+        guard let indexPathRow = items.firstIndex(of: month)  else { return }
         let indexPath: IndexPath = [0,(indexPathRow + paddingCells / 2)]
         scrollToMonth(at: indexPath)
     }

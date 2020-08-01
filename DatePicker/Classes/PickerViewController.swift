@@ -242,7 +242,7 @@ public class PickerViewController: UIViewController {
         self.month = date.month()
         self.day = date.day()
     }
-
+    
     func changeDay(to: Int) {
         self.day = to
         reloadDays()
@@ -306,27 +306,18 @@ public class PickerViewController: UIViewController {
         guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
 //        let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
+            cell.collectionView.reloadData()
+            return
+            /*
             if !calledFromSwipe {
                 cell.randomReload(done: {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         cell.collectionView.reloadData()
                     }
                 })
-//                DispatchQueue.main.async {
-//                    UIView.animate(withDuration: 0.1, animations: {
-//                        cell.alpha = 0
-//                    }, completion: { (done) in
-//                        cell.collectionView.reloadData()
-//                        UIView.animate(withDuration: fadeDuration, animations: {
-//                            cell.alpha = 1
-//                        })
-//                    })
-//                }
-
-//                cell.collectionView.reloadData()
             } else {
                 cell.collectionView.reloadData()
-            }
+            }*/
         }
     }
 
@@ -467,7 +458,7 @@ public class PickerViewController: UIViewController {
     func firstDayOfMonthIndex() -> Int {
         let day = firstDayOfMonth()
         let days = DatePickerHelper.shared.days()
-        if let i = days.index(of: day.charactersUpTo(index: 3)) {
+        if let i = days.firstIndex(of: day.charactersUpTo(index: 3)) {
             return i + days.count
         } else {
             return 0

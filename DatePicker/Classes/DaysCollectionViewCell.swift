@@ -76,7 +76,6 @@ class DaysCollectionViewCell: UICollectionViewCell {
     }
 
     func update() {
-
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -132,6 +131,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
 
     var randomlyRealodedIndexes: [Int] = [Int]()
 
+    /*
     func randomReload(done: @escaping()-> Void) {
 
             let numberOfElements = getNumberOfElements()
@@ -154,7 +154,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
             self.randomReload(done: done)
 
         }
-    }
+    }*/
 
     func getNumberOfElements() -> Int {
         guard let p = self.parent else { return 0}

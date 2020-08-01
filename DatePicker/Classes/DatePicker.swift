@@ -130,9 +130,12 @@ public class DatePicker {
     }
 
     // change colors
-    public func colors(main: UIColor, background: UIColor, inactive: UIColor) {
-        Colors.main = main
-        Colors.background = background
-        Colors.inactiveText = inactive
+    public func colors(mainLight: UIColor, backgroundLight: UIColor, inactiveLight: UIColor, mainDark: UIColor, backgroundDark: UIColor, inactiveDark: UIColor) {
+        Colors.mainLight = mainLight
+        Colors.backgroundLight = backgroundLight
+        Colors.inactiveTextLight = inactiveLight
+        Colors.mainDark = mainDark
+        Colors.backgroundDark = backgroundDark
+        Colors.inactiveTextDark = inactiveDark
     }
 }

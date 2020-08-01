@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     @IBAction func popover(_ sender: UIButton) {
         self.label.alpha = 1
         let picker = DatePicker()
+        
         picker.setupYearless(minMonth: 3, minDay: 8 ) { (selected, month, day) in
             if selected, let day = day, let month = month {
                 self.label.text = "selected \(DatePickerHelper.shared.month(number: month)) \(day)"
@@ -47,17 +48,17 @@ class ViewController: UIViewController {
         // let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
 
         // Yearless
-        fd.setupYearless { (selected, month, day) in
-            self.label.alpha = 1
-            if selected, let day = day, let month = month {
-                self.label.text = "selected \(DatePickerHelper.shared.month(number: month)) \(day)"
-            } else {
-                self.label.text = "Cancelled"
-            }
-        }
+//        fd.setupYearless { (selected, month, day) in
+//            self.label.alpha = 1
+//            if selected, let day = day, let month = month {
+//                self.label.text = "selected \(DatePickerHelper.shared.month(number: month)) \(day)"
+//            } else {
+//                self.label.text = "Cancelled"
+//            }
+//        }
 
         // Regular
-        /*
+        
         fd.setup { (selected, date) in
             self.label.alpha = 1
             if selected, let d = date {
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
             } else {
                 self.label.text = "cancelled"
             }
-        }*/
+        }
 
 
         fd.display(in: self)

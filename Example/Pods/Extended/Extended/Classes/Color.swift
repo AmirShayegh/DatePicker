@@ -26,4 +26,12 @@ extension UIColor {
                   alpha: CGFloat(1.0)
         )
     }
+    
+    /// Multiply the brightness channel by `multiple`
+    public func adjustingBrightness(byMultiple multiple: CGFloat) -> UIColor {
+        var hue: CGFloat = 0, saturation: CGFloat = 0, brightness: CGFloat = 0, alpha: CGFloat = 0
+        getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        let newBrightness = brightness * multiple
+        return UIColor(hue: hue, saturation: saturation, brightness: newBrightness, alpha: alpha)
+    }
 }

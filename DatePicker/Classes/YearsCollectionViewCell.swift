@@ -42,7 +42,7 @@ class YearsCollectionViewCell: UICollectionViewCell {
         self.middleIndicator.backgroundColor = Colors.inactiveText
         middleIndicator.alpha = 0
         self.bottomDivider.backgroundColor = Colors.inactiveText
-        self.collectionView.backgroundColor = Colors.background
+        self.collectionView.backgroundColor = .clear
     }
 
 }
@@ -95,7 +95,7 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func select(year: Int) {
-        guard let indexPathRow = items.index(of: year)  else { return }
+        guard let indexPathRow = items.firstIndex(of: year)  else { return }
         let indexPath: IndexPath = [0,(indexPathRow + paddingCells / 2)]
         scrollToYear(at: indexPath)
     }

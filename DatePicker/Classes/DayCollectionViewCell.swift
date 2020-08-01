@@ -63,12 +63,13 @@ class DayCollectionViewCell: UICollectionViewCell {
             self.button.isUserInteractionEnabled = true
         }
 
-        UIView.animate(withDuration: 0.2) {
-            self.alpha = 1
-        }
+        self.alpha = 1
+        backgroundColor = .clear
+        clipsToBounds = true
     }
 
     func select() {
+        
         self.label.font = Fonts.heavy
         self.label.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
         self.view.backgroundColor = Colors.main
@@ -78,13 +79,11 @@ class DayCollectionViewCell: UICollectionViewCell {
     func deselect() {
         self.label.font = Fonts.regular
         self.label.backgroundColor = Colors.background
-        self.view.backgroundColor = Colors.background
+        self.view.backgroundColor = .clear
         self.label.textColor = Colors.main
     }
 
     func fadeOff() {
-        UIView.animate(withDuration: 0.2) {
-            self.alpha = 0
-        }
+        self.alpha = 0
     }
 }
