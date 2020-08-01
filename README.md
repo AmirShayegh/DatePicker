@@ -61,8 +61,8 @@ datePicker.setup(min: minDate, max: maxDate) { (selected, date) in
 You could also use DatePickerHelper's functions to help generate dates:
 
 ```Swift
-let minDate = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
-let maxDate = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
+let minDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
+let maxDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
 ```
 
 - Yearless Picker: select and return day and month integers independent of year. 
@@ -73,8 +73,8 @@ datePicker.setupYearless { (selected, month, day) in
 	if selected, let day = day, let month = month {
 		print("selected \(month) \(day)")
 		// You can also use DatePickerHelper's functions:
-		// FDHelper.shared.month(number: Int) will return the month string name
-		print("selected FDHelper.shared.month(number: month) \(day)")
+		// DatePickerHelper.shared.month(number: Int) will return the month string name
+		print("selected DatePickerHelper.shared.month(number: month) \(day)")
 	} else {
 		print("cancelled")
 	}

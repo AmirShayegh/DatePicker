@@ -157,21 +157,10 @@ class DaysCollectionViewCell: UICollectionViewCell {
     }*/
 
     func getNumberOfElements() -> Int {
-        guard let p = self.parent else { return 0}
-        switch self.mode {
-        case .Basic:
-            let rows = 7
-            let colums = 7
-            return (rows * colums)
-        case .MinMax:
-            let rows = 7
-            let colums = 7
-            return (rows * colums)
-        case .Yearless:
-            return p.daysInMonth()
-        }
+        let rows = 7
+        let colums = 7
+        return (rows * colums)
     }
-
 }
 
 // MARK: CollectionView
@@ -261,7 +250,7 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
     func getYearlessModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
         var selected = false
         var disabled = false
-        let currentDay = indexPath.row + 1
+        var currentDay = indexPath.row + 1
         if let p = self.parent {
             selected = p.day == (indexPath.row + 1)
             if p.month == p.minMonth && currentDay < p.minDay {
@@ -270,7 +259,19 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             if p.month == p.maxMonth && currentDay > p.maxDay {
                 disabled = true
             }
+            if currentDay > p.daysInMonth() {
+                currentDay = -1
+            }
+            // if month does not have this day,
+            // change selected day
+            if selected && currentDay == -1 {
+                selected = false
+                p.day = p.daysInMonth()
+                let newDayIndexPath = IndexPath(row: (p.daysInMonth() - 1), section: 0)
+                update(indexpath: newDayIndexPath)
+            }
         }
+
         let cell = getDayCell(indexPath: indexPath)
         cell.setup(day: currentDay, selected: selected, disabled: disabled, indexPath: indexPath, parent: self)
         if selected {

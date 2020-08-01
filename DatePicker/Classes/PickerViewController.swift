@@ -202,7 +202,12 @@ public class PickerViewController: UIViewController {
         dimissAnimations() {
             if self.mode == .Yearless {
                 if self.yearlessCallBack != nil {
-                    return self.yearlessCallBack!(true, self.month, self.day)
+                    let m = self.month
+                    var d = self.day
+                    if d > self.daysInMonth() {
+                        d = self.daysInMonth()
+                    }
+                    return self.yearlessCallBack!(true, m, d)
                 }
             } else {
                 if self.callBack != nil {
@@ -276,6 +281,16 @@ public class PickerViewController: UIViewController {
     func YearOrMonthChanged() {
         self.reloadDays()
         self.reloadButton()
+    }
+
+    func lockDays() {
+        guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
+        cell.isUserInteractionEnabled = false
+    }
+
+    func unlockDays() {
+        guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
+        cell.isUserInteractionEnabled = true
     }
 
     func reloadDays() {
