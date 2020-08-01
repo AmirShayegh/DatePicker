@@ -38,19 +38,21 @@ public class PickerViewController: UIViewController {
     var mode: DatePickerMode = .Basic
     var calledFromSwipe: Bool = false
 
-    var day: Int = 18 {
-        didSet {
-            liveReturn()
-        }
-    }
+    var day: Int = 18
     var month: Int = 7 {
         didSet {
-            liveReturn()
+            let max = DatePickerHelper.shared.daysIn(month: month, year: year)
+            if day > max && !loading {
+                day = max
+            }
         }
     }
     var year: Int = 2018 {
         didSet {
-            liveReturn()
+            let max = DatePickerHelper.shared.daysIn(month: month, year: year)
+            if day > max && !loading {
+                day = max
+            }
         }
     }
 
@@ -208,32 +210,6 @@ public class PickerViewController: UIViewController {
                 }
             }
         }
-    }
-
-    // date changed
-    func liveReturn() {
-
-        /*
-         Live return returns too many dates which can result in issues on the receiving end.
-         No longer being used.
-         */
-        return
-//        if loading {return}
-//        // if date is valid, send back
-//        if self.mode == .Yearless {
-//            if self.month >= 1 && self.month <= 12, let yearlessLive = yearlessLiveCallBack {
-//                yearlessLive(self.month, self.day)
-//            }
-//            //            guard let yearlessLive = yearlessLiveCallBack else {return}
-//            //            yearlessLive(self.month, self.day)
-//        } else {
-//            guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
-//            if let min = self.minDate, let max = self.maxDate {
-//                if date <= max && date >= min {
-//                    completion(date)
-//                }
-//            }
-//        }
     }
 
     // MARK: Utility Functions
