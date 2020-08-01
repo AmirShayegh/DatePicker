@@ -15,7 +15,7 @@ DatePicker is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'DatePicker', '1.0.0'
+pod 'DatePicker', '1.2.0'
 ```
 
 ## Quick Usage
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 
 ```Swift
 let datePicker = DatePicker()
-datePickersetup { (selected, date) in
+datePicker.setup { (selected, date) in
 	if selected, let selectedDate = date {
 		print("\(selectedDate)"
 	} else {
