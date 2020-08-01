@@ -1,13 +1,13 @@
 PODS:
   - DatePicker (1.0.0):
-    - Extended (~> 1.0.4)
-  - Extended (1.0.4)
+    - Extended
+  - Extended (1.0.5)
 
 DEPENDENCIES:
   - DatePicker (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Extended
 
 EXTERNAL SOURCES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  DatePicker: f3041eae663068bac24967206c14fe2cfd3d2ea1
-  Extended: 94fe9d842694e7d81da413f5762d401829bbffd9
+  DatePicker: 9a41e094bf5e6e53fea4064bbcf16bdc8bfcc047
+  Extended: c463225e0c29b2823847866c1b106827772ac678
 
 PODFILE CHECKSUM: 56090e89a3acd022339bee856a8f54e1d88461bb
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.9.3

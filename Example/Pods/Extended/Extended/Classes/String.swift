@@ -74,4 +74,8 @@ extension String {
     public var fromHTML: String {
         return htmlToAttributedString?.string ?? ""
     }
+    
+    public func attributable() -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: self)
+    }
 }

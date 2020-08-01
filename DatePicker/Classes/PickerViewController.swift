@@ -38,19 +38,21 @@ public class PickerViewController: UIViewController {
     var mode: DatePickerMode = .Basic
     var calledFromSwipe: Bool = false
 
-    var day: Int = 18 {
-        didSet {
-            liveReturn()
-        }
-    }
+    var day: Int = 18
     var month: Int = 7 {
         didSet {
-            liveReturn()
+            let max = DatePickerHelper.shared.daysIn(month: month, year: year)
+            if day > max && !loading {
+                day = max
+            }
         }
     }
     var year: Int = 2018 {
         didSet {
-            liveReturn()
+            let max = DatePickerHelper.shared.daysIn(month: month, year: year)
+            if day > max && !loading {
+                day = max
+            }
         }
     }
 
@@ -210,39 +212,13 @@ public class PickerViewController: UIViewController {
         }
     }
 
-    // date changed
-    func liveReturn() {
-
-        /*
-         Live return returns too many dates which can result in issues on the receiving end.
-         No longer being used.
-         */
-        return
-//        if loading {return}
-//        // if date is valid, send back
-//        if self.mode == .Yearless {
-//            if self.month >= 1 && self.month <= 12, let yearlessLive = yearlessLiveCallBack {
-//                yearlessLive(self.month, self.day)
-//            }
-//            //            guard let yearlessLive = yearlessLiveCallBack else {return}
-//            //            yearlessLive(self.month, self.day)
-//        } else {
-//            guard let date = FDHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) , let completion = self.liveCallBack else {return}
-//            if let min = self.minDate, let max = self.maxDate {
-//                if date <= max && date >= min {
-//                    completion(date)
-//                }
-//            }
-//        }
-    }
-
     // MARK: Utility Functions
     func set(date: Date) {
         self.year = date.year()
         self.month = date.month()
         self.day = date.day()
     }
-
+    
     func changeDay(to: Int) {
         self.day = to
         reloadDays()
@@ -306,27 +282,18 @@ public class PickerViewController: UIViewController {
         guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
 //        let fadeDuration: Double = 0.2
         if collectionView.indexPathsForVisibleItems.contains(indexPath) {
+            cell.collectionView.reloadData()
+            return
+            /*
             if !calledFromSwipe {
                 cell.randomReload(done: {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         cell.collectionView.reloadData()
                     }
                 })
-//                DispatchQueue.main.async {
-//                    UIView.animate(withDuration: 0.1, animations: {
-//                        cell.alpha = 0
-//                    }, completion: { (done) in
-//                        cell.collectionView.reloadData()
-//                        UIView.animate(withDuration: fadeDuration, animations: {
-//                            cell.alpha = 1
-//                        })
-//                    })
-//                }
-
-//                cell.collectionView.reloadData()
             } else {
                 cell.collectionView.reloadData()
-            }
+            }*/
         }
     }
 
@@ -467,7 +434,7 @@ public class PickerViewController: UIViewController {
     func firstDayOfMonthIndex() -> Int {
         let day = firstDayOfMonth()
         let days = DatePickerHelper.shared.days()
-        if let i = days.index(of: day.charactersUpTo(index: 3)) {
+        if let i = days.firstIndex(of: day.charactersUpTo(index: 3)) {
             return i + days.count
         } else {
             return 0
