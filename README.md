@@ -15,7 +15,7 @@ DatePicker is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'DatePicker', '1.2.0'
+pod 'DatePicker', '~> 1.2.0'
 ```
 
 ## Quick Usage
