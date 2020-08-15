@@ -34,42 +34,25 @@ class ViewController: UIViewController {
                 self.label.text = "Cancelled"
             }
         }
-
-        picker.displayPopOver(on: sender, in: self) {}
+        
+        picker.show(in: self, on: sender)
 
     }
 
     @IBAction func present(_ sender: UIButton) {
         self.label.alpha = 0
-        let fd = DatePicker()
-
-        // you can generate dates using this function
-        // let date1 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
-        // let date2 = FDHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
-
-        // Yearless
-//        fd.setupYearless { (selected, month, day) in
-//            self.label.alpha = 1
-//            if selected, let day = day, let month = month {
-//                self.label.text = "selected \(DatePickerHelper.shared.month(number: month)) \(day)"
-//            } else {
-//                self.label.text = "Cancelled"
-//            }
-//        }
-
-        // Regular
+        let picker = DatePicker()
         
-        fd.setup { (selected, date) in
-            self.label.alpha = 1
-            if selected, let d = date {
-                self.label.text = "Selected \(d)"
+        picker.setup(beginWith: Date()) { (selected, date) in
+            if selected, let selectedDate = date {
+                print(selectedDate.string())
             } else {
-                self.label.text = "cancelled"
+                print("Cancelled")
             }
         }
 
-
-        fd.display(in: self)
+        picker.show(in: self)
+            
     }
 }
 
