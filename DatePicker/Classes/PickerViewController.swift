@@ -127,7 +127,7 @@ public class PickerViewController: UIViewController {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: p.view.frame.width, height: p.view.frame.height))
         view.center.y = p.view.center.y
         view.center.x = p.view.center.x
-        view.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.5)
+        view.backgroundColor = DatePickerColors.backdrop
         view.alpha = 1
         view.tag = whiteScreenTag
         return view
@@ -477,8 +477,8 @@ public class PickerViewController: UIViewController {
     }
 
     func style() {
-        self.view.backgroundColor = Colors.background
-        self.collectionView.backgroundColor = Colors.background
+        self.view.backgroundColor = DatePickerColors.background
+        self.collectionView.backgroundColor = DatePickerColors.background
     }
 
     deinit {

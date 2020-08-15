@@ -89,14 +89,24 @@ public class DatePicker {
     // MARK: Presenataion
 
     // Display at the bottom of parent
+    @available(*, deprecated, message: "Use show() instead")
     public func display(in parent: UIViewController) {
+       display_(in: parent)
+    }
+    
+    private func display_(in parent: UIViewController) {
         self.parentVC = parent
         vc.displayMode = .Bottom
         vc.display(on: parent)
     }
 
     // Display as popover on button
+    @available(*, deprecated, message: "Use show() instead")
     public func displayPopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
+        display_PopOver(on: on, in: parent, width: width, completion: completion)
+    }
+    
+    private func display_PopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
         // dismiss keyboards
         parent.view.endEditing(true)
 
@@ -122,7 +132,7 @@ public class DatePicker {
         vc.modalPresentationStyle = .popover
         vc.preferredContentSize = frameSize
         guard let popover = vc.popoverPresentationController else {return}
-        popover.backgroundColor = Colors.background
+        popover.backgroundColor = DatePickerColors.background
         popover.permittedArrowDirections = .any
         popover.sourceView = on
         popover.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
@@ -130,12 +140,46 @@ public class DatePicker {
     }
 
     // change colors
+    
     public func colors(mainLight: UIColor, backgroundLight: UIColor, inactiveLight: UIColor, mainDark: UIColor, backgroundDark: UIColor, inactiveDark: UIColor) {
-        Colors.mainLight = mainLight
-        Colors.backgroundLight = backgroundLight
-        Colors.inactiveTextLight = inactiveLight
-        Colors.mainDark = mainDark
-        Colors.backgroundDark = backgroundDark
-        Colors.inactiveTextDark = inactiveDark
+        DatePickerColors.mainLight = mainLight
+        DatePickerColors.backgroundLight = backgroundLight
+        DatePickerColors.inactiveTextLight = inactiveLight
+        DatePickerColors.mainDark = mainDark
+        DatePickerColors.backgroundDark = backgroundDark
+        DatePickerColors.inactiveTextDark = inactiveDark
+    }
+    
+    public func setColors(main: UIColor, background: UIColor, inactive: UIColor) {
+        DatePickerColors.mainLight = main
+        DatePickerColors.backgroundLight = background
+        DatePickerColors.inactiveTextLight = inactive
+        DatePickerColors.mainDark = main
+        DatePickerColors.backgroundDark = background
+        DatePickerColors.inactiveTextDark = inactive
+    }
+}
+
+extension DatePicker {
+    
+    
+    /// Show date picker in the indicated UIViewController
+    /// For iPad suppoet:
+    /// Specify a UIView in the popOverItem Parameter for displaying DatePicker as a popover on the UIView
+    /// - Parameters:
+    ///   - parent: UIViewController to present on
+    ///   - on: UIView to show popoever on (for iPad)
+    public func show(in parent: UIViewController, on popOverItem: UIView? = nil) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            guard let view = popOverItem else {
+                print("***************")
+                print("** DatePicker config error: Specify popOverItem for displaying on iPad!")
+                print("***************")
+                return
+            }
+            display_PopOver(on: view, in: parent, completion: {})
+        } else {
+            display_(in: parent)
+        }
     }
 }

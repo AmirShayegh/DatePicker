@@ -58,16 +58,16 @@ class FrameHelper {
         guard let p = parentVC else {return}
         view.center.x = p.view.center.x
         view.center.y = p.view.center.y
-        view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor)
-        view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor)
+//        view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor)
+//        view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor)
     }
 
     func positionCenter(view:UIView, in parentVC: UIViewController, yearless: Bool) {
         view.frame = getSuggesedFrame(padding: 20, for: parentVC.view.frame.size, yearless: yearless)
         view.center.x = parentVC.view.center.x
         view.center.y = parentVC.view.center.y
-        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
-        view.centerYAnchor.constraint(equalTo: parentVC.view.centerYAnchor)
+//        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
+//        view.centerYAnchor.constraint(equalTo: parentVC.view.centerYAnchor)
     }
 
     func positionBottom(view: UIView, in parentVC: UIViewController, size: CGSize? = nil, yearless: Bool) {
@@ -79,7 +79,7 @@ class FrameHelper {
         }
         view.frame = CGRect(x: 0, y: parentHeight - h, width: w, height: h)
         view.center.x = parentVC.view.center.x
-        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
+//        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
     }
 
     func positionBottomPreAnimation(view:UIView, in parentVC: UIViewController, yearless: Bool) {
@@ -92,7 +92,7 @@ class FrameHelper {
 
         view.frame = CGRect(x: 0, y: parentHeight, width: w, height: h)
         view.center.x = parentVC.view.center.x
-        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
+//        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
     }
 
 

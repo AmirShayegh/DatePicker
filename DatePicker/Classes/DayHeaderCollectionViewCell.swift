@@ -21,8 +21,8 @@ class DayHeaderCollectionViewCell: UICollectionViewCell {
     }
 
     func style() {
-        self.backgroundColor = Colors.background
-        self.dayLabel.textColor = Colors.main
+        self.backgroundColor = DatePickerColors.background
+        self.dayLabel.textColor = DatePickerColors.main
         self.dayLabel.font = Fonts.medium
     }
 

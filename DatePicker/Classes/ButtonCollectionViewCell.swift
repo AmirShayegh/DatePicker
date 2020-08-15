@@ -34,8 +34,8 @@ class ButtonCollectionViewCell: UICollectionViewCell {
     }
 
     func style() {
-        divider.backgroundColor = Colors.main
-        self.button.setTitleColor(Colors.main, for: .normal)
+        divider.backgroundColor = DatePickerColors.main
+        self.button.setTitleColor(DatePickerColors.main, for: .normal)
         button.titleLabel?.font = Fonts.regular
     }
 

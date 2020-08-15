@@ -72,7 +72,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
     }
 
     func style() {
-        self.collectionView.layer.backgroundColor = Colors.background.cgColor
+        self.collectionView.layer.backgroundColor = DatePickerColors.background.cgColor
     }
 
     func update() {

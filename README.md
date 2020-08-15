@@ -68,11 +68,21 @@ here are multiple ways to configure DatePicker:
 ```swift
 let datePicker = DatePicker()
 datePicker.setup { (selected, date) in
-	if selected, let selectedDate = date {
-		print("\(selectedDate)"
-	} else {
-		print("cancelled")
-	}
+    if selected, let selectedDate = date {
+        print("\(selectedDate)"
+    } else {
+        print("cancelled")
+    }
+}
+```
+Set initial selected by setting the `beginWith` parameter:
+```swift
+datePicker.setup(beginWith: Date()) { (selected, date) in
+            if selected, let selectedDate = date {
+                print(selectedDate.string())
+            } else {
+                print("Cancelled")
+            }
 }
 ```
 Set initial selected by setting the `beginWith` parameter:
@@ -89,11 +99,21 @@ datePicker.setup(beginWith: Date()) { (selected, date) in
 - Picker with minimum and maximum dates
 ```swift
 datePicker.setup(min: minDate, max: maxDate) { (selected, date) in
-	if selected, let selectedDate = date {
-		print("\(selectedDate)"
-	} else {
-		print("cancelled")
-	}
+    if selected, let selectedDate = date {
+        print("\(selectedDate)"
+    } else {
+        print("cancelled")
+    }
+}
+```
+Set initial selected by setting the `beginWith` parameter
+```swift
+datePicker.setup(beginWith: Date(), min: minDate, max: maxDate) { (selected, date) in
+    if selected, let selectedDate = date {
+        print("\(selectedDate)"
+    } else {
+        print("cancelled")
+    }
 }
 ```
 Set initial selected by setting the `beginWith` parameter
@@ -119,14 +139,14 @@ let maxDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 2020)
 ```Swift
 let datePicker = DatePicker()
 datePicker.setupYearless { (selected, month, day) in
-	if selected, let day = day, let month = month {
-		print("selected \(month) \(day)")
-		// You can also use DatePickerHelper's functions:
-		// DatePickerHelper.shared.month(number: Int) will return the month string name
-		print("selected DatePickerHelper.shared.month(number: month) \(day)")
-	} else {
-		print("cancelled")
-	}
+    if selected, let day = day, let month = month {
+        print("selected \(month) \(day)")
+        // You can also use DatePickerHelper's functions:
+        // DatePickerHelper.shared.month(number: Int) will return the month string name
+        print("selected DatePickerHelper.shared.month(number: month) \(day)")
+    } else {
+        print("cancelled")
+    }
 }
 ``` 
 ![Alt Text](https://github.com/AmirShayegh/DatePicker/blob/master/ReadmeFiles/Yearless.png)

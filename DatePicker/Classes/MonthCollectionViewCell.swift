@@ -37,12 +37,12 @@ class MonthCollectionViewCell: UICollectionViewCell {
 
     func select() {
         self.label.font = Fonts.heavy
-        self.label.textColor = Colors.main
+        self.label.textColor = DatePickerColors.main
     }
 
     func deselect() {
         self.label.font = Fonts.regular
-        self.label.textColor = Colors.inactiveText
+        self.label.textColor = DatePickerColors.inactiveText
     }
 
 }
