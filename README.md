@@ -85,6 +85,16 @@ datePicker.setup(beginWith: Date()) { (selected, date) in
             }
 }
 ```
+Set initial selected by setting the `beginWith` parameter:
+```swift
+datePicker.setup(beginWith: Date()) { (selected, date) in
+            if selected, let selectedDate = date {
+                print(selectedDate.string())
+            } else {
+                print("Cancelled")
+            }
+}
+```
 
 - Picker with minimum and maximum dates
 ```swift
@@ -104,6 +114,16 @@ datePicker.setup(beginWith: Date(), min: minDate, max: maxDate) { (selected, dat
     } else {
         print("cancelled")
     }
+}
+```
+Set initial selected by setting the `beginWith` parameter
+```swift
+datePicker.setup(beginWith: Date(), min: minDate, max: maxDate) { (selected, date) in
+	if selected, let selectedDate = date {
+		print("\(selectedDate)"
+	} else {
+		print("cancelled")
+	}
 }
 ```
 
