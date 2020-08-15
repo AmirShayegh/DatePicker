@@ -61,7 +61,7 @@ class DayCollectionViewCell: UICollectionViewCell {
         }
 
         if let d = disabled, d {
-            self.label.textColor = Colors.inactiveText
+            self.label.textColor = DatePickerColors.inactiveText
             self.button.isUserInteractionEnabled = false
         } else {
             self.button.isUserInteractionEnabled = true
@@ -76,15 +76,15 @@ class DayCollectionViewCell: UICollectionViewCell {
         
         self.label.font = Fonts.heavy
         self.label.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0)
-        self.view.backgroundColor = Colors.main
-        self.label.textColor = Colors.background
+        self.view.backgroundColor = DatePickerColors.main
+        self.label.textColor = DatePickerColors.background
     }
 
     func deselect() {
         self.label.font = Fonts.regular
-        self.label.backgroundColor = Colors.background
+        self.label.backgroundColor = DatePickerColors.background
         self.view.backgroundColor = .clear
-        self.label.textColor = Colors.main
+        self.label.textColor = DatePickerColors.main
     }
 
     func fadeOff() {

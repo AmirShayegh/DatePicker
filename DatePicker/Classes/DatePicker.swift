@@ -132,7 +132,7 @@ public class DatePicker {
         vc.modalPresentationStyle = .popover
         vc.preferredContentSize = frameSize
         guard let popover = vc.popoverPresentationController else {return}
-        popover.backgroundColor = Colors.background
+        popover.backgroundColor = DatePickerColors.background
         popover.permittedArrowDirections = .any
         popover.sourceView = on
         popover.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
@@ -142,21 +142,21 @@ public class DatePicker {
     // change colors
     
     public func colors(mainLight: UIColor, backgroundLight: UIColor, inactiveLight: UIColor, mainDark: UIColor, backgroundDark: UIColor, inactiveDark: UIColor) {
-        Colors.mainLight = mainLight
-        Colors.backgroundLight = backgroundLight
-        Colors.inactiveTextLight = inactiveLight
-        Colors.mainDark = mainDark
-        Colors.backgroundDark = backgroundDark
-        Colors.inactiveTextDark = inactiveDark
+        DatePickerColors.mainLight = mainLight
+        DatePickerColors.backgroundLight = backgroundLight
+        DatePickerColors.inactiveTextLight = inactiveLight
+        DatePickerColors.mainDark = mainDark
+        DatePickerColors.backgroundDark = backgroundDark
+        DatePickerColors.inactiveTextDark = inactiveDark
     }
     
     public func setColors(main: UIColor, background: UIColor, inactive: UIColor) {
-        Colors.mainLight = main
-        Colors.backgroundLight = background
-        Colors.inactiveTextLight = inactive
-        Colors.mainDark = main
-        Colors.backgroundDark = background
-        Colors.inactiveTextDark = inactive
+        DatePickerColors.mainLight = main
+        DatePickerColors.backgroundLight = background
+        DatePickerColors.inactiveTextLight = inactive
+        DatePickerColors.mainDark = main
+        DatePickerColors.backgroundDark = background
+        DatePickerColors.inactiveTextDark = inactive
     }
 }
 

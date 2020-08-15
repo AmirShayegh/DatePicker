@@ -39,9 +39,9 @@ class YearsCollectionViewCell: UICollectionViewCell {
     }
 
     func style() {
-        self.middleIndicator.backgroundColor = Colors.inactiveText
+        self.middleIndicator.backgroundColor = DatePickerColors.inactiveText
         middleIndicator.alpha = 0
-        self.bottomDivider.backgroundColor = Colors.inactiveText
+        self.bottomDivider.backgroundColor = DatePickerColors.inactiveText
         self.collectionView.backgroundColor = .clear
     }
 
