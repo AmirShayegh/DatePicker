@@ -24,6 +24,33 @@ pod 'DatePicker', '~> 1.2.0'
 
 ## Quick Usage
 
+```swift
+import DatePicker
+
+class ViewController: UIViewController {
+    
+    @IBAction func DateButton(_ sender: UIButton) {
+        let minDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 1990)!
+        let maxDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 2030)!
+        let today = Date()
+        // Create picker object
+        let datePicker = DatePicker()
+        // Setup
+        datePicker.setup(beginWith: today, min: minDate, max: maxDate) { (selected, date) in
+            if selected, let selectedDate = date {
+                print(selectedDate.string())
+            } else {
+                print("Cancelled")
+            }
+        }
+        // Display
+        datePicker.show(in: self, on: sender)
+    }
+}
+```
+
+## Detailed Usage
+
 1) Import the library
 
 ```Swift
@@ -36,9 +63,9 @@ class ViewController: UIViewController {
 
 2) Setup
 
-- Picker between today and 100 years from now:
-
-```Swift
+here are multiple ways to configure DatePicker:
+- Basic - Picker between today and 100 years from now
+```swift
 let datePicker = DatePicker()
 datePicker.setup { (selected, date) in
 	if selected, let selectedDate = date {
@@ -48,11 +75,19 @@ datePicker.setup { (selected, date) in
 	}
 }
 ```
+Set initial selected by setting the `beginWith` parameter:
+```swift
+datePicker.setup(beginWith: Date()) { (selected, date) in
+            if selected, let selectedDate = date {
+                print(selectedDate.string())
+            } else {
+                print("Cancelled")
+            }
+        }
+```
 
-- Picker with minimum and maximum dates:
-
-```Swift
-let datePicker = DatePicker()
+- Picker with minimum and maximum dates
+```swift
 datePicker.setup(min: minDate, max: maxDate) { (selected, date) in
 	if selected, let selectedDate = date {
 		print("\(selectedDate)"
@@ -61,8 +96,18 @@ datePicker.setup(min: minDate, max: maxDate) { (selected, date) in
 	}
 }
 ```
+Set initial selected by setting the `beginWith` parameter
+```swift
+datePicker.setup(beginWith: Date(), min: minDate, max: maxDate) { (selected, date) in
+	if selected, let selectedDate = date {
+		print("\(selectedDate)"
+	} else {
+		print("cancelled")
+	}
+}
+```
 
-You could also use DatePickerHelper's functions to help generate dates:
+You can also use DatePickerHelper's functions to help generate dates:
 
 ```Swift
 let minDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 1990)
