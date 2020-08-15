@@ -89,14 +89,24 @@ public class DatePicker {
     // MARK: Presenataion
 
     // Display at the bottom of parent
+    @available(*, deprecated, message: "Use show() instead")
     public func display(in parent: UIViewController) {
+       display_(in: parent)
+    }
+    
+    private func display_(in parent: UIViewController) {
         self.parentVC = parent
         vc.displayMode = .Bottom
         vc.display(on: parent)
     }
 
     // Display as popover on button
+    @available(*, deprecated, message: "Use show() instead")
     public func displayPopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
+        display_PopOver(on: on, in: parent, width: width, completion: completion)
+    }
+    
+    private func display_PopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
         // dismiss keyboards
         parent.view.endEditing(true)
 
@@ -130,6 +140,7 @@ public class DatePicker {
     }
 
     // change colors
+    
     public func colors(mainLight: UIColor, backgroundLight: UIColor, inactiveLight: UIColor, mainDark: UIColor, backgroundDark: UIColor, inactiveDark: UIColor) {
         Colors.mainLight = mainLight
         Colors.backgroundLight = backgroundLight
@@ -137,5 +148,38 @@ public class DatePicker {
         Colors.mainDark = mainDark
         Colors.backgroundDark = backgroundDark
         Colors.inactiveTextDark = inactiveDark
+    }
+    
+    public func setColors(main: UIColor, background: UIColor, inactive: UIColor) {
+        Colors.mainLight = main
+        Colors.backgroundLight = background
+        Colors.inactiveTextLight = inactive
+        Colors.mainDark = main
+        Colors.backgroundDark = background
+        Colors.inactiveTextDark = inactive
+    }
+}
+
+extension DatePicker {
+    
+    
+    /// Show date picker in the indicated UIViewController
+    /// For iPad suppoet:
+    /// Specify a UIView in the popOverItem Parameter for displaying DatePicker as a popover on the UIView
+    /// - Parameters:
+    ///   - parent: UIViewController to present on
+    ///   - on: UIView to show popoever on (for iPad)
+    public func show(in parent: UIViewController, on popOverItem: UIView? = nil) {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            guard let view = popOverItem else {
+                print("***************")
+                print("** DatePicker config error: Specify popOverItem for displaying on iPad!")
+                print("***************")
+                return
+            }
+            display_PopOver(on: view, in: parent, completion: {})
+        } else {
+            display_(in: parent)
+        }
     }
 }

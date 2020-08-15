@@ -20,6 +20,33 @@ pod 'DatePicker', '1.0.0'
 
 ## Quick Usage
 
+```swift
+import DatePicker
+
+class ViewController: UIViewController {
+    
+    @IBAction func DateButton(_ sender: UIButton) {
+        let minDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 1990)!
+        let maxDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 2030)!
+        let today = Date()
+        // Create picker object
+        let datePicker = DatePicker()
+        // Setup
+        datePicker.setup(beginWith: today, min: minDate, max: maxDate) { (selected, date) in
+            if selected, let selectedDate = date {
+                print(selectedDate.string())
+            } else {
+                print("Cancelled")
+            }
+        }
+        // Display
+        datePicker.show(in: self, on: sender)
+    }
+}
+```
+
+## Usage
+
 1) Import the library
 
 ```Swift
