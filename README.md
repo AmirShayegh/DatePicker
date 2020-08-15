@@ -19,7 +19,7 @@ DatePicker is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'DatePicker', '~> 1.2.0'
+pod 'DatePicker', '~> 1.3.0'
 ```
 
 ## Quick Usage
@@ -83,7 +83,7 @@ datePicker.setup(beginWith: Date()) { (selected, date) in
             } else {
                 print("Cancelled")
             }
-        }
+}
 ```
 
 - Picker with minimum and maximum dates
