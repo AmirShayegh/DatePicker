@@ -1,8 +1,9 @@
 # DatePicker
 ### A DatePicker for iOS 10 and Above
-- iPad and iPhone support
+- iPad and iPhone support (popover on ipad, card on iphone)
 - Dark mode support
 - Can personalize colours
+- Easy to use
 
 [![CI Status](https://img.shields.io/travis/amirshayegh/DatePicker.svg?style=flat)](https://travis-ci.org/amirshayegh/DatePicker)
 [![Version](https://img.shields.io/cocoapods/v/DatePicker.svg?style=flat)](https://cocoapods.org/pods/DatePicker)
