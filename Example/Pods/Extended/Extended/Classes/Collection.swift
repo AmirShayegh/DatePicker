@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Collection {
     /// Safely retrieve the element at `index`

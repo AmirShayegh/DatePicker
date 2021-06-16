@@ -6,7 +6,7 @@
 //  Copyright (c) 2018 amirshayegh. All rights reserved.
 //
 
-import UIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

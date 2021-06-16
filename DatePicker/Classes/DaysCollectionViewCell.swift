@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Extended
 
 class DaysCollectionViewCell: UICollectionViewCell {
 

@@ -17,7 +17,7 @@ let package = Package(
             path: "DatePicker/Classes",
             exclude: [".gitkeep"],
             resources: [
-                .process("en.lproj/DayCollectionViewCell.xib"),
+                .process("DayCollectionViewCell.xib"),
                 .process("ButtonCollectionViewCell.xib"),
                 .process("DayHeaderCollectionViewCell.xib"),
                 .process("DaysCollectionViewCell.xib"),

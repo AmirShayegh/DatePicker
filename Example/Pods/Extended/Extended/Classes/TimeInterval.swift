@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 extension TimeInterval {
     public var milliseconds: Int {
         return Int((truncatingRemainder(dividingBy: 1)) * 1000)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 extension UILabel {
     public func increaseFontSize(by: CGFloat) {
         let size = self.font.pointSize

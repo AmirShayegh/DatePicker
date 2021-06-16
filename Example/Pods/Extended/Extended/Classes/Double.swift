@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Double {
     public func roundToDecimal(_ fractionDigits: Int) -> Double {
