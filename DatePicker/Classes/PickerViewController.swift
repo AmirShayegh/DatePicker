@@ -536,7 +536,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if self.mode == .Yearless {
             numberOfWheels = 2
         }
-        if self.displayMode == .PopOver {
+		if !self.showSelectButtonInPopOver && self.displayMode == .PopOver {
             numberOfWheels = numberOfWheels - 1
         }
         let w = (self.collectionView.frame.width)
