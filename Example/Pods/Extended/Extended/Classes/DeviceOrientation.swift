@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIDeviceOrientation {
     public func getUIImageOrientationFromDevice() -> UIImage.Orientation {

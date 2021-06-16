@@ -5,9 +5,7 @@
 //  Created by Amir Shayegh on 2018-08-02.
 //
 
-import Foundation
-import Extended
-
+import UIKit
 
 public class DatePickerHelper {
     public static let shared = DatePickerHelper()
@@ -86,8 +84,11 @@ public class DatePickerHelper {
 
     // Returns the first day of the given month/year
     public func firstDayOf(month: Int, year: Int) -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEEE"
+		
         if let date = dateFrom(month: month, year: year) {
-            return date.day()
+			return formatter.string(from: date)
         } else {
             return ""
         }
@@ -95,8 +96,11 @@ public class DatePickerHelper {
 
     // Returns the last day of given month/year
     public func lastDayOf(month: Int, year: Int) -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEEE"
+		
         if let date = dateFrom(day: daysIn(month: month, year: year), month: month, year: year) {
-            return date.day()
+            return formatter.string(from: date)
         } else {
             return ""
         }
@@ -112,8 +116,7 @@ public class DatePickerHelper {
         dateComponents.hour = 0
         dateComponents.minute = 0
 
-        let calendar = Calendar.current
-        return calendar.date(from: dateComponents)
+        return Calendar.current.date(from: dateComponents)
     }
 
     // Generates date object from day montha and year
@@ -126,22 +129,21 @@ public class DatePickerHelper {
         dateComponents.hour = 0
         dateComponents.minute = 0
 
-        let calendar = Calendar.current
-        return calendar.date(from: dateComponents)
+        return Calendar.current.date(from: dateComponents)
     }
 
-    func test() {
-        print("*** Testing Month number and name conversion functions ***")
-        for i in 1...12 {
-            print("\(i): \(DatePickerHelper.shared.month(name: months()[i-1])) is \(DatePickerHelper.shared.month(number: i))")
-        }
-
-        print("**** Testing First days of months ***")
-        for i in 2010...2025 {
-            for j in 1...12 {
-                print("Year: \(i), Month: \(DatePickerHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).charactersUpTo(index: 3))")
-            }
-        }
-
-    }
+//    func test() {
+//        print("*** Testing Month number and name conversion functions ***")
+//        for i in 1...12 {
+//            print("\(i): \(DatePickerHelper.shared.month(name: months()[i-1])) is \(DatePickerHelper.shared.month(number: i))")
+//        }
+//
+//        print("**** Testing First days of months ***")
+//        for i in 2010...2025 {
+//            for j in 1...12 {
+//                print("Year: \(i), Month: \(DatePickerHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).charactersUpTo(index: 3))")
+//            }
+//        }
+//
+//    }
 }

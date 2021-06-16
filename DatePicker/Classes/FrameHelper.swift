@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class FrameHelper {
     static let shared = FrameHelper()
@@ -39,9 +40,8 @@ class FrameHelper {
 
     func getCloneView(of uiView: UIView) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height))
-        let imageView = UIImageView(image: uiView.toImage())
+        let imageView = UIImageView(image: uiView.asImage())
         imageView.frame =  CGRect(x: 0, y: 0, width: uiView.frame.width, height: uiView.frame.height)
-
 
         view.center.y = uiView.center.y
         view.center.x = uiView.center.x

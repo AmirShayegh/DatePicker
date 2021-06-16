@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum DatePickerMode {
     case Basic
@@ -20,19 +21,12 @@ public class DatePicker {
 
     // Bundle
     static var bundle: Bundle {
-        let podBundle = Bundle(for: PickerViewController.self)
-
-        if let bundleURL = podBundle.url(forResource: "DatePicker", withExtension: "bundle"), let b = Bundle(url: bundleURL) {
-            return b
-        } else {
-            print("Fatal Error: Could not find bundle for FreshDate Frameworks")
-            fatalError()
-        }
+        return Bundle.module
     }
 
     // Picker view controller
     public lazy var vc: PickerViewController = {
-        return UIStoryboard(name: "Picker", bundle: DatePicker.bundle).instantiateViewController(withIdentifier: "Picker") as! PickerViewController
+		return UIStoryboard(name: "Picker", bundle: DatePicker.bundle).instantiateViewController(withIdentifier: "Picker") as! PickerViewController
     }()
 
     // MARK: Optionals
@@ -43,7 +37,9 @@ public class DatePicker {
     // default width for popover
     // height is 1.3 times width
     var popoverWidth: CGFloat = (48 * 7)
-    var popoverHeight: CGFloat = ((48 * 7) * 1.3)
+	var popoverHeight: CGFloat = ((48 * 7) * 1.3)
+	
+	public var showSelectButtonInPopOver: Bool = false
 
     public init() {}
 
@@ -57,6 +53,7 @@ public class DatePicker {
         } else {
             vc.set(date: Date())
         }
+		vc.showSelectButtonInPopOver = self.showSelectButtonInPopOver
         vc.callBack = selected
     }
 
@@ -71,6 +68,7 @@ public class DatePicker {
         vc.mode = .MinMax
         vc.maxDate = max
         vc.minDate = min
+		vc.showSelectButtonInPopOver = self.showSelectButtonInPopOver
         vc.callBack = selected
     }
 
@@ -83,6 +81,7 @@ public class DatePicker {
         vc.day = minDay ?? 1
         vc.month = minMonth ?? 1
         vc.mode = .Yearless
+		vc.showSelectButtonInPopOver = self.showSelectButtonInPopOver
         vc.yearlessCallBack = selected
     }
 
@@ -118,6 +117,10 @@ public class DatePicker {
             self.popoverWidth = w
             self.popoverHeight = w * FrameHelper.ratio
         }
+		
+		if self.showSelectButtonInPopOver {
+			self.popoverHeight += 60
+		}
 
         var frameSize = CGSize(width: popoverWidth, height: popoverHeight)
 
@@ -170,14 +173,8 @@ extension DatePicker {
     ///   - parent: UIViewController to present on
     ///   - on: UIView to show popoever on (for iPad)
     public func show(in parent: UIViewController, on popOverItem: UIView? = nil) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            guard let view = popOverItem else {
-                print("***************")
-                print("** DatePicker config error: Specify popOverItem for displaying on iPad!")
-                print("***************")
-                return
-            }
-            display_PopOver(on: view, in: parent, completion: {})
+        if UIDevice.current.userInterfaceIdiom == .pad && popOverItem != nil {
+            display_PopOver(on: popOverItem!, in: parent, completion: {})
         } else {
             display_(in: parent)
         }

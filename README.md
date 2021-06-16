@@ -54,7 +54,7 @@ class ViewController: UIViewController {
 1) Import the library
 
 ```Swift
-import UIKit
+
 import DatePicker
 
 class ViewController: UIViewController {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Array {
     /// Safely retrive the element in the middle of the array

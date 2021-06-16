@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 extension String {
     public var isInt: Bool {
         return Int(self) != nil

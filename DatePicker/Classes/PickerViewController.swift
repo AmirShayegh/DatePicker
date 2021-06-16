@@ -37,9 +37,11 @@ public class PickerViewController: UIViewController {
     var displayMode: DisplayMode = .Center
     var mode: DatePickerMode = .Basic
     var calledFromSwipe: Bool = false
+	
+	var showSelectButtonInPopOver: Bool = false
 
-    var day: Int = 18
-    var month: Int = 7 {
+    var day: Int = Calendar.current.component(.day, from: Date())
+    var month: Int = Calendar.current.component(.month, from: Date()) {
         didSet {
             let max = DatePickerHelper.shared.daysIn(month: month, year: year)
             if day > max && !loading {
@@ -47,7 +49,7 @@ public class PickerViewController: UIViewController {
             }
         }
     }
-    var year: Int = 2018 {
+    var year: Int = Calendar.current.component(.year, from: Date()) {
         didSet {
             let max = DatePickerHelper.shared.daysIn(month: month, year: year)
             if day > max && !loading {
@@ -449,7 +451,7 @@ public class PickerViewController: UIViewController {
     func firstDayOfMonthIndex() -> Int {
         let day = firstDayOfMonth()
         let days = DatePickerHelper.shared.days()
-        if let i = days.firstIndex(of: day.charactersUpTo(index: 3)) {
+        if let i = days.firstIndex(of: String(day.prefix(3))) {
             return i + days.count
         } else {
             return 0
@@ -534,7 +536,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         if self.mode == .Yearless {
             numberOfWheels = 2
         }
-        if self.displayMode == .PopOver {
+		if !self.showSelectButtonInPopOver && self.displayMode == .PopOver {
             numberOfWheels = numberOfWheels - 1
         }
         let w = (self.collectionView.frame.width)
@@ -576,9 +578,9 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
             number = 3
         }
 
-        if self.displayMode == .PopOver {
-            number = number - 1
-        }
+		if !self.showSelectButtonInPopOver && self.displayMode == .PopOver {
+			number = number - 1
+		}
 
         return number
     }
@@ -586,6 +588,10 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch self.mode {
         case .Basic:
+			if indexPath.row == 3 {
+				return CGSize(width: collectionView.frame.width, height: 56)
+			}
+			
             if indexPath.row == 2 {
                 return daysCellSize()
             } else {
