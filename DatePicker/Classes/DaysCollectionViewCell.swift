@@ -209,6 +209,7 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
         }
     }
 
+	// this is so fucking dumb
     func getBasicModeCell(for indexPath: IndexPath) -> UICollectionViewCell {
         guard let p = self.parent else {
             let cell = getHeaderCell(indexPath: indexPath)
@@ -280,6 +281,10 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		if indexPath.row < self.parent!.lastDayOfMonthIndex() {
+			return CGSize(width: 0, height: 0)
+		}
+		
         return cellSize()
     }
 

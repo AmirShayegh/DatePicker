@@ -37,7 +37,7 @@ public class DatePicker {
     // default width for popover
     // height is 1.3 times width
     var popoverWidth: CGFloat = (48 * 7)
-    var popoverHeight: CGFloat = ((48 * 7) * 1.3)
+	var popoverHeight: CGFloat = ((48 * 7) * 1.3)
 	
 	public var showSelectButtonInPopOver: Bool = false
 
@@ -117,6 +117,10 @@ public class DatePicker {
             self.popoverWidth = w
             self.popoverHeight = w * FrameHelper.ratio
         }
+		
+		if self.showSelectButtonInPopOver {
+			self.popoverHeight += 60
+		}
 
         var frameSize = CGSize(width: popoverWidth, height: popoverHeight)
 

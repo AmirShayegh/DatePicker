@@ -588,6 +588,10 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch self.mode {
         case .Basic:
+			if indexPath.row == 3 {
+				return CGSize(width: collectionView.frame.width, height: 56)
+			}
+			
             if indexPath.row == 2 {
                 return daysCellSize()
             } else {

@@ -84,8 +84,11 @@ public class DatePickerHelper {
 
     // Returns the first day of the given month/year
     public func firstDayOf(month: Int, year: Int) -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEEE"
+		
         if let date = dateFrom(month: month, year: year) {
-            return "\(date.day())"
+			return formatter.string(from: date)
         } else {
             return ""
         }
@@ -93,8 +96,11 @@ public class DatePickerHelper {
 
     // Returns the last day of given month/year
     public func lastDayOf(month: Int, year: Int) -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "EEEE"
+		
         if let date = dateFrom(day: daysIn(month: month, year: year), month: month, year: year) {
-            return "\(date.day())"
+            return formatter.string(from: date)
         } else {
             return ""
         }
