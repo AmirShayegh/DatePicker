@@ -38,6 +38,8 @@ public class DatePicker {
     // height is 1.3 times width
     var popoverWidth: CGFloat = (48 * 7)
     var popoverHeight: CGFloat = ((48 * 7) * 1.3)
+	
+	public var showSelectButtonInPopOver: Bool = false
 
     public init() {}
 
@@ -51,6 +53,7 @@ public class DatePicker {
         } else {
             vc.set(date: Date())
         }
+		vc.showSelectButtonInPopOver = self.showSelectButtonInPopOver
         vc.callBack = selected
     }
 
@@ -65,6 +68,7 @@ public class DatePicker {
         vc.mode = .MinMax
         vc.maxDate = max
         vc.minDate = min
+		vc.showSelectButtonInPopOver = self.showSelectButtonInPopOver
         vc.callBack = selected
     }
 
@@ -77,6 +81,7 @@ public class DatePicker {
         vc.day = minDay ?? 1
         vc.month = minMonth ?? 1
         vc.mode = .Yearless
+		vc.showSelectButtonInPopOver = self.showSelectButtonInPopOver
         vc.yearlessCallBack = selected
     }
 

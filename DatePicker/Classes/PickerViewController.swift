@@ -37,9 +37,11 @@ public class PickerViewController: UIViewController {
     var displayMode: DisplayMode = .Center
     var mode: DatePickerMode = .Basic
     var calledFromSwipe: Bool = false
+	
+	var showSelectButtonInPopOver: Bool = false
 
-    var day: Int = 18
-    var month: Int = 7 {
+    var day: Int = Calendar.current.component(.day, from: Date())
+    var month: Int = Calendar.current.component(.month, from: Date()) {
         didSet {
             let max = DatePickerHelper.shared.daysIn(month: month, year: year)
             if day > max && !loading {
@@ -47,7 +49,7 @@ public class PickerViewController: UIViewController {
             }
         }
     }
-    var year: Int = 2018 {
+    var year: Int = Calendar.current.component(.year, from: Date()) {
         didSet {
             let max = DatePickerHelper.shared.daysIn(month: month, year: year)
             if day > max && !loading {
@@ -576,9 +578,9 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
             number = 3
         }
 
-        if self.displayMode == .PopOver {
-            number = number - 1
-        }
+		if !self.showSelectButtonInPopOver && self.displayMode == .PopOver {
+			number = number - 1
+		}
 
         return number
     }
