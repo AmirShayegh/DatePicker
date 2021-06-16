@@ -128,7 +128,7 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func registerCell(name: String) {
-        collectionView.register(UINib(nibName: name, bundle: DatePicker.bundle), forCellWithReuseIdentifier: name)
+        collectionView.register(UINib(nibName: name, bundle: nil), forCellWithReuseIdentifier: name)
     }
 
     func getMonthsCell(indexPath: IndexPath) -> MonthCollectionViewCell {

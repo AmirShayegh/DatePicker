@@ -147,7 +147,7 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func registerCell(name: String) {
-        collectionView.register(UINib(nibName: name, bundle: DatePicker.bundle), forCellWithReuseIdentifier: name)
+        collectionView.register(UINib(nibName: name, bundle: nil), forCellWithReuseIdentifier: name)
     }
     func getYearsCell(indexPath: IndexPath) -> YearCollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "YearCollectionViewCell", for: indexPath) as! YearCollectionViewCell
