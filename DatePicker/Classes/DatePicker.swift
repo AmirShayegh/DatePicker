@@ -169,14 +169,8 @@ extension DatePicker {
     ///   - parent: UIViewController to present on
     ///   - on: UIView to show popoever on (for iPad)
     public func show(in parent: UIViewController, on popOverItem: UIView? = nil) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            guard let view = popOverItem else {
-                print("***************")
-                print("** DatePicker config error: Specify popOverItem for displaying on iPad!")
-                print("***************")
-                return
-            }
-            display_PopOver(on: view, in: parent, completion: {})
+        if UIDevice.current.userInterfaceIdiom == .pad && popOverItem != nil {
+            display_PopOver(on: popOverItem!, in: parent, completion: {})
         } else {
             display_(in: parent)
         }

@@ -110,8 +110,7 @@ public class DatePickerHelper {
         dateComponents.hour = 0
         dateComponents.minute = 0
 
-        let calendar = Calendar.current
-        return calendar.date(from: dateComponents)
+        return Calendar.current.date(from: dateComponents)
     }
 
     // Generates date object from day montha and year
@@ -124,8 +123,7 @@ public class DatePickerHelper {
         dateComponents.hour = 0
         dateComponents.minute = 0
 
-        let calendar = Calendar.current
-        return calendar.date(from: dateComponents)
+        return Calendar.current.date(from: dateComponents)
     }
 
 //    func test() {
