@@ -24,7 +24,8 @@ let package = Package(
                 .process("MonthCollectionViewCell.xib"),
                 .process("MonthsCollectionViewCell.xib"),
                 .process("YearCollectionViewCell.xib"),
-                .process("YearsCollectionViewCell.xib")
+                .process("YearsCollectionViewCell.xib"),
+				.process("Picker.storyboard")
             ]
         )
     ],

@@ -19,9 +19,14 @@ public class DatePicker {
     public static var leftTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromLeft
     public static var rightTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromRight
 
+    // Bundle
+    static var bundle: Bundle {
+        return Bundle.module
+    }
+
     // Picker view controller
     public lazy var vc: PickerViewController = {
-        return UIStoryboard(name: "Picker", bundle: nil).instantiateViewController(withIdentifier: "Picker") as! PickerViewController
+		return UIStoryboard(name: "Picker", bundle: DatePicker.bundle).instantiateViewController(withIdentifier: "Picker") as! PickerViewController
     }()
 
     // MARK: Optionals
