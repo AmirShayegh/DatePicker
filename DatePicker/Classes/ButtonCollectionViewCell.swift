@@ -45,6 +45,7 @@ class ButtonCollectionViewCell: UICollectionViewCell {
         button.layer.borderWidth = 1
         button.layer.borderColor = borderColor
         button.setTitleColor(titleColor, for: .normal)
+        button.setTitle(DatePickerHelper.shared.buttonTitle, for: .normal)
     }
 
 }

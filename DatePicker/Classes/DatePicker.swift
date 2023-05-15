@@ -158,6 +158,10 @@ public class DatePicker {
         DatePickerColors.backgroundDark = background
         DatePickerColors.inactiveTextDark = inactive
     }
+    
+    public func setButtonTitle(title: String) {
+        DatePickerHelper.shared.buttonTitle = title
+    }
 }
 
 extension DatePicker {
