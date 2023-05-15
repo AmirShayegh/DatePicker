@@ -15,6 +15,7 @@ public class DatePickerHelper {
     static let maxYear: Int = 2100
     var monthsList: [String] = [String]()
     var daysList: [String] = [String]()
+    var buttonTitle: String = "Select"
     private init() {}
 
     // Returns String array of months
