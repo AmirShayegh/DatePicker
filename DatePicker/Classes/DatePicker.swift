@@ -60,6 +60,19 @@ public class DatePicker {
         vc.callBack = selected
     }
 
+    #if swift(>=5.5)
+    #if canImport(_Concurrency)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    public func setup(beginWith: Date? = nil) async -> (Bool, Date?) {
+        await withCheckedContinuation { [weak self] continuation in
+            self?.setup(beginWith: beginWith) { selected, date in
+                continuation.resume(returning: (selected, date))
+            }
+        }
+    }
+    #endif
+    #endif
+    
     // Setup with a min and max date
     public func setup(beginWith: Date? = nil, min:Date, max: Date, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
         vc.mode = .Basic
@@ -74,6 +87,19 @@ public class DatePicker {
         vc.callBack = selected
     }
 
+    #if swift(>=5.5)
+    #if canImport(_Concurrency)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    public func setup(beginWith: Date? = nil, min: Date, max: Date) async -> (Bool, Date?) {
+        await withCheckedContinuation { [weak self] continuation in
+            self?.setup(beginWith: beginWith, min: min, max: max) { selected, date in
+                continuation.resume(returning: (selected, date))
+            }
+        }
+    }
+    #endif
+    #endif
+    
     // Setup without years
     public func setupYearless(minMonth: Int? = nil, minDay: Int? = nil, maxMonth: Int? = nil, maxDay: Int? = nil, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
         vc.minDay = minDay ?? 1
@@ -86,6 +112,19 @@ public class DatePicker {
         vc.yearlessCallBack = selected
     }
 
+    #if swift(>=5.5)
+    #if canImport(_Concurrency)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    public func setupYearless(minMonth: Int? = nil, minDay: Int? = nil, maxMonth: Int? = nil, maxDay: Int? = nil) async -> (Bool, Int?, Int?) {
+        await withCheckedContinuation { [weak self] continuation in
+            self?.setupYearless(minMonth: minMonth, minDay: minDay, maxMonth: maxMonth) { selected, month, day in
+                continuation.resume(returning: (selected, month, day))
+            }
+        }
+    }
+    #endif
+    #endif
+    
     // MARK: Presenataion
 
     // Display at the bottom of parent
