@@ -52,7 +52,24 @@ class ViewController: UIViewController {
         }
 
         picker.show(in: self)
-            
+    }
+    
+    @IBAction func presentAsync(_ sender: UIButton) {
+        self.label.alpha = 0
+        let picker = DatePicker()
+        
+        if #available(iOS 13.0, *) {
+            Task { @MainActor in
+                let (selected, date) = await picker.setup(beginWith: Date())
+                if selected, let selectedDate = date {
+                    print(selectedDate.string())
+                } else {
+                    print("Cancelled")
+                }
+            }
+        }
+
+        picker.show(in: self)
     }
 }
 

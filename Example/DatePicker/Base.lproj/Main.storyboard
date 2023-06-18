@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,20 +19,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ied-IX-SCD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ied-IX-SCD">
                                 <rect key="frame" x="159" y="318.5" width="57" height="30"/>
                                 <state key="normal" title="popover"/>
                                 <connections>
                                     <action selector="popover:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WxR-p9-VhD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vq-Ko-y0M">
-                                <rect key="frame" x="161" y="593" width="53" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vq-Ko-y0M">
+                                <rect key="frame" x="161" y="493" width="53" height="30"/>
                                 <state key="normal" title="Present">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="present:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2cI-Dq-ZEl"/>
+                                    <action selector="present:" destination="vXZ-lx-hvc" eventType="primaryActionTriggered" id="mUK-uS-MOV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSO-i7-qMM" userLabel="Present Async">
+                                <rect key="frame" x="138" y="543" width="99" height="30"/>
+                                <state key="normal" title="Present Async">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="presentAsync:" destination="vXZ-lx-hvc" eventType="primaryActionTriggered" id="5zv-cg-d5A"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfa-Uh-qbL">
@@ -46,9 +53,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.26274509800000001" green="0.49019607840000001" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3Vq-Ko-y0M" secondAttribute="bottom" constant="44" id="DSA-Gr-tWv"/>
+                            <constraint firstItem="3Vq-Ko-y0M" firstAttribute="centerX" secondItem="bSO-i7-qMM" secondAttribute="centerX" id="DAo-XF-LTZ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3Vq-Ko-y0M" secondAttribute="bottom" constant="144" id="DSA-Gr-tWv"/>
                             <constraint firstItem="ied-IX-SCD" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Egv-Hp-Viq"/>
                             <constraint firstItem="Bfa-Uh-qbL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ela-fY-enI"/>
+                            <constraint firstItem="3Vq-Ko-y0M" firstAttribute="bottom" secondItem="bSO-i7-qMM" secondAttribute="top" constant="-20" id="H4q-dy-cfe"/>
                             <constraint firstItem="Bfa-Uh-qbL" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="fcj-He-JJ2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Bfa-Uh-qbL" secondAttribute="trailing" id="h79-FP-He6"/>
                             <constraint firstItem="ied-IX-SCD" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="pJl-N7-0rf"/>
@@ -62,6 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-26" y="-36"/>
         </scene>
     </scenes>
 </document>
