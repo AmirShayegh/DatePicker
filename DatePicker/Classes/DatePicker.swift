@@ -117,7 +117,7 @@ public class DatePicker {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     public func setupYearless(minMonth: Int? = nil, minDay: Int? = nil, maxMonth: Int? = nil, maxDay: Int? = nil) async -> (Bool, Int?, Int?) {
         await withCheckedContinuation { [weak self] continuation in
-            self?.setupYearless(minMonth: minMonth, minDay: minDay, maxMonth: maxMonth) { selected, month, day in
+            self?.setupYearless(minMonth: minMonth, minDay: minDay, maxMonth: maxMonth, maxDay: maxDay) { selected, month, day in
                 continuation.resume(returning: (selected, month, day))
             }
         }
