@@ -5,7 +5,7 @@
 //  Created by Amir Shayegh on 2018-08-07.
 //
 
-import Foundation
+import UIKit
 
 class FrameHelper {
     static let shared = FrameHelper()

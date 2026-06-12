@@ -5,7 +5,7 @@
 //  Created by Amir Shayegh on 2018-08-06.
 //
 
-import Foundation
+import UIKit
 
 class Fonts {
 

@@ -5,7 +5,7 @@
 //  Created by Amir Shayegh on 2018-08-02.
 //
 
-import Foundation
+import UIKit
 
 enum DatePickerMode {
     case Basic
@@ -18,16 +18,19 @@ public class DatePicker {
     public static var leftTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromLeft
     public static var rightTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromRight
 
-    // Bundle
+    // Bundle containing the library's storyboard and xibs,
+    // resolved for both SPM and CocoaPods installations.
     static var bundle: Bundle {
-        let podBundle = Bundle(for: PickerViewController.self)
-
-        if let bundleURL = podBundle.url(forResource: "DatePicker", withExtension: "bundle"), let b = Bundle(url: bundleURL) {
-            return b
-        } else {
-            print("Fatal Error: Could not find bundle for FreshDate Frameworks")
-            fatalError()
+        #if SWIFT_PACKAGE
+        return Bundle.module
+        #else
+        let frameworkBundle = Bundle(for: PickerViewController.self)
+        if let bundleURL = frameworkBundle.url(forResource: "DatePicker", withExtension: "bundle"),
+           let resourceBundle = Bundle(url: bundleURL) {
+            return resourceBundle
         }
+        return frameworkBundle
+        #endif
     }
 
     // Picker view controller
