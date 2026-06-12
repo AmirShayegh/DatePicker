@@ -21,10 +21,15 @@ class FrameHelper {
 
     private init() {}
 
-    func getYearlessPopOverSize(for width: CGFloat) -> CGSize {
-        let daysSize = getYearlessDaysCellSize(for: width)
-        let dayHeight = getDayCellHeight(width: width, columns: yearlessDayColumns)
-        return CGSize(width: width, height: (daysSize.height + dayHeight))
+    // Single source of truth for the picker's natural size at a given
+    // width: used for sheet detents, popover content size and the
+    // centered presentation.
+    func preferredPickerSize(width: CGFloat, yearless: Bool) -> CGSize {
+        if yearless {
+            let h = getYearlessDaysCellSize(for: width).height + (getDayCellHeight(width: width, columns: yearlessDayColumns) * 2.5)
+            return CGSize(width: width, height: h)
+        }
+        return CGSize(width: width, height: width * FrameHelper.ratio)
     }
 
     func getYearlessDaysCellSize(for width: CGFloat) -> CGSize {
@@ -52,49 +57,6 @@ class FrameHelper {
         view.addSubview(imageView)
         return view
     }
-
-    // MARK: Positioning
-    func centerViewInParent(view: UIView, in parentVC: UIViewController? = nil) {
-        guard let p = parentVC else {return}
-        view.center.x = p.view.center.x
-        view.center.y = p.view.center.y
-//        view.centerXAnchor.constraint(equalTo: p.view.centerXAnchor)
-//        view.centerYAnchor.constraint(equalTo: p.view.centerYAnchor)
-    }
-
-    func positionCenter(view:UIView, in parentVC: UIViewController, yearless: Bool) {
-        view.frame = getSuggesedFrame(padding: 20, for: parentVC.view.frame.size, yearless: yearless)
-        view.center.x = parentVC.view.center.x
-        view.center.y = parentVC.view.center.y
-//        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
-//        view.centerYAnchor.constraint(equalTo: parentVC.view.centerYAnchor)
-    }
-
-    func positionBottom(view: UIView, in parentVC: UIViewController, size: CGSize? = nil, yearless: Bool) {
-        let parentHeight = parentVC.view.frame.size.height
-        var h = getSuggestedHeight(for: parentVC.view.frame.size)
-        let w = getSuggestedWidth(for: parentVC.view.frame.size)
-        if yearless {
-            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, columns: yearlessDayColumns) * 2.5)
-        }
-        view.frame = CGRect(x: 0, y: parentHeight - h, width: w, height: h)
-        view.center.x = parentVC.view.center.x
-//        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
-    }
-
-    func positionBottomPreAnimation(view:UIView, in parentVC: UIViewController, yearless: Bool) {
-        let parentHeight = parentVC.view.frame.size.height
-        var h = getSuggestedHeight(for: parentVC.view.frame.size)
-        let w = getSuggestedWidth(for: parentVC.view.frame.size)
-        if yearless {
-            h = getYearlessDaysCellSize(for: w).height + (getDayCellHeight(width: w, columns: yearlessDayColumns) * 2.5)
-        }
-
-        view.frame = CGRect(x: 0, y: parentHeight, width: w, height: h)
-        view.center.x = parentVC.view.center.x
-//        view.centerXAnchor.constraint(equalTo: parentVC.view.centerXAnchor)
-    }
-
 
     // MARK: Suggesged Frame
     func getSuggesedFrame(padding: CGFloat? = 0, for size: CGSize? = nil, yearless: Bool) -> CGRect {

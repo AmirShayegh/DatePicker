@@ -17,14 +17,11 @@ public class PickerViewController: UIViewController {
 
     // MARK: Constants
     let notification = UINotificationFeedbackGenerator()
-    let whiteScreenTag = 101
     let animationDuration: Double = 0.2
 
     // MARK: Optionals
     var callBack: ((_ selected: Bool, _ date: Date?)-> Void)?
-    var liveCallBack: ((_ date: Date)-> Void)?
     var yearlessCallBack: ((_ selected: Bool, _ month: Int?,_ day: Int?)-> Void)?
-    var yearlessLiveCallBack: ((_ month: Int,_ day: Int)-> Void)?
 
     var monthsIndexPath: IndexPath?
     var yearsIndexPath: IndexPath?
@@ -76,6 +73,12 @@ public class PickerViewController: UIViewController {
         style()
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // allow the same picker instance to be shown again
+        resultSent = false
+    }
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reload()
@@ -84,140 +87,49 @@ public class PickerViewController: UIViewController {
         }
     }
 
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        sendResult()
-    }
-
-    // MARK: Presentation
-    func display(on parent: UIViewController) {
-        parent.addChild(self)
-        FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: parent, yearless: self.mode == .Yearless)
-        FrameHelper.shared.addShadow(to: self.view.layer)
-        parent.view.addSubview(self.view)
-        self.didMove(toParent: parent)
-        self.collectionView.alpha = 0
-        setWhiteScreen()
-        UIView.animate(withDuration: animationDuration, animations: {
-            if self.displayMode == .Bottom {
-                FrameHelper.shared.positionBottom(view: self.view, in: parent, size: parent.view.frame.size, yearless: self.mode == .Yearless)
-            } else {
-                FrameHelper.shared.positionCenter(view: self.view, in: parent, yearless: self.mode == .Yearless)
-            }
-            self.collectionView.alpha = 1
-        }) { (done) in
-        }
-    }
-
-    func setWhiteScreen() {
-        guard let p = parent, let screen = whiteScreen() else {return}
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.cancelled(_:)))
-        screen.alpha = 0
-        p.view.insertSubview(screen, belowSubview: self.view)
-        screen.addGestureRecognizer(tap)
-        UIView.animate(withDuration: animationDuration, animations: {
-            screen.alpha = 1
-        })
-
-    }
-
-    func whiteScreen() -> UIView? {
-        guard let p = parent else {return nil}
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: p.view.frame.width, height: p.view.frame.height))
-        view.center.y = p.view.center.y
-        view.center.x = p.view.center.x
-        view.backgroundColor = DatePickerColors.backdrop
-        view.alpha = 1
-        view.tag = whiteScreenTag
-        return view
-    }
-
-    func removeWhiteScreen() {
-        guard let p = parent else {return}
-        if let viewWithTag = p.view.viewWithTag(whiteScreenTag) {
-            viewWithTag.removeFromSuperview()
-        }
-    }
-
-    @objc func cancelled(_ sender: UISwipeGestureRecognizer) {
-        close()
-    }
-
-    func dimissAnimations(then: @escaping () -> Void) {
-        if let p = parent, displayMode != .PopOver {
-            UIView.animate(withDuration: animationDuration, animations: {
-                if self.displayMode == .Bottom {
-                    FrameHelper.shared.positionBottomPreAnimation(view: self.view, in: p, yearless: self.mode == .Yearless)
-                } else {
-                    self.view.alpha = 0
-                }
-                if let whiteScreen = p.view.viewWithTag(self.whiteScreenTag) {
-                    whiteScreen.alpha = 0
-                }
-            }) { (done) in
-                self.remove()
-                return then()
-            }
-
-        } else {
-            self.remove()
-            return then()
-        }
-    }
-
-
     // MARK: Callbacks
-    func remove() {
-        notification.notificationOccurred(.error)
-        self.removeWhiteScreen()
-        self.view.removeFromSuperview()
-        self.removeFromParent()
-        self.didMove(toParent: nil)
-        self.dismiss(animated: true, completion: nil)
-        if self.callBack != nil {
-            return self.callBack!(false, nil)
-        }
-    }
 
-    // cancel
-    func close() {
-        dimissAnimations() {
-            if self.mode == .Yearless {
-                if self.yearlessCallBack != nil {
-                    return self.yearlessCallBack!(false, nil, nil)
+    // The callback fires exactly once per presentation, whether the
+    // user taps Select, swipes the sheet down, taps the backdrop in
+    // center mode, or taps outside a popover.
+    private var resultSent = false
+
+    func finish(selected: Bool) {
+        if resultSent { return }
+        resultSent = true
+        notification.notificationOccurred(selected ? .success : .error)
+        if mode == .Yearless {
+            guard let callback = yearlessCallBack else { return }
+            if selected {
+                var d = day
+                if d > daysInMonth() {
+                    d = daysInMonth()
                 }
+                callback(true, month, d)
             } else {
-                if self.callBack != nil {
-                    return self.callBack!(false, nil)
-                }
+                callback(false, nil, nil)
+            }
+        } else {
+            guard let callback = callBack else { return }
+            if selected {
+                callback(true, DatePickerHelper.shared.dateFrom(day: day, month: month, year: year))
+            } else {
+                callback(false, nil)
             }
         }
     }
 
-    // select clicked
-    func sendResult() {
-        if loading {return}
-        notification.notificationOccurred(.success)
-        dimissAnimations() {
-            if self.mode == .Yearless {
-                if self.yearlessCallBack != nil {
-                    let m = self.month
-                    var d = self.day
-                    if d > self.daysInMonth() {
-                        d = self.daysInMonth()
-                    }
-                    return self.yearlessCallBack!(true, m, d)
-                }
-            } else {
-                if self.callBack != nil {
-                    return self.callBack!(true, DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year))
-                }
-            }
-        }
+    // select button tapped
+    func selectTapped() {
+        if loading { return }
+        finish(selected: true)
+        dismiss(animated: true)
+    }
+
+    // backdrop tapped in center mode
+    func cancelFromBackdrop() {
+        finish(selected: false)
+        dismiss(animated: true)
     }
 
     // MARK: Utility Functions
@@ -313,55 +225,6 @@ public class PickerViewController: UIViewController {
                 cell.collectionView.reloadData()
             }*/
         }
-    }
-
-    func flipDays(back: Bool) {
-        guard let indexPath = daysIndexPath, let cell = collectionView.cellForItem(at: indexPath) as? DaysCollectionViewCell else {return}
-        if collectionView.indexPathsForVisibleItems.contains(indexPath) {
-            if back {
-                let copy = FrameHelper.shared.getCloneView(of: cell)
-                cell.collectionView.reloadData()
-                flipLeft(view: cell, copy: copy)
-            } else {
-                flipRight(view: cell)
-                cell.collectionView.reloadData()
-            }
-
-        }
-    }
-
-    @objc func flipLeft(view: UIView, copy: UIView) {
-        self.view.addSubview(copy)
-
-        view.isHidden = true
-        let transitionOptions: UIView.AnimationOptions = [.showHideTransitionViews, .transitionCurlDown]
-
-        UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
-            copy.isHidden = true
-            copy.removeFromSuperview()
-        })
-
-        UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
-            view.isHidden = false
-        })
-    }
-
-    @objc func flipRight(view: UIView) {
-        guard let p = parent else {return}
-        let copy = FrameHelper.shared.getCloneView( of: view)
-        p.view.addSubview(copy)
-
-        view.isHidden = true
-        let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromRight, .showHideTransitionViews, .transitionCurlUp]
-
-        UIView.transition(with: copy, duration: 0.3, options: transitionOptions, animations: {
-            copy.isHidden = true
-            copy.removeFromSuperview()
-        })
-
-        UIView.transition(with: view, duration: 0.3, options: transitionOptions, animations: {
-            view.isHidden = false
-        })
     }
 
     func reloadMonths() {
@@ -485,11 +348,10 @@ public class PickerViewController: UIViewController {
 
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        if self.displayMode == .PopOver {
-            return
-        } else {
-            self.remove()
-        }
+        coordinator.animate(alongsideTransition: { _ in
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+        })
     }
 }
 
@@ -514,32 +376,27 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     func daysCellSize() -> CGSize {
+        let w = (self.collectionView.frame.width)
         switch self.mode {
-        case .Basic:
-            let w = (self.collectionView.frame.width)
-            return CGSize(width: w, height: w)
-        case .MinMax:
-            let w = (self.collectionView.frame.width)
-            return CGSize(width: w, height: w)
+        case .Basic, .MinMax:
+            // Square when space allows; shrinks in short layouts
+            // (e.g. landscape) leaving room for the wheel rows.
+            let minRowHeight: CGFloat = 44
+            let available = self.collectionView.frame.height - (minRowHeight * 3)
+            let side = min(w, max(available, minRowHeight))
+            return CGSize(width: w, height: side)
         case .Yearless:
-            let w = (self.collectionView.frame.width)
             return FrameHelper.shared.getYearlessDaysCellSize(for: w)
         }
     }
 
     func WheelCellSize() -> CGSize {
-        var numberOfWheels = 3
+        var numberOfRows = 3 // years, months, select button
         if self.mode == .Yearless {
-            numberOfWheels = 2
-        }
-        if self.displayMode == .PopOver {
-            numberOfWheels = numberOfWheels - 1
+            numberOfRows = 2 // months, select button
         }
         let w = (self.collectionView.frame.width)
-        var h = ((self.collectionView.frame.height - self.collectionView.frame.width) / CGFloat(numberOfWheels))
-        if self.mode == .Yearless {
-            h = (self.collectionView.frame.height - FrameHelper.shared.getYearlessDaysCellSize(for: w).height ) / CGFloat(numberOfWheels)
-        }
+        let h = max((self.collectionView.frame.height - daysCellSize().height) / CGFloat(numberOfRows), 0)
         return CGSize(width: w, height: h)
     }
 
@@ -564,21 +421,14 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var number = 0
         switch self.mode {
         case .Basic:
-            number = 4
+            return 4
         case .MinMax:
-            number = 4
+            return 4
         case .Yearless:
-            number = 3
+            return 3
         }
-
-        if self.displayMode == .PopOver {
-            number = number - 1
-        }
-
-        return number
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -641,7 +491,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
             cell.setup(title: selectButtonTitle, font: selectButtonFont) {
-                self.sendResult()
+                self.selectTapped()
             }
             return cell
         }
@@ -667,9 +517,32 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
             cell.setup(title: selectButtonTitle, font: selectButtonFont) {
-                self.sendResult()
+                self.selectTapped()
             }
             return cell
         }
+    }
+}
+
+// MARK: Presentation delegates
+extension PickerViewController: UIPopoverPresentationControllerDelegate, UIViewControllerTransitioningDelegate {
+
+    // Keep popovers as popovers in every size class so the layout
+    // (and the Select button) stays consistent.
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+
+    // User-initiated dismissal: tapping outside a popover commits the
+    // current selection (matching v1 popover behavior, where there is
+    // no cancel affordance); pulling a sheet down cancels.
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        finish(selected: displayMode == .PopOver)
+    }
+
+    // Center mode uses a custom presentation controller for the
+    // dimmed, tap-to-cancel backdrop.
+    public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return DatePickerPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

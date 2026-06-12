@@ -13,6 +13,19 @@ enum DatePickerMode {
     case Yearless
 }
 
+/// Presentation styles for `DatePicker.show(in:style:sourceView:)`.
+public enum DatePickerStyle {
+    /// Popover on iPad when a sourceView is provided, sheet otherwise.
+    case automatic
+    /// Bottom sheet sized to the picker.
+    case sheet
+    /// Popover anchored to sourceView. Falls back to a sheet when no
+    /// sourceView is provided.
+    case popover
+    /// Centered card over a dimmed backdrop.
+    case center
+}
+
 public class DatePicker {
 
     public static var leftTransitionAnimation: UIView.AnimationOptions = .transitionFlipFromLeft
@@ -44,9 +57,7 @@ public class DatePicker {
     // MARK: Variables
 
     // default width for popover
-    // height is 1.3 times width
     var popoverWidth: CGFloat = (48 * 7)
-    var popoverHeight: CGFloat = ((48 * 7) * 1.3)
 
     /// Title of the confirm button. Set this to localize or
     /// customize the default "Select".
@@ -104,61 +115,107 @@ public class DatePicker {
         vc.yearlessCallBack = selected
     }
 
-    // MARK: Presenataion
+    // MARK: Presentation
 
-    // Display at the bottom of parent
-    @available(*, deprecated, message: "Use show() instead")
-    public func display(in parent: UIViewController) {
-       display_(in: parent)
-    }
-    
-    private func display_(in parent: UIViewController) {
-        self.parentVC = parent
-        vc.displayMode = .Bottom
-        vc.display(on: parent)
+    /// Show the date picker in the given view controller:
+    /// a popover on iPad when popOverItem is provided, a bottom sheet
+    /// otherwise.
+    /// - Parameters:
+    ///   - parent: UIViewController to present on
+    ///   - on: UIView to anchor a popover to (for iPad)
+    public func show(in parent: UIViewController, on popOverItem: UIView? = nil) {
+        show(in: parent, style: .automatic, sourceView: popOverItem)
     }
 
-    // Display as popover on button
-    @available(*, deprecated, message: "Use show() instead")
-    public func displayPopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
-        display_PopOver(on: on, in: parent, width: width, completion: completion)
-    }
-    
-    private func display_PopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
+    /// Show the date picker with an explicit presentation style.
+    /// - Parameters:
+    ///   - parent: UIViewController to present on
+    ///   - style: how the picker is presented
+    ///   - sourceView: anchor view, required for the popover style
+    public func show(in parent: UIViewController, style: DatePickerStyle, sourceView: UIView? = nil) {
         // dismiss keyboards
         parent.view.endEditing(true)
+        self.parentVC = parent
+        switch style {
+        case .automatic:
+            if UIDevice.current.userInterfaceIdiom == .pad, let anchor = sourceView {
+                presentPopover(on: anchor, in: parent)
+            } else {
+                presentSheet(in: parent)
+            }
+        case .sheet:
+            presentSheet(in: parent)
+        case .popover:
+            if let anchor = sourceView {
+                presentPopover(on: anchor, in: parent)
+            } else {
+                presentSheet(in: parent)
+            }
+        case .center:
+            presentCenter(in: parent)
+        }
+    }
 
-        // set mode
-        vc.displayMode = .PopOver
+    @available(*, deprecated, message: "Use show(in:style:sourceView:) instead")
+    public func display(in parent: UIViewController) {
+        show(in: parent, style: .sheet)
+    }
 
-        // size
+    @available(*, deprecated, message: "Use show(in:style:sourceView:) instead")
+    public func displayPopOver(on: UIView, in parent: UIViewController, width: CGFloat? = nil, completion: @escaping ()-> Void) {
         if let w = width {
             self.popoverWidth = w
-            self.popoverHeight = w * FrameHelper.ratio
         }
+        show(in: parent, style: .popover, sourceView: on)
+        completion()
+    }
 
-        var frameSize = CGSize(width: popoverWidth, height: popoverHeight)
-
-        if vc.mode == .Yearless {
-            frameSize = FrameHelper.shared.getYearlessPopOverSize(for: popoverWidth)
+    private func presentSheet(in parent: UIViewController) {
+        vc.displayMode = .Bottom
+        vc.modalPresentationStyle = .pageSheet
+        if let sheet = vc.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                let yearless = vc.mode == .Yearless
+                sheet.detents = [.custom { [weak parent] context in
+                    let width = parent?.view.bounds.width ?? (context.maximumDetentValue / FrameHelper.ratio)
+                    let height = FrameHelper.shared.preferredPickerSize(width: width, yearless: yearless).height
+                    return min(height, context.maximumDetentValue)
+                }]
+            } else {
+                // Custom detents require iOS 16; fall back to the
+                // system large detent on iOS 15.
+                sheet.detents = [.large()]
+            }
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 16
         }
+        vc.presentationController?.delegate = vc
+        parent.present(vc, animated: true)
+    }
 
-        // style
-        FrameHelper.shared.addShadow(to: vc.view.layer)
-
-        // popover
+    private func presentPopover(on anchor: UIView, in parent: UIViewController) {
+        vc.displayMode = .PopOver
         vc.modalPresentationStyle = .popover
-        vc.preferredContentSize = frameSize
-        guard let popover = vc.popoverPresentationController else {return}
+        vc.preferredContentSize = FrameHelper.shared.preferredPickerSize(width: popoverWidth, yearless: vc.mode == .Yearless)
+        FrameHelper.shared.addShadow(to: vc.view.layer)
+        guard let popover = vc.popoverPresentationController else { return }
         popover.backgroundColor = DatePickerColors.background
         popover.permittedArrowDirections = .any
-        popover.sourceView = on
-        popover.sourceRect = CGRect(x: on.bounds.midX, y: on.bounds.midY, width: 0, height: 0)
-        parent.present(vc, animated: true, completion: nil)
+        popover.sourceView = anchor
+        popover.sourceRect = CGRect(x: anchor.bounds.midX, y: anchor.bounds.midY, width: 0, height: 0)
+        popover.delegate = vc
+        parent.present(vc, animated: true)
+    }
+
+    private func presentCenter(in parent: UIViewController) {
+        vc.displayMode = .Center
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = vc
+        parent.present(vc, animated: true)
     }
 
     // change colors
-    
+
     public func colors(mainLight: UIColor, backgroundLight: UIColor, inactiveLight: UIColor, mainDark: UIColor, backgroundDark: UIColor, inactiveDark: UIColor) {
         DatePickerColors.mainLight = mainLight
         DatePickerColors.backgroundLight = backgroundLight
@@ -167,7 +224,7 @@ public class DatePicker {
         DatePickerColors.backgroundDark = backgroundDark
         DatePickerColors.inactiveTextDark = inactiveDark
     }
-    
+
     public func setColors(main: UIColor, background: UIColor, inactive: UIColor) {
         DatePickerColors.mainLight = main
         DatePickerColors.backgroundLight = background
@@ -175,29 +232,5 @@ public class DatePicker {
         DatePickerColors.mainDark = main
         DatePickerColors.backgroundDark = background
         DatePickerColors.inactiveTextDark = inactive
-    }
-}
-
-extension DatePicker {
-    
-    
-    /// Show date picker in the indicated UIViewController
-    /// For iPad suppoet:
-    /// Specify a UIView in the popOverItem Parameter for displaying DatePicker as a popover on the UIView
-    /// - Parameters:
-    ///   - parent: UIViewController to present on
-    ///   - on: UIView to show popoever on (for iPad)
-    public func show(in parent: UIViewController, on popOverItem: UIView? = nil) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            guard let view = popOverItem else {
-                print("***************")
-                print("** DatePicker config error: Specify popOverItem for displaying on iPad!")
-                print("***************")
-                return
-            }
-            display_PopOver(on: view, in: parent, completion: {})
-        } else {
-            display_(in: parent)
-        }
     }
 }

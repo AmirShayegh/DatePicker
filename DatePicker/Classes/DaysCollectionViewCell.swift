@@ -179,7 +179,11 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
 
     func cellSize() -> CGSize {
         let w = (self.collectionView.frame.width / 7)
-        return CGSize(width: w, height: w)
+        if mode == .Yearless {
+            // the yearless grid intentionally overflows its container
+            return CGSize(width: w, height: w)
+        }
+        return CGSize(width: w, height: self.collectionView.frame.height / 7)
     }
 
     func registerCell(name: String) {
