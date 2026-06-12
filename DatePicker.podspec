@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DatePicker'
-  s.version          = '1.3.1'
+  s.version          = '2.0.0'
   s.summary          = 'Date Picker for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -26,16 +26,14 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/AmirShayegh/DatePicker.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '15.0'
+  s.swift_versions = ['5.0']
 
   s.source_files = 'DatePicker/Classes/**/*.{swift}'
-  
+
   s.resource_bundles = {
-  #   'DatePicker' => ['DatePicker/Assets/*.png']
       'DatePicker' => ['DatePicker/Classes/**/*.{storyboard,xib}']
    }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'Extended'
+  s.frameworks = 'UIKit'
 end

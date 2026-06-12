@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         
         picker.setup(beginWith: Date()) { (selected, date) in
             if selected, let selectedDate = date {
-                print(selectedDate.string())
+                print(selectedDate.formatted(date: .long, time: .omitted))
             } else {
                 print("Cancelled")
             }

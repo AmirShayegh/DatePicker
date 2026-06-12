@@ -6,16 +6,19 @@
 //
 
 import Foundation
-import Extended
 
 
 public class DatePickerHelper {
     public static let shared = DatePickerHelper()
     static let minYear: Int = 2018
     static let maxYear: Int = 2100
+
+    // The calendar used for all date math. Injectable for tests.
+    var calendar: Calendar = .current
+
     var monthsList: [String] = [String]()
     var daysList: [String] = [String]()
-    private init() {}
+    init() {}
 
     // Returns String array of months
     public func months() -> [String] {
@@ -130,18 +133,4 @@ public class DatePickerHelper {
         return calendar.date(from: dateComponents)
     }
 
-    func test() {
-        print("*** Testing Month number and name conversion functions ***")
-        for i in 1...12 {
-            print("\(i): \(DatePickerHelper.shared.month(name: months()[i-1])) is \(DatePickerHelper.shared.month(number: i))")
-        }
-
-        print("**** Testing First days of months ***")
-        for i in 2010...2025 {
-            for j in 1...12 {
-                print("Year: \(i), Month: \(DatePickerHelper.shared.month(number: j)), First Day: \(firstDayOf(month: j, year: i)), there are \(daysIn(month: j, year: i)) days in this month, and the last day is \(lastDayOf(month: j, year: i).charactersUpTo(index: 3))")
-            }
-        }
-
-    }
 }

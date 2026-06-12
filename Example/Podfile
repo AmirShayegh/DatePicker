@@ -1,3 +1,4 @@
+platform :ios, '15.0'
 use_frameworks!
 
 target 'DatePicker_Example' do
@@ -6,6 +7,6 @@ target 'DatePicker_Example' do
   target 'DatePicker_Tests' do
     inherit! :search_paths
 
-    
+
   end
 end
