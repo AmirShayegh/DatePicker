@@ -64,6 +64,9 @@ public class PickerViewController: UIViewController {
     var maxMonth: Int = 1
     var maxDay: Int = 1
 
+    var selectButtonTitle: String = "Select"
+    var selectButtonFont: UIFont?
+
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -637,7 +640,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(date: DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
+            cell.setup(title: selectButtonTitle, font: selectButtonFont) {
                 self.sendResult()
             }
             return cell
@@ -663,7 +666,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(date: DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
+            cell.setup(title: selectButtonTitle, font: selectButtonFont) {
                 self.sendResult()
             }
             return cell

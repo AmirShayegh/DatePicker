@@ -25,18 +25,20 @@ class ButtonCollectionViewCell: UICollectionViewCell {
 
     // MARK: Setup
     /*
-     - Parameter date: date displayed on button
+     - Parameter title: title displayed on button
+     - Parameter font: optional custom font for the button
      - Parameter clicked: call back when button is clicked
      */
-    func setup(date: Date, clicked: @escaping() -> Void) {
+    func setup(title: String, font: UIFont? = nil, clicked: @escaping() -> Void) {
         self.callBack = clicked
-        style()
+        button.setTitle(title, for: .normal)
+        style(font: font)
     }
 
-    func style() {
+    func style(font: UIFont? = nil) {
         divider.backgroundColor = DatePickerColors.main
         self.button.setTitleColor(DatePickerColors.main, for: .normal)
-        button.titleLabel?.font = Fonts.regular
+        button.titleLabel?.font = font ?? Fonts.regular
     }
 
     func styleButton(button: UIButton, bg: UIColor, borderColor: CGColor, titleColor: UIColor) {

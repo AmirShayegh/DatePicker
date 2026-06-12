@@ -48,6 +48,21 @@ public class DatePicker {
     var popoverWidth: CGFloat = (48 * 7)
     var popoverHeight: CGFloat = ((48 * 7) * 1.3)
 
+    /// Title of the confirm button. Set this to localize or
+    /// customize the default "Select".
+    public var selectButtonTitle: String = "Select" {
+        didSet {
+            vc.selectButtonTitle = selectButtonTitle
+        }
+    }
+
+    /// Optional custom font for the confirm button.
+    public var selectButtonFont: UIFont? {
+        didSet {
+            vc.selectButtonFont = selectButtonFont
+        }
+    }
+
     public init() {}
 
     // MARK: Setup
