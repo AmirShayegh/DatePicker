@@ -16,35 +16,20 @@ public class DatePickerHelper {
     // The calendar used for all date math. Injectable for tests.
     var calendar: Calendar = .current
 
-    var monthsList: [String] = [String]()
-    var daysList: [String] = [String]()
     init() {}
 
-    // Returns String array of months
+    // Returns String array of localized month names
     public func months() -> [String] {
-        if monthsList.count == 12 {
-            return monthsList
-        }
-        var returnValue: [String] = [String]()
-        let formatter = DateFormatter()
-        if let months = formatter.monthSymbols {
-            returnValue = months
-        }
-        self.monthsList = returnValue
-        return returnValue
+        return calendar.monthSymbols
     }
 
+    // Returns String array of localized short weekday names,
+    // ordered by the calendar's first weekday so that grids built
+    // from this array align in every locale.
     public func days() -> [String] {
-        if daysList.count == 7 {
-            return daysList
-        }
-        var returnValue: [String] = [String]()
-        let formatter = DateFormatter()
-        if let months = formatter.shortWeekdaySymbols {
-            returnValue = months
-        }
-        self.daysList = returnValue
-        return returnValue
+        let symbols = calendar.shortWeekdaySymbols
+        let shift = calendar.firstWeekday - 1
+        return Array(symbols[shift...]) + Array(symbols[..<shift])
     }
 
     // Returns the name of the month for given month number
@@ -68,24 +53,12 @@ public class DatePickerHelper {
     // Returns Number of days in month in given year
     public func daysIn(month: Int, year: Int) -> Int {
         let dateComponents = DateComponents(year: year, month: month)
-
-        let calendar = Calendar.current
-        if let date = calendar.date(from: dateComponents), let range = calendar.range(of: .day, in: .month, for: date)  {
+        if let date = calendar.date(from: dateComponents), let range = calendar.range(of: .day, in: .month, for: date) {
             return range.count
         } else {
             return 0
         }
     }
-
-    // Rerturns day of the given date
-//    func day(in date: Date) -> String {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "EEEE"
-//        return formatter.string(from: date)
-//
-//       // Note: this would return day number.
-//       // return Calendar.current.component(.weekday, from: date)
-//    }
 
     // Returns the first day of the given month/year
     public func firstDayOf(month: Int, year: Int) -> String {
@@ -105,32 +78,29 @@ public class DatePickerHelper {
         }
     }
 
-    // Generates date object from given month and year
-    public func dateFrom(month: Int, year: Int) -> Date? {
-        var dateComponents = DateComponents()
-        dateComponents.year = year
-        dateComponents.month = month
-        dateComponents.day = 1
-        dateComponents.timeZone = TimeZone.current
-        dateComponents.hour = 0
-        dateComponents.minute = 0
-
-        let calendar = Calendar.current
-        return calendar.date(from: dateComponents)
+    // Zero-based column of the month's first day in a week grid that
+    // starts at the calendar's first weekday. Computed numerically so
+    // it never depends on localized weekday strings.
+    func firstWeekdayColumn(month: Int, year: Int) -> Int {
+        guard let date = dateFrom(month: month, year: year) else { return 0 }
+        let weekday = calendar.component(.weekday, from: date)
+        return (weekday - calendar.firstWeekday + 7) % 7
     }
 
-    // Generates date object from day montha and year
+    // Generates date object from given month and year
+    public func dateFrom(month: Int, year: Int) -> Date? {
+        return dateFrom(day: 1, month: month, year: year)
+    }
+
+    // Generates the first valid instant of the given local day.
+    // Building from year/month/day only (no explicit time zone or
+    // midnight components) lets the calendar handle DST transitions
+    // where midnight does not exist.
     public func dateFrom(day: Int, month: Int, year: Int) -> Date? {
         var dateComponents = DateComponents()
         dateComponents.year = year
         dateComponents.month = month
         dateComponents.day = day
-        dateComponents.timeZone = TimeZone.current
-        dateComponents.hour = 0
-        dateComponents.minute = 0
-
-        let calendar = Calendar.current
         return calendar.date(from: dateComponents)
     }
-
 }

@@ -53,12 +53,6 @@ extension UICollectionView {
     }
 }
 
-extension String {
-    func charactersUpTo(index: Int) -> String {
-        return String(prefix(index))
-    }
-}
-
 extension UIColor {
     convenience init(hex: String) {
         var cString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

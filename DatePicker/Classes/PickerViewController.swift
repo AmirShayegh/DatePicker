@@ -447,13 +447,8 @@ public class PickerViewController: UIViewController {
     }
 
     func firstDayOfMonthIndex() -> Int {
-        let day = firstDayOfMonth()
         let days = DatePickerHelper.shared.days()
-        if let i = days.firstIndex(of: day.charactersUpTo(index: 3)) {
-            return i + days.count
-        } else {
-            return 0
-        }
+        return DatePickerHelper.shared.firstWeekdayColumn(month: month, year: year) + days.count
     }
 
     func lastDayOfMonthIndex() -> Int {
