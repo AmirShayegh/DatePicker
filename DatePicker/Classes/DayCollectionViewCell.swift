@@ -10,7 +10,7 @@ import UIKit
 class DayCollectionViewCell: UICollectionViewCell {
 
     // MARK: Variables
-    var parent: DaysCollectionViewCell?
+    weak var parent: DaysCollectionViewCell?
 
     // MARK: Outlets
     @IBOutlet weak var label: UILabel!

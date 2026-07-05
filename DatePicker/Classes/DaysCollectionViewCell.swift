@@ -11,7 +11,7 @@ class DaysCollectionViewCell: UICollectionViewCell {
 
     let flipDuration: Double = 0.5
     // MARK: variables
-    var parent: PickerViewController?
+    weak var parent: PickerViewController?
     var updating = false
 
     var mode: DatePickerMode = .Basic
@@ -228,7 +228,8 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             let cell = getDayCell(indexPath: indexPath)
             let current = (indexPath.row - p.firstDayOfMonthIndex() + 1)
             // if day is currently selected, set selected to true
-            if current == p.day {
+            // (effectiveDay clamps the intended day to this month)
+            if current == p.effectiveDay() {
                 cell.setup(day: current, selected: true, indexPath: indexPath, parent: self)
                 selectedIndexPath = indexPath
             } else {
@@ -255,7 +256,9 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
         var disabled = false
         var currentDay = indexPath.row + 1
         if let p = self.parent {
-            selected = p.day == (indexPath.row + 1)
+            // effectiveDay clamps the intended day to this month, so the
+            // right cell highlights without mutating the stored day.
+            selected = p.effectiveDay() == currentDay
             if p.month == p.minMonth && currentDay < p.minDay {
                 disabled = true
             }
@@ -264,14 +267,6 @@ extension DaysCollectionViewCell : UICollectionViewDelegate, UICollectionViewDat
             }
             if currentDay > p.daysInMonth() {
                 currentDay = -1
-            }
-            // if month does not have this day,
-            // change selected day
-            if selected && currentDay == -1 {
-                selected = false
-                p.day = p.daysInMonth()
-                let newDayIndexPath = IndexPath(row: (p.daysInMonth() - 1), section: 0)
-                update(indexpath: newDayIndexPath)
             }
         }
 

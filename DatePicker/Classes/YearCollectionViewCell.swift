@@ -9,7 +9,7 @@ import UIKit
 
 class YearCollectionViewCell: UICollectionViewCell {
     // MARK: Optionals
-    var parent: YearsCollectionViewCell?
+    weak var parent: YearsCollectionViewCell?
 
     // MARK: Outlets
     @IBOutlet weak var label: UILabel!

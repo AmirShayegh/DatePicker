@@ -15,12 +15,11 @@ class YearsCollectionViewCell: UICollectionViewCell {
     let selection = UISelectionFeedbackGenerator()
 
     // MARK: Optionals
-    var parent: PickerViewController?
+    weak var parent: PickerViewController?
     var currentCenterCellIndexPath: IndexPath?
 
     // MARK: Variables
     var items: [Int] = [Int]()
-    var seleced: [IndexPath] = [IndexPath]()
 
     // MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -113,7 +112,6 @@ extension YearsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func highlightCell(at: IndexPath) {
-        seleced.append(at)
         let visibleRows = collectionView.indexPathsForVisibleItems
         for item in visibleRows {
             let cell = collectionView.cellForItem(at: item) as! YearCollectionViewCell

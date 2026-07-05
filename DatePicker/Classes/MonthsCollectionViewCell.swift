@@ -13,11 +13,9 @@ class MonthsCollectionViewCell: UICollectionViewCell {
     let itemsPerPage = 5
     let selection = UISelectionFeedbackGenerator()
 
-    var parent: PickerViewController?
+    weak var parent: PickerViewController?
     var items: [String] = [String]()
     var currentCenterCellIndexPath: IndexPath?
-
-    var seleced: [IndexPath] = [IndexPath]()
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var bottomDivider: UIView!
@@ -107,7 +105,6 @@ extension MonthsCollectionViewCell: UICollectionViewDelegate, UICollectionViewDa
     }
 
     func highlightCell(at: IndexPath) {
-        seleced.append(at)
         let visibleRows = collectionView.indexPathsForVisibleItems
         for item in visibleRows {
             let cell = collectionView.cellForItem(at: item) as! MonthCollectionViewCell

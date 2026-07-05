@@ -35,23 +35,13 @@ public class PickerViewController: UIViewController {
     var mode: DatePickerMode = .Basic
     var calledFromSwipe: Bool = false
 
+    // `day` is the user's *intended* day and is never silently shrunk
+    // when the month/year changes (that caused a scroll transiting a
+    // shorter month to permanently reduce the selection). Rendering and
+    // the returned result clamp it to the current month via effectiveDay().
     var day: Int = 18
-    var month: Int = 7 {
-        didSet {
-            let max = DatePickerHelper.shared.daysIn(month: month, year: year)
-            if day > max && !loading {
-                day = max
-            }
-        }
-    }
-    var year: Int = 2018 {
-        didSet {
-            let max = DatePickerHelper.shared.daysIn(month: month, year: year)
-            if day > max && !loading {
-                day = max
-            }
-        }
-    }
+    var month: Int = 7
+    var year: Int = 2018
 
     var minDate: Date?
     var maxDate: Date?
@@ -77,6 +67,8 @@ public class PickerViewController: UIViewController {
         super.viewWillAppear(animated)
         // allow the same picker instance to be shown again
         resultSent = false
+        // re-arm the initial-scroll guard so re-presentation is protected
+        loading = true
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -84,6 +76,17 @@ public class PickerViewController: UIViewController {
         reload()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.loading = false
+        }
+    }
+
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        // Backstop so the host always receives a completion callback,
+        // even on a programmatic dismissal the presentation delegates
+        // don't observe. Idempotent via resultSent, so Select / cancel /
+        // swipe-to-dismiss paths are unaffected.
+        if isBeingDismissed || isMovingFromParent {
+            finish(selected: false)
         }
     }
 
@@ -101,18 +104,14 @@ public class PickerViewController: UIViewController {
         if mode == .Yearless {
             guard let callback = yearlessCallBack else { return }
             if selected {
-                var d = day
-                if d > daysInMonth() {
-                    d = daysInMonth()
-                }
-                callback(true, month, d)
+                callback(true, month, effectiveDay())
             } else {
                 callback(false, nil, nil)
             }
         } else {
             guard let callback = callBack else { return }
             if selected {
-                callback(true, DatePickerHelper.shared.dateFrom(day: day, month: month, year: year))
+                callback(true, DatePickerHelper.shared.dateFrom(day: effectiveDay(), month: month, year: year))
             } else {
                 callback(false, nil)
             }
@@ -121,7 +120,6 @@ public class PickerViewController: UIViewController {
 
     // select button tapped
     func selectTapped() {
-        if loading { return }
         finish(selected: true)
         dismiss(animated: true)
     }
@@ -151,7 +149,7 @@ public class PickerViewController: UIViewController {
     func validate() {
 
         // Min Max mode validations
-        if self.mode == .MinMax, let current = DatePickerHelper.shared.dateFrom(day: day, month: month, year: year), let max = maxDate, let min = minDate {
+        if self.mode == .MinMax, let current = DatePickerHelper.shared.dateFrom(day: effectiveDay(), month: month, year: year), let max = maxDate, let min = minDate {
             if current > max {
                 // select max date
                 self.day = max.day()
@@ -252,13 +250,13 @@ public class PickerViewController: UIViewController {
         if nextMonth > 12 {
             nextMonth = 12
         }
-        // get indexpath of months
-        guard let indexPath = monthsIndexPath else {return}
-        // scroll to month
-        let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
-        cell.select(month: DatePickerHelper.shared.month(number: nextMonth))
-        // store month
+        // store month first, then update the wheel only if it is
+        // currently realized on screen (cellForItem is nil when scrolled
+        // offscreen, which a force-cast would have trapped on).
         self.month = nextMonth
+        guard let indexPath = monthsIndexPath,
+              let cell = collectionView.cellForItem(at: indexPath) as? MonthsCollectionViewCell else { return }
+        cell.select(month: DatePickerHelper.shared.month(number: nextMonth))
     }
 
     func goToPrevMonth() {
@@ -266,42 +264,46 @@ public class PickerViewController: UIViewController {
         if prevMonth < 1 {
             prevMonth = 1
         }
-        // get indexpath of months
-        guard let indexPath = monthsIndexPath else {return}
-        // scroll to month
-        let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
-        cell.select(month: DatePickerHelper.shared.month(number: prevMonth))
-        // store month
         self.month = prevMonth
+        guard let indexPath = monthsIndexPath,
+              let cell = collectionView.cellForItem(at: indexPath) as? MonthsCollectionViewCell else { return }
+        cell.select(month: DatePickerHelper.shared.month(number: prevMonth))
     }
 
     func changeMonth(to: String) {
-        // get indexpath of months
-        guard let indexPath = monthsIndexPath else {return}
-        // scroll to month
-        let cell = self.collectionView.cellForItem(at: indexPath) as! MonthsCollectionViewCell
-        cell.select(month: to)
-        // store month
         self.month = DatePickerHelper.shared.month(name: to)
+        guard let indexPath = monthsIndexPath,
+              let cell = collectionView.cellForItem(at: indexPath) as? MonthsCollectionViewCell else { return }
+        cell.select(month: to)
     }
 
     func changeYear(to: Int) {
-        guard let indexPath = yearsIndexPath else {return}
-        let cell = self.collectionView.cellForItem(at: indexPath) as! YearsCollectionViewCell
-        cell.select(year: to)
         self.year = to
+        guard let indexPath = yearsIndexPath,
+              let cell = collectionView.cellForItem(at: indexPath) as? YearsCollectionViewCell else { return }
+        cell.select(year: to)
     }
 
     func currentDate() -> Date {
-        if let date = DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year) {
+        if let date = DatePickerHelper.shared.dateFrom(day: effectiveDay(), month: self.month, year: self.year) {
             return date
         } else {
             return Date()
         }
     }
 
+    // The intended day clamped to the current month/year, so a day like
+    // the 31st renders and returns as the 30th/28th in shorter months
+    // without the stored `day` being permanently reduced.
+    func effectiveDay() -> Int {
+        return min(day, daysInMonth())
+    }
+
     func daysInMonth() -> Int {
-        return DatePickerHelper.shared.daysIn(month: self.month, year: self.year)
+        // Yearless mode has no real year; use a leap year so February 29
+        // is selectable regardless of the placeholder year.
+        let y = (mode == .Yearless) ? 2020 : self.year
+        return DatePickerHelper.shared.daysIn(month: self.month, year: y)
     }
 
     func firstDayOfMonth() -> String {
@@ -331,6 +333,11 @@ public class PickerViewController: UIViewController {
         if let max = maxDate {
             maxYear = max.year()
         }
+        // Always include the currently selected year so a beginWith date
+        // outside the default 2018...2100 window (e.g. a birthdate) still
+        // appears and highlights in the wheel instead of being discarded.
+        minYear = Swift.min(minYear, year)
+        maxYear = Swift.max(maxYear, year)
         for i in minYear...maxYear {
             years.append(i)
         }
@@ -351,6 +358,10 @@ public class PickerViewController: UIViewController {
         coordinator.animate(alongsideTransition: { _ in
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.reloadData()
+        }, completion: { _ in
+            // reloadData resets the wheels' horizontal offsets; re-center
+            // the selected month/year once the rotation has settled.
+            self.reload()
         })
     }
 }
@@ -396,7 +407,11 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
             numberOfRows = 2 // months, select button
         }
         let w = (self.collectionView.frame.width)
-        let h = max((self.collectionView.frame.height - daysCellSize().height) / CGFloat(numberOfRows), 0)
+        // Floor each wheel row at a tappable minimum so an extremely short
+        // layout degrades to a scrollable picker instead of collapsing
+        // rows to zero height.
+        let minRowHeight: CGFloat = 44
+        let h = max((self.collectionView.frame.height - daysCellSize().height) / CGFloat(numberOfRows), minRowHeight)
         return CGSize(width: w, height: h)
     }
 
@@ -490,8 +505,8 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(title: selectButtonTitle, font: selectButtonFont) {
-                self.selectTapped()
+            cell.setup(title: selectButtonTitle, font: selectButtonFont) { [weak self] in
+                self?.selectTapped()
             }
             return cell
         }
@@ -516,8 +531,8 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(title: selectButtonTitle, font: selectButtonFont) {
-                self.selectTapped()
+            cell.setup(title: selectButtonTitle, font: selectButtonFont) { [weak self] in
+                self?.selectTapped()
             }
             return cell
         }
@@ -537,7 +552,11 @@ extension PickerViewController: UIPopoverPresentationControllerDelegate, UIViewC
     // current selection (matching v1 popover behavior, where there is
     // no cancel affordance); pulling a sheet down cancels.
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        finish(selected: displayMode == .PopOver)
+        // Tapping outside a popover commits (it has no cancel affordance),
+        // but only once the initial scroll has settled — dismissing
+        // mid-load cancels rather than committing a half-scrolled value.
+        // Sheet pull-down always cancels.
+        finish(selected: displayMode == .PopOver && !loading)
     }
 
     // Center mode uses a custom presentation controller for the

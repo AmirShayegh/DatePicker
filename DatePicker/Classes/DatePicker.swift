@@ -108,7 +108,9 @@ public class DatePicker {
         vc.minDay = minDay ?? 1
         vc.minMonth = minMonth ?? 1
         vc.maxMonth = maxMonth ?? 12
-        vc.maxDay = maxDay ?? DatePickerHelper.shared.daysIn(month: vc.maxMonth, year: vc.year)
+        // Use a leap year for the default max day so an unspecified
+        // February bound allows the 29th (yearless has no real year).
+        vc.maxDay = maxDay ?? DatePickerHelper.shared.daysIn(month: vc.maxMonth, year: 2020)
         vc.day = minDay ?? 1
         vc.month = minMonth ?? 1
         vc.mode = .Yearless

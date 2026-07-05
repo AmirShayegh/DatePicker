@@ -10,7 +10,7 @@ import UIKit
 class MonthCollectionViewCell: UICollectionViewCell {
 
     // MARK: Optionals
-    var parent: MonthsCollectionViewCell?
+    weak var parent: MonthsCollectionViewCell?
 
     // MARK: Outlets
     @IBOutlet weak var label: UILabel!
