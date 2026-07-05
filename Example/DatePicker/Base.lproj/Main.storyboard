@@ -20,48 +20,16 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ied-IX-SCD">
-                                <rect key="frame" x="159" y="318.5" width="57" height="30"/>
-                                <state key="normal" title="popover"/>
-                                <connections>
-                                    <action selector="popover:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WxR-p9-VhD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vq-Ko-y0M">
-                                <rect key="frame" x="161" y="593" width="53" height="30"/>
-                                <state key="normal" title="Present">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="present:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2cI-Dq-ZEl"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfa-Uh-qbL">
-                                <rect key="frame" x="16" y="45" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.26274509800000001" green="0.49019607840000001" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="3Vq-Ko-y0M" secondAttribute="bottom" constant="44" id="DSA-Gr-tWv"/>
-                            <constraint firstItem="ied-IX-SCD" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Egv-Hp-Viq"/>
-                            <constraint firstItem="Bfa-Uh-qbL" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ela-fY-enI"/>
-                            <constraint firstItem="Bfa-Uh-qbL" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="fcj-He-JJ2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bfa-Uh-qbL" secondAttribute="trailing" id="h79-FP-He6"/>
-                            <constraint firstItem="ied-IX-SCD" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="pJl-N7-0rf"/>
-                            <constraint firstItem="3Vq-Ko-y0M" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qvT-Mt-OcS"/>
-                            <constraint firstItem="Bfa-Uh-qbL" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="wpr-5J-E7H"/>
-                        </constraints>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <connections>
-                        <outlet property="label" destination="Bfa-Uh-qbL" id="Jdg-is-qfu"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
